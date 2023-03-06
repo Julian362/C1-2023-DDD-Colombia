@@ -1,4 +1,3 @@
-import { ICategoryDomainEntity } from '../../../../../../../../dist/subdomains/commodity/contexts/product/domain/entities/interfaces/category.domain-entity.interface';
 import { ISellerDomainEntity } from './seller.domain-entity.interface';
 import {
   DescriptionValueObject,
@@ -8,6 +7,7 @@ import {
   PriceValueObject,
   StateValueObject,
 } from '../../value-objects/item';
+import { ICategoryDomainEntity } from './category.domain-entity.interface';
 
 /**
  * Interface de Dominio para Item.

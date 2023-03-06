@@ -4,6 +4,7 @@ import {
   StateValueObject,
 } from '../../value-objects/seller';
 import { IItemDomainEntity } from './item.domain-entity.interface';
+import { EmailValueObject } from '../../value-objects/seller/email/email.value-object';
 /**
  *  Interface de Dominio para Vendedor.
  *
@@ -18,6 +19,13 @@ export interface ISellerDomainEntity {
    * @memberof ISellerDomainEntity
    */
   sellerId?: string | SellerIdValueObject;
+  /**
+   *  Email del Vendedor.
+   *
+   * @type {(string | EmailValueObject)}
+   * @memberof ISellerDomainEntity
+   */
+  email?: string | EmailValueObject;
   /**
    *  Nombre del Vendedor.
    *

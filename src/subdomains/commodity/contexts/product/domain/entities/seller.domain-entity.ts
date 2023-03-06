@@ -3,6 +3,7 @@ import {
   NameValueObject,
   StateValueObject,
 } from '../value-objects/seller';
+import { EmailValueObject } from '../value-objects/seller/email';
 import { ISellerDomainEntity } from './interfaces/seller.domain-entity.interface';
 import { ItemDomainEntity } from './item.domain-entity';
 
@@ -29,6 +30,13 @@ export class SellerDomainEntity implements ISellerDomainEntity {
    */
   name: string | NameValueObject;
   /**
+   *  Email del Vendedor.
+   *
+   * @type {(string | EmailValueObject)}
+   * @memberof ISellerDomainEntity
+   */
+  email: string | EmailValueObject;
+  /**
    *  Estado del Vendedor.
    *
    * @type {(boolean | StateValueObject)}
@@ -43,6 +51,7 @@ export class SellerDomainEntity implements ISellerDomainEntity {
    */
   constructor(data?: ISellerDomainEntity) {
     if (data?.sellerId) this.sellerId = data.sellerId;
+    if (data?.email) this.email = data.email;
     if (data?.name) this.name = data.name;
     if (data?.state) this.state = data.state;
   }
