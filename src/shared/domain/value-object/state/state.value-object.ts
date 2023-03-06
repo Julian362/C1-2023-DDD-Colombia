@@ -16,23 +16,7 @@ export abstract class StateValueObjectBase extends ValueObjectBase<boolean> {
    */
   validateData(): void {
     if (this.value) {
-      this.isEmpty();
       this.validateContent();
-    }
-  }
-
-  /**
-   *  valida si el valor es vacío
-   *
-   * @private
-   * @memberof StateValueObjectBase
-   */
-  private isEmpty(): void {
-    if (!this.value) {
-      this.setError({
-        field: this.getFieldName(),
-        message: `El campo ${this.getFieldName()} no puede estar vacío`,
-      } as IErrorValueObject);
     }
   }
 

@@ -2,7 +2,6 @@ import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
 import { ContainForbiddenWords } from 'src/shared/validations/forbidden-words.validation';
 import { StringMaxLength } from 'src/shared/validations/string-max-length.validation';
 import { StringMinLength } from 'src/shared/validations/string-min-length.validation';
-import { IsEmpty } from '../../../validations/is-empty.validation';
 
 /**
  *  clase abstracta que representa un valor string en el dominio
@@ -37,25 +36,9 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
    */
   validateData(): void {
     if (this.value) {
-      this.isEmpty();
-      this.isMaxLength();
-      this.isMinLength();
+      this.MaxLength();
+      this.MinLength();
       this.forbiddenWords();
-    }
-  }
-
-  /**
-   *  valida si el valor es vacío
-   *
-   * @private
-   * @memberof StringValueObjectBase
-   */
-  private isEmpty(): void {
-    if (IsEmpty(this.value)) {
-      this.setError({
-        field: this.getFieldName(),
-        message: `El campo ${this.getFieldName()} no puede estar vacío`,
-      } as IErrorValueObject);
     }
   }
 
@@ -65,7 +48,7 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
    * @private
    * @memberof StringValueObjectBase
    */
-  private isMaxLength(): void {
+  private MaxLength(): void {
     if (this.value && StringMaxLength(this.value, this.maxLength ?? 30)) {
       this.setError({
         field: this.getFieldName(),
@@ -80,7 +63,7 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
    * @private
    * @memberof StringValueObjectBase
    */
-  private isMinLength(): void {
+  private MinLength(): void {
     if (this.value && StringMinLength(this.value, this.minLength ?? 3)) {
       this.setError({
         field: this.getFieldName(),

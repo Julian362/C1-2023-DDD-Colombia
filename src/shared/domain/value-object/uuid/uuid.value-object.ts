@@ -17,23 +17,7 @@ export abstract class UUIDValueObjectBase extends ValueObjectBase<string> {
    */
   validateData(): void {
     if (this.value) {
-      this.isEmpty();
-      this.isUUID();
-    }
-  }
-
-  /**
-   *  valida si el valor es vacío
-   *
-   * @private
-   * @memberof UUIDValueObjectBase
-   */
-  private isEmpty(): void {
-    if (!this.value) {
-      this.setError({
-        field: this.getFieldName(),
-        message: `El campo ${this.getFieldName()} no puede estar vacío`,
-      } as IErrorValueObject);
+      this.validateUUID();
     }
   }
 
@@ -43,7 +27,7 @@ export abstract class UUIDValueObjectBase extends ValueObjectBase<string> {
    * @private
    * @memberof UUIDValueObjectBase
    */
-  private isUUID(): void {
+  private validateUUID(): void {
     if (IsUUID(this.value)) {
       this.setError({
         field: this.getFieldName(),
