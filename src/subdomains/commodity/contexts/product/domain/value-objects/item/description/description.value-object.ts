@@ -1,7 +1,7 @@
 import { StringValueObjectBase } from 'src/shared/domain/value-object/string/string.value-object';
 
 /**
- *  clase que representa la descripción del item
+ *  clase que representa un valor string en el dominio
  *
  * @export
  * @class DescriptionValueObject
