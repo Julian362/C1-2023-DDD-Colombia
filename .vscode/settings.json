@@ -18,5 +18,8 @@
         "titleBar.inactiveBackground": "#54009999",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#540099"
+    "peacock.color": "#540099",
+    "[typescript]": {
+        "editor.tabSize": 2
+    }
 }
