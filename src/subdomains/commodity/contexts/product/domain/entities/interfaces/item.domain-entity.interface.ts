@@ -1,3 +1,5 @@
+import { ICategoryDomainEntity } from '../../../../../../../../dist/subdomains/commodity/contexts/product/domain/entities/interfaces/category.domain-entity.interface';
+import { ISellerDomainEntity } from './seller.domain-entity.interface';
 import {
   DescriptionValueObject,
   ImageValueObject,
@@ -56,4 +58,19 @@ export interface IItemDomainEntity {
    * @memberof IItemDomainEntity
    */
   state?: boolean | StateValueObject;
+
+  /**
+   *  Categorías del Item.
+   *
+   * @type {(ICategoryDomainEntity[])}
+   * @memberof IItemDomainEntity
+   */
+  categorys?: ICategoryDomainEntity[];
+  /**
+   *  Vendedores del Item.
+   *
+   * @type {(ISellerDomainEntity)}
+   * @memberof IItemDomainEntity
+   */
+  seller?: ISellerDomainEntity;
 }

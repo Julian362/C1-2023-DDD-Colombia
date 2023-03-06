@@ -3,13 +3,14 @@ import {
   NameValueObject,
   StateValueObject,
 } from '../../value-objects/seller';
+import { IItemDomainEntity } from './item.domain-entity.interface';
 /**
  *  Interface de Dominio para Vendedor.
  *
  * @export
  * @class ISellerDomainEntity
  */
-export class ISellerDomainEntity {
+export interface ISellerDomainEntity {
   /**
    *  Identificador del Vendedor.
    *
@@ -31,4 +32,11 @@ export class ISellerDomainEntity {
    * @memberof ISellerDomainEntity
    */
   state?: boolean | StateValueObject;
+  /**
+   *  Items del Vendedor.
+   *
+   * @type {IItemDomainEntity[]}
+   * @memberof ISellerDomainEntity
+   */
+  items?: IItemDomainEntity[];
 }

@@ -5,6 +5,7 @@ import {
   StateValueObject,
 } from '../value-objects/category';
 import { ICategoryDomainEntity } from './interfaces/category.domain-entity.interface';
+import { ItemDomainEntity } from './item.domain-entity';
 
 /**
  *  Entidad de Dominio para Categoría.
@@ -43,6 +44,7 @@ export class CategoryDomainEntity implements ICategoryDomainEntity {
    */
   state: boolean | StateValueObject;
 
+  items: ItemDomainEntity[];
   /**
    *  crea una instancia de CategoryDomainEntity.
    * @param {ICategoryDomainEntity} [data] Datos para la entidad.

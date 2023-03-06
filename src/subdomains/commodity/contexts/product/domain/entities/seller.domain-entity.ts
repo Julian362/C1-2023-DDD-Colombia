@@ -4,6 +4,7 @@ import {
   StateValueObject,
 } from '../value-objects/seller';
 import { ISellerDomainEntity } from './interfaces/seller.domain-entity.interface';
+import { ItemDomainEntity } from './item.domain-entity';
 
 /**
  *  Entidad de Dominio para Vendedor.
@@ -34,6 +35,7 @@ export class SellerDomainEntity implements ISellerDomainEntity {
    * @memberof SellerDomainEntity
    */
   state: boolean | StateValueObject;
+  items: ItemDomainEntity[];
   /**
    *  Crea una instancia de SellerDomainEntity.
    * @param {ISellerDomainEntity} [data]
