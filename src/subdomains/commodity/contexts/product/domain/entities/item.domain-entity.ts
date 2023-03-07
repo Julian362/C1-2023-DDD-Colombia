@@ -74,5 +74,8 @@ export class ItemDomainEntity implements IItemDomainEntity {
     if (data?.image) this.image = data.image;
     if (data?.price) this.price = data.price;
     if (data?.state) this.state = data.state;
+    if (data?.seller) this.seller = data.seller as SellerDomainEntity;
+    if (data?.categorys)
+      this.categorys = data.categorys as CategoryDomainEntity[];
   }
 }

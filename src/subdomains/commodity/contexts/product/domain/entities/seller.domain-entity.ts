@@ -54,5 +54,6 @@ export class SellerDomainEntity implements ISellerDomainEntity {
     if (data?.email) this.email = data.email;
     if (data?.name) this.name = data.name;
     if (data?.state) this.state = data.state;
+    if (data?.items) this.items = data.items as ItemDomainEntity[];
   }
 }

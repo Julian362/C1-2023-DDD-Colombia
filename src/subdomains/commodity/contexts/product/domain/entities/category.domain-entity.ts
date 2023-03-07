@@ -55,5 +55,6 @@ export class CategoryDomainEntity implements ICategoryDomainEntity {
     if (data?.name) this.name = data.name;
     if (data?.description) this.description = data.description;
     if (data?.state) this.state = data.state;
+    if (data?.items) this.items = data.items as ItemDomainEntity[];
   }
 }
