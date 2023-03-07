@@ -28,7 +28,7 @@ export abstract class UUIDValueObjectBase extends ValueObjectBase<string> {
    * @memberof UUIDValueObjectBase
    */
   private validateUUID(): void {
-    if (IsUUID(this.value)) {
+    if (!IsUUID(this.value)) {
       this.setError({
         field: this.getFieldName(),
         message: `El campo ${this.getFieldName()} no puede estar vacío`,
