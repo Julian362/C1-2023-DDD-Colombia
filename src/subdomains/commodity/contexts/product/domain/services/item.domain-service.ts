@@ -7,7 +7,9 @@ import { ItemDomainEntity } from '../entities/item.domain-entity';
  * @interface IItemDomainService
  * @template Entity
  */
-export interface IItemDomainService<Entity extends ItemDomainEntity> {
+export interface IItemDomainService<
+  Entity extends ItemDomainEntity = ItemDomainEntity,
+> {
   /**
    *  obtiene un item
    *
@@ -17,13 +19,6 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    */
   getItem(itemId: string): Promise<Entity>;
   /**
-   *  obtiene todos los items
-   *
-   * @return {*}  {Promise<Entity[]>}
-   * @memberof IItemDomainService
-   */
-  getAllItems(): Promise<Entity[]>;
-  /**
    *  cambia el nombre del item
    *
    * @param {Entity} item
@@ -31,7 +26,7 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof IItemDomainService
    */
-  changeName(item: Entity, name: string): Promise<Entity>;
+  changeName(itemId: string, name: string): Promise<Entity>;
   /**
    *  cambia la descripción del item
    *
@@ -40,7 +35,7 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof IItemDomainService
    */
-  changeDescription(item: Entity, description: string): Promise<Entity>;
+  changeDescription(itemId: string, description: string): Promise<Entity>;
   /**
    *  cambia el estado del item
    *
@@ -49,7 +44,7 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof IItemDomainService
    */
-  changeState(item: Entity, state: boolean): Promise<Entity>;
+  changeState(itemId: string, state: boolean): Promise<Entity>;
   /**
    *  cambia la imagen del item
    *
@@ -58,7 +53,7 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof IItemDomainService
    */
-  changeImage(item: Entity, image: string): Promise<Entity>;
+  changeImage(itemId: string, image: string): Promise<Entity>;
   /**
    *  crea un item
    *
@@ -77,7 +72,7 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    * @memberof IItemDomainService
    */
   convertCurrency(
-    item: Entity,
+    itemId: string,
     currency: string,
     price: number,
   ): Promise<Entity>;
@@ -89,7 +84,7 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof IItemDomainService
    */
-  increasePrice(item: Entity, price: number): Promise<Entity>;
+  increasePrice(itemId: string, price: number): Promise<Entity>;
   /**
    *  disminuye el precio del item
    *
@@ -98,5 +93,5 @@ export interface IItemDomainService<Entity extends ItemDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof IItemDomainService
    */
-  decreasePrice(item: Entity, price: number): Promise<Entity>;
+  decreasePrice(itemId: string, price: number): Promise<Entity>;
 }

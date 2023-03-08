@@ -7,7 +7,9 @@ import { CategoryDomainEntity } from '../entities/category.domain-entity';
  * @interface ICategoryDomainService
  * @template Entity
  */
-export interface ICategoryDomainService<Entity extends CategoryDomainEntity> {
+export interface ICategoryDomainService<
+  Entity extends CategoryDomainEntity = CategoryDomainEntity,
+> {
   /**
    *  obtiene una categoría
    *
@@ -16,13 +18,6 @@ export interface ICategoryDomainService<Entity extends CategoryDomainEntity> {
    * @memberof ICategoryDomainService
    */
   getCategory(categoryId: string): Promise<Entity>;
-  /**
-   *  obtiene todas las categorías
-   *
-   * @return {*}  {Promise<Entity[]>}
-   * @memberof ICategoryDomainService
-   */
-  getAllCategories(): Promise<Entity[]>;
   /**
    *  cambia el nombre de la categoría
    *

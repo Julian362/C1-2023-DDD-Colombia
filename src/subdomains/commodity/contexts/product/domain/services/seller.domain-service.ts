@@ -7,7 +7,9 @@ import { SellerDomainEntity } from '../entities/seller.domain-entity';
  * @interface ISellerDomainService
  * @template Entity
  */
-export interface ISellerDomainService<Entity extends SellerDomainEntity> {
+export interface ISellerDomainService<
+  Entity extends SellerDomainEntity = SellerDomainEntity,
+> {
   /**
    *  obtiene un vendedor
    *
@@ -17,13 +19,6 @@ export interface ISellerDomainService<Entity extends SellerDomainEntity> {
    */
   getSeller(sellerId: string): Promise<Entity>;
   /**
-   *  obtiene todos los vendedores
-   *
-   * @return {*}  {Promise<Entity[]>}
-   * @memberof ISellerDomainService
-   */
-  getAllSellers(): Promise<Entity[]>;
-  /**
    *  cambia el nombre del vendedor
    *
    * @param {Entity} seller
@@ -31,16 +26,7 @@ export interface ISellerDomainService<Entity extends SellerDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof ISellerDomainService
    */
-  changeNameSeller(seller: Entity, name: string): Promise<Entity>;
-  /**
-   *  cambia la descripción del vendedor
-   *
-   * @param {Entity} seller
-   * @param {string} description
-   * @return {*}  {Promise<Entity>}
-   * @memberof ISellerDomainService
-   */
-  changeDescriptionSeller(seller: Entity, description: string): Promise<Entity>;
+  changeNameSeller(sellerId: string, name: string): Promise<Entity>;
   /**
    *  cambia el estado del vendedor
    *
@@ -49,7 +35,7 @@ export interface ISellerDomainService<Entity extends SellerDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof ISellerDomainService
    */
-  changeStateSeller(seller: Entity, state: boolean): Promise<Entity>;
+  changeStateSeller(sellerId: string, state: boolean): Promise<Entity>;
   /**
    *  cambia la imagen del vendedor
    *
@@ -58,5 +44,5 @@ export interface ISellerDomainService<Entity extends SellerDomainEntity> {
    * @return {*}  {Promise<Entity>}
    * @memberof ISellerDomainService
    */
-  changeEmailSeller(seller: Entity, email: string): Promise<Entity>;
+  changeEmailSeller(sellerId: string, email: string): Promise<Entity>;
 }
