@@ -13,7 +13,7 @@ import { StringMaxLength } from '../../../../../../../../shared/validations/stri
 export class EmailValueObject extends ValueObjectBase<string> {
   /**
    *  crea una instancia de EmailValueObject
-   * @param {string} value
+   * @param {string} value valor del email
    * @memberof EmailValueObject
    */
   constructor(value: string) {

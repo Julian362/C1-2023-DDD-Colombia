@@ -13,26 +13,27 @@ export interface ICategoryDomainService<
   /**
    *  obtiene una categoría
    *
-   * @param {string} categoryId
-   * @return {*}  {Promise<Entity>}
+   * @param {string} categoryId id de la categoría
+   * @return {Promise<Entity>}  retorna una promesa con la categoría
    * @memberof ICategoryDomainService
    */
   getCategory(categoryId: string): Promise<Entity>;
+
   /**
    *  cambia el nombre de la categoría
    *
-   * @param {string} categoryId
-   * @param {string} name
-   * @return {*}  {Promise<Entity>}
+   * @param {string} categoryId id de la categoría
+   * @param {string} name nombre de la categoría
+   * @return {Promise<Entity>} retorna una promesa con la categoría
    * @memberof ICategoryDomainService
    */
   changeNameCategory(categoryId: string, name: string): Promise<Entity>;
   /**
    *  cambia la descripción de la categoría
    *
-   * @param {string} categoryId
-   * @param {string} description
-   * @return {*}  {Promise<Entity>}
+   * @param {string} categoryId id de la categoría
+   * @param {string} description  descripción de la categoría
+   * @return {Promise<Entity>}  retorna una promesa con la categoría
    * @memberof ICategoryDomainService
    */
   changeDescriptionCategory(
@@ -40,11 +41,11 @@ export interface ICategoryDomainService<
     description: string,
   ): Promise<Entity>;
   /**
-   *  cambia el estado de la categoría
+   * cambia el estado de la categoría
    *
-   * @param {string} categoryId
-   * @param {boolean} state
-   * @return {*}  {Promise<Entity>}
+   * @param {string} categoryId id de la categoría
+   * @param {boolean} state estado de la categoría
+   * @return {Promise<Entity>}  retorna una promesa con la categoría
    * @memberof ICategoryDomainService
    */
   changeStateCategory(categoryId: string, state: boolean): Promise<Entity>;

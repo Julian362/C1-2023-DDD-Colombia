@@ -36,11 +36,11 @@ export abstract class UUIDValueObjectBase extends ValueObjectBase<string> {
     }
   }
   /**
-   *  retorna el nombre del campo
+   *  método abstracto que retorna el nombre del campo
    *
    * @protected
    * @abstract
-   * @return {*}  {string}
+   * @return {string} retorna el nombre del campo
    * @memberof UUIDValueObjectBase
    */
   protected abstract getFieldName(): string;

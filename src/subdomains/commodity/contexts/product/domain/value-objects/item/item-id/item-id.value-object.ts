@@ -12,7 +12,7 @@ export class ItemIdValueObject extends UUIDValueObjectBase {
    *  retorna el nombre del campo
    *
    * @protected
-   * @return {*}  {string}
+   * @return {string} retorna el nombre del campo
    * @memberof ItemIdValueObject
    */
   protected getFieldName(): string {
@@ -21,7 +21,7 @@ export class ItemIdValueObject extends UUIDValueObjectBase {
 
   /**
    *  crea una instancia de ItemIdValueObject
-   * @param {string} value
+   * @param {string} value  valor del id del item
    * @memberof ItemIdValueObject
    */
   constructor(value: string) {

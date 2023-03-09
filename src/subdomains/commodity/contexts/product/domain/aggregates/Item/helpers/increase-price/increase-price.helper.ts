@@ -4,6 +4,15 @@ import {
   ItemDomainEntity,
 } from '@context/product/domain';
 
+/**
+ *  Helper para aumentar el precio de un producto
+ *
+ * @param {string} itemId - Id del producto
+ * @param {number} price - Precio a aumentar
+ * @param {IncreasePriceEventPublisher<ItemDomainEntity>} increasePriceEP - Evento publicador de cambio de precio de producto
+ * @param {(IItemDomainService | undefined)} itemService - Servicio de producto
+ * @return {Promise<ItemDomainEntity>}
+ */
 export const IncreasePriceHelper = async (
   itemId: string,
   price: number,

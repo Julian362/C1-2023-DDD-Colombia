@@ -136,7 +136,7 @@ export class ItemAggregateRoot
   changeName(itemId: string, name: string): Promise<ItemDomainEntity> {
     return ChangeNameHelper(itemId, name, this.itemService, this.chgNameEP);
   }
-  async createItem(item: ItemDomainEntity): Promise<ItemDomainEntity> {
+  createItem(item: ItemDomainEntity): Promise<ItemDomainEntity> {
     return CreateItemHelper(item, this.itemService, this.createdItemEP);
   }
   convertCurrency(

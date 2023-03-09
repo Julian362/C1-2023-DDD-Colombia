@@ -13,62 +13,68 @@ export interface IItemDomainService<
   /**
    *  obtiene un item
    *
-   * @param {string} itemId
-   * @return {*}  {Promise<Entity>}
+   * @param {string} itemId id del item
+   * @return {Promise<Entity>}  retorna una promesa con el item
    * @memberof IItemDomainService
    */
   getItem(itemId: string): Promise<Entity>;
+
   /**
-   *  cambia el nombre del item
+   * cambia el nombre del item
    *
-   * @param {Entity} item
-   * @param {string} name
-   * @return {*}  {Promise<Entity>}
+   * @param {string} itemId id del item
+   * @param {string} name nombre del item a cambiar
+   * @return {Promise<Entity>}  retorna una promesa con el item
    * @memberof IItemDomainService
    */
   changeName(itemId: string, name: string): Promise<Entity>;
+
   /**
-   *  cambia la descripción del item
+   * cambia la descripción del item
    *
-   * @param {Entity} item
-   * @param {string} description
-   * @return {*}  {Promise<Entity>}
+   * @param {string} itemId id del item
+   * @param {string} description descripción a cambiar en el item
+   * @return {Promise<Entity>} retorna una promesa con el item
    * @memberof IItemDomainService
    */
   changeDescription(itemId: string, description: string): Promise<Entity>;
+
   /**
    *  cambia el estado del item
    *
-   * @param {Entity} item
-   * @param {boolean} state
-   * @return {*}  {Promise<Entity>}
+   * @param {string} itemId id del item
+   * @param {boolean} state estado a cambiar del item
+   * @return {Promise<Entity>} retorna una promesa con el item
    * @memberof IItemDomainService
    */
   changeState(itemId: string, state: boolean): Promise<Entity>;
+
   /**
    *  cambia la imagen del item
    *
-   * @param {Entity} item
-   * @param {string} image
-   * @return {*}  {Promise<Entity>}
+   * @param {string} itemId id del item
+   * @param {string} image  imagen a cambiar del item
+   * @return {Promise<Entity>} retorna una promesa con el item
    * @memberof IItemDomainService
    */
   changeImage(itemId: string, image: string): Promise<Entity>;
+
   /**
-   *  crea un item
+   * crea un item
    *
-   * @param {Entity} item
-   * @return {*}  {Promise<Entity>}
+   * @param {Entity} item item a crear
+   * @return {Promise<Entity>}  retorna una promesa con el item creado
    * @memberof IItemDomainService
    */
   createItem(item: Entity): Promise<Entity>;
+
   /**
-   *  convierte la moneda del item
+   *  elimina un item
    *
-   * @param {Entity} item
-   * @param {string} currency
-   * @param {number} price
-   * @return {*}  {Promise<Entity>}
+   * @param {string} itemId id del item
+   * @param {string} currency moneda a convertir
+   * @param {number} price precio a convertir
+   * @return {Promise<Entity>} retorna una promesa con el item
    * @memberof IItemDomainService
    */
   convertCurrency(
@@ -76,21 +82,23 @@ export interface IItemDomainService<
     currency: string,
     price: number,
   ): Promise<Entity>;
+
   /**
-   *  aumenta el precio del item
    *
-   * @param {Entity} item
-   * @param {number} price
-   * @return {*}  {Promise<Entity>}
+   *
+   * @param {string} itemId id del item
+   * @param {number} price precio a aumentar
+   * @return {Promise<Entity>} retorna una promesa con el item
    * @memberof IItemDomainService
    */
   increasePrice(itemId: string, price: number): Promise<Entity>;
+
   /**
-   *  disminuye el precio del item
    *
-   * @param {Entity} item
-   * @param {number} price
-   * @return {*}  {Promise<Entity>}
+   *
+   * @param {string} itemId id del item
+   * @param {number} price precio a disminuir
+   * @return {Promise<Entity>} retorna una promesa con el item
    * @memberof IItemDomainService
    */
   decreasePrice(itemId: string, price: number): Promise<Entity>;

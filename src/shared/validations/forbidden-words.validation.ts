@@ -2,7 +2,7 @@
  *  Valida si el valor contiene palabras prohibidas.
  *
  * @param {string} value Valor a validar.
- * @return {*}  {boolean} Verdadero si contiene palabras prohibidas.
+ * @return  {boolean} Verdadero si contiene palabras prohibidas.
  */
 export const ContainForbiddenWords = (value: string): boolean => {
   const forbiddenWords = [

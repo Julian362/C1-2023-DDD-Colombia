@@ -13,35 +13,35 @@ export interface ISellerDomainService<
   /**
    *  obtiene un vendedor
    *
-   * @param {string} sellerId
-   * @return {*}  {Promise<Entity>}
+   * @param {string} sellerId id del vendedor
+   * @return {Promise<Entity>} retorna una promesa con el vendedor
    * @memberof ISellerDomainService
    */
   getSeller(sellerId: string): Promise<Entity>;
   /**
-   *  cambia el nombre del vendedor
+   *  obtiene un vendedor por su email
    *
-   * @param {Entity} seller
-   * @param {string} name
-   * @return {*}  {Promise<Entity>}
+   * @param {string} sellerId id del vendedor
+   * @param {string} name nombre del vendedor
+   * @return {Promise<Entity>} retorna una promesa con el vendedor
    * @memberof ISellerDomainService
    */
   changeNameSeller(sellerId: string, name: string): Promise<Entity>;
   /**
-   *  cambia el estado del vendedor
+   *  obtiene un vendedor por su email
    *
-   * @param {Entity} seller
-   * @param {boolean} state
-   * @return {*}  {Promise<Entity>}
+   * @param {string} sellerId id del vendedor
+   * @param {boolean} state estado a cambia del vendedor
+   * @return {Promise<Entity>} retorna una promesa con el vendedor
    * @memberof ISellerDomainService
    */
   changeStateSeller(sellerId: string, state: boolean): Promise<Entity>;
   /**
-   *  cambia la imagen del vendedor
+   *  cambia el email de un vendedor
    *
-   * @param {Entity} seller
-   * @param {string} email
-   * @return {*}  {Promise<Entity>}
+   * @param {string} sellerId id del vendedor
+   * @param {string} email email del vendedor
+   * @return {Promise<Entity>} retorna una promesa con el vendedor
    * @memberof ISellerDomainService
    */
   changeEmailSeller(sellerId: string, email: string): Promise<Entity>;

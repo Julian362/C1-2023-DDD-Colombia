@@ -11,7 +11,7 @@ export class NameValueObject extends StringValueObjectBase {
    *  retorna el nombre del campo
    *
    * @protected
-   * @return {*}  {string}
+   * @return {string} nombre del campo
    * @memberof NameValueObject
    */
   protected getFieldName(): string {
@@ -20,7 +20,7 @@ export class NameValueObject extends StringValueObjectBase {
 
   /**
    * crea una instancia de NameValueObject
-   * @param {string} value
+   * @param {string} value valor del nombre
    * @memberof NameValueObject
    */
   constructor(value: string) {

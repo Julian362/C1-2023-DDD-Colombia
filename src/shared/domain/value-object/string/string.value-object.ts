@@ -16,8 +16,8 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
   private minLength?: number;
   /**
    *  crea una instancia de StringValueObjectBase
-   * @param {string} value
-   * @param {{ maxLength?: number; minLength?: number }} { maxLength, minLength } opcionales
+   * @param {string} value valor del objeto
+   * @param {{ maxLength?: number; minLength?: number }} { maxLength, minLength } opcionales para validar el tamaño del string
    * @memberof StringValueObjectBase
    */
   constructor(
@@ -88,11 +88,11 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
   }
 
   /**
-   *  retorna el nombre del campo
+   *  método abstracto que retorna el nombre del campo
    *
    * @protected
    * @abstract
-   * @return {*}  {string}
+   * @return {string} retorna el nombre del campo
    * @memberof StringValueObjectBase
    */
   protected abstract getFieldName(): string;

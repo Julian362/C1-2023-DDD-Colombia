@@ -4,6 +4,15 @@ import {
   ItemDomainEntity,
 } from '@context/product/domain';
 
+/**
+ * helper para cambiar el estado de un producto
+ *
+ * @param {string} itemId - id del producto
+ * @param {boolean} state - estado a cambiar
+ * @param {ChangedStateEventPublisher<ItemDomainEntity>} changedStateEP - evento publicador de cambio de estado de producto
+ * @param {(IItemDomainService | undefined)} itemService - servicio de producto
+ * @return {Promise<ItemDomainEntity>} retorna una promesa con el producto con el estado cambiado
+ */
 export const ChangeStateHelper = async (
   itemId: string,
   state: boolean,

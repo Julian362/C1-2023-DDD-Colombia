@@ -10,7 +10,7 @@ import { StringValueObjectBase } from 'src/shared/domain/value-object/string/str
 export class DescriptionValueObject extends StringValueObjectBase {
   /**
    *  crea una instancia de DescriptionValueObject
-   * @param {string} value
+   * @param {string} value valor de la descripción
    * @memberof DescriptionValueObject
    */
   constructor(value: string) {
@@ -21,7 +21,7 @@ export class DescriptionValueObject extends StringValueObjectBase {
    *  retorna el nombre del campo
    *
    * @protected
-   * @return {*}  {string}
+   * @return {string} retorna el nombre del campo
    * @memberof DescriptionValueObject
    */
   protected getFieldName(): string {

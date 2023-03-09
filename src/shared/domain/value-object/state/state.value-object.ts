@@ -36,11 +36,11 @@ export abstract class StateValueObjectBase extends ValueObjectBase<boolean> {
   }
 
   /**
-   *  retorna el nombre del campo
+   *  método abstracto que retorna el nombre del campo
    *
    * @protected
    * @abstract
-   * @return {*}  {string}
+   * @return {string} retorna el nombre del campo
    * @memberof StateValueObjectBase
    */
   protected abstract getFieldName(): string;

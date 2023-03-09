@@ -4,6 +4,15 @@ import {
   ICategoryDomainService,
 } from '@context/product/domain';
 
+/**
+ * helper para cambiar la descripción de una categoría
+ *
+ * @param {string} categoryId - id de la categoría
+ * @param {string} description - descripción a cambiar
+ * @param {ChangedDescriptionCategoryEventPublisher<CategoryDomainEntity>} changedDescriptionCategoryEP - evento publicador de cambio de descripción de categoría
+ * @param {(ICategoryDomainService | undefined)} categoryService - servicio de categoría
+ * @return {Promise<CategoryDomainEntity>} - categoría con la descripción cambiada
+ */
 export const ChangeDescriptionCategoryHelper = async (
   categoryId: string,
   description: string,

@@ -4,6 +4,15 @@ import {
   ItemDomainEntity,
 } from '@context/product/domain';
 
+/**
+ * helper para disminuir el precio de un producto
+ *
+ * @param {string} itemId id del producto
+ * @param {number} price precio a disminuir
+ * @param {DecreasePriceEventPublisher<ItemDomainEntity>} decreasePriceEP evento publicador de cambio de precio
+ * @param {(IItemDomainService | undefined)} itemService servicio de producto
+ * @return {Promise<ItemDomainEntity>} retorna una promesa con el producto con el precio disminuido
+ */
 export const DecreasePriceHelper = async (
   itemId: string,
   price: number,

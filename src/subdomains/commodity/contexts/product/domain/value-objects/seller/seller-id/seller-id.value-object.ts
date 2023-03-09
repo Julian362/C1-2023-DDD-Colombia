@@ -11,7 +11,7 @@ export class SellerIdValueObject extends UUIDValueObjectBase {
    * retorna el nombre del campo
    *
    * @protected
-   * @return {*}  {string}
+   * @return {string} nombre del campo
    * @memberof SellerIdValueObject
    */
   protected getFieldName(): string {
@@ -19,7 +19,7 @@ export class SellerIdValueObject extends UUIDValueObjectBase {
   }
   /**
    *  crea una instancia de SellerIdValueObject
-   * @param {string} value
+   * @param {string} value valor del id del vendedor
    * @memberof SellerIdValueObject
    */
   constructor(value: string) {

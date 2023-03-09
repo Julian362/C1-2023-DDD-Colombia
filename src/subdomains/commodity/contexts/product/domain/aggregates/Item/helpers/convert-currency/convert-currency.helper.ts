@@ -4,6 +4,16 @@ import {
   ItemDomainEntity,
 } from '@context/product/domain';
 
+/**
+ * helper para convertir la moneda de un producto
+ *
+ * @param {string} itemId - id del producto
+ * @param {string} currency - moneda a convertir
+ * @param {number} price - precio del producto
+ * @param {ConvertedCurrencyEventPublisher<ItemDomainEntity>} convertCurrencyEP - evento publicador de cambio de moneda de producto
+ * @param {(IItemDomainService | undefined)} itemService - servicio de producto
+ * @return {Promise<ItemDomainEntity>} - retorna una promesa con el producto con la moneda convertida
+ */
 export const ConvertCurrencyHelper = async (
   itemId: string,
   currency: string,

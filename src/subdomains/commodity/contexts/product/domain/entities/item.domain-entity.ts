@@ -64,7 +64,7 @@ export class ItemDomainEntity implements IItemDomainEntity {
   state: boolean | StateValueObject;
   /**
    *  Crea una instancia de ItemDomainEntity.
-   * @param {IItemDomainEntity} [data]
+   * @param {IItemDomainEntity} [data] Datos para inicializar la entidad.
    * @memberof ItemDomainEntity
    */
   constructor(data?: IItemDomainEntity) {

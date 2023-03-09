@@ -46,7 +46,7 @@ export class SellerDomainEntity implements ISellerDomainEntity {
   items: ItemDomainEntity[];
   /**
    *  Crea una instancia de SellerDomainEntity.
-   * @param {ISellerDomainEntity} [data]
+   * @param {ISellerDomainEntity} [data] Datos para inicializar la entidad.
    * @memberof SellerDomainEntity
    */
   constructor(data?: ISellerDomainEntity) {

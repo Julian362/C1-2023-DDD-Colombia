@@ -11,7 +11,7 @@ export class StateValueObject extends StateValueObjectBase {
    * retorna el nombre del campo
    *
    * @protected
-   * @return {*}  {string}
+   * @return {string} nombre del campo
    * @memberof StateValueObject
    */
   protected getFieldName(): string {
@@ -20,7 +20,7 @@ export class StateValueObject extends StateValueObjectBase {
 
   /**
    * crea una instancia de StateValueObject
-   * @param {boolean} value
+   * @param {boolean} value valor del estado
    * @memberof StateValueObject
    */
   constructor(value: boolean) {

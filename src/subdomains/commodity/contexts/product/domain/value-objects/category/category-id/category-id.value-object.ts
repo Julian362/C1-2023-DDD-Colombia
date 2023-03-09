@@ -13,7 +13,7 @@ export class CategoryIdValueObject extends UUIDValueObjectBase {
    *  retorna el nombre del campo
    *
    * @protected
-   * @return {*}  {string}
+   * @return {string} retorna el nombre del campo
    * @memberof CategoryIdValueObject
    */
   protected getFieldName(): string {
@@ -21,7 +21,7 @@ export class CategoryIdValueObject extends UUIDValueObjectBase {
   }
   /**
    *  crea una instancia de CategoryIdValueObject
-   * @param {string} [value]
+   * @param {string} [value] valor del id de la categoría
    * @memberof CategoryIdValueObject
    */
   constructor(value?: string) {
