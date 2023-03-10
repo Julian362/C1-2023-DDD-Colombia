@@ -4,14 +4,14 @@ import { StateValueObjectBase } from 'src/shared/domain/value-object/state/state
  *  clase que representa el estado de la categoría
  *
  * @export
- * @class StateValueObject
+ * @class StateCategoryValueObject
  * @extends {StateValueObjectBase}
  */
-export class StateValueObject extends StateValueObjectBase {
+export class StateCategoryValueObject extends StateValueObjectBase {
   /**
-   *  crea una instancia de StateValueObject
+   *  crea una instancia de StateCategoryValueObject
    * @param {boolean} value valor del estado
-   * @memberof StateValueObject
+   * @memberof StateCategoryValueObject
    */
   constructor(value: boolean) {
     super(value);
@@ -22,7 +22,7 @@ export class StateValueObject extends StateValueObjectBase {
    *
    * @protected
    * @return {string} retorna el nombre del campo
-   * @memberof StateValueObject
+   * @memberof StateCategoryValueObject
    */
   protected getFieldName(): string {
     return 'state';

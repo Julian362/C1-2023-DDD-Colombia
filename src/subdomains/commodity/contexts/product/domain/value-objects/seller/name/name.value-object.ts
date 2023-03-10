@@ -3,25 +3,25 @@ import { StringValueObjectBase } from '../../../../../../../../shared/domain/val
  *  clase que representa el nombre del vendedor
  *
  * @export
- * @class NameValueObject
+ * @class NameSellerValueObject
  * @extends {StringValueObjectBase}
  */
-export class NameValueObject extends StringValueObjectBase {
+export class NameSellerValueObject extends StringValueObjectBase {
   /**
    *  retorna el nombre del campo
    *
    * @protected
    * @return {string} nombre del campo
-   * @memberof NameValueObject
+   * @memberof NameSellerValueObject
    */
   protected getFieldName(): string {
     return 'name';
   }
 
   /**
-   * crea una instancia de NameValueObject
+   * crea una instancia de NameSellerValueObject
    * @param {string} value valor del nombre
-   * @memberof NameValueObject
+   * @memberof NameSellerValueObject
    */
   constructor(value: string) {
     super(value);

@@ -3,25 +3,25 @@ import { StateValueObjectBase } from '../../../../../../../../shared/domain/valu
  * clase que representa el estado del vendedor
  *
  * @export
- * @class StateValueObject
+ * @class StateSellerValueObject
  * @extends {StateValueObjectBase}
  */
-export class StateValueObject extends StateValueObjectBase {
+export class StateSellerValueObject extends StateValueObjectBase {
   /**
    * retorna el nombre del campo
    *
    * @protected
    * @return {string} nombre del campo
-   * @memberof StateValueObject
+   * @memberof StateSellerValueObject
    */
   protected getFieldName(): string {
     return 'state';
   }
 
   /**
-   * crea una instancia de StateValueObject
+   * crea una instancia de StateSellerValueObject
    * @param {boolean} value valor del estado
-   * @memberof StateValueObject
+   * @memberof StateSellerValueObject
    */
   constructor(value: boolean) {
     super(value);
