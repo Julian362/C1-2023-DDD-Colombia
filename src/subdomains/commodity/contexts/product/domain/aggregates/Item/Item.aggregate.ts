@@ -39,6 +39,8 @@ import {
 } from './helpers';
 import { ChangeStateCategoryHelper } from './helpers/change-state-category';
 import { GetSellerHelper } from './helpers/get-seller/get-seller-helper';
+import { GotItemEventPublisher } from '../../events/publishers/got-item.event-publisher';
+import { GotSellerEventPublisher } from '../../events/publishers/got-seller.event-publisher';
 
 export class ItemAggregateRoot
   implements ISellerDomainService, IItemDomainService, ICategoryDomainService
@@ -62,8 +64,8 @@ export class ItemAggregateRoot
   private readonly decreasePriceEP: DecreasePriceEventPublisher<ItemDomainEntity>;
   private readonly increasePriceEP: DecreasePriceEventPublisher<ItemDomainEntity>;
   private readonly gotCategoryEP: GotCategoryEventPublisher<CategoryDomainEntity>;
-  private readonly gotItemEP: GotCategoryEventPublisher<ItemDomainEntity>;
-  private readonly gotSellerEP: GotCategoryEventPublisher<SellerDomainEntity>;
+  private readonly gotItemEP: GotItemEventPublisher<ItemDomainEntity>;
+  private readonly gotSellerEP: GotSellerEventPublisher<SellerDomainEntity>;
 
   constructor({
     categoryService,
@@ -90,23 +92,23 @@ export class ItemAggregateRoot
     categoryService?: ICategoryDomainService;
     sellerService?: ISellerDomainService;
     itemService?: IItemDomainService;
-    chgDescriptionCategoryEP: ChangedDescriptionCategoryEventPublisher<CategoryDomainEntity>;
-    chgDescriptionEP: ChangedDescriptionEventPublisher<ItemDomainEntity>;
-    chgEmailSellerEP: ChangedEmailSellerEventPublisher<SellerDomainEntity>;
-    chgImageCategoryEP: ChangedImageEventPublisher<CategoryDomainEntity>;
-    chgNameEP: ChangedNameCategoryEventPublisher<ItemDomainEntity>;
-    chgNameCategoryEP: ChangedNameCategoryEventPublisher<CategoryDomainEntity>;
-    chgNameSellerEP: ChangedNameCategoryEventPublisher<SellerDomainEntity>;
-    chgStateCategoryEP: ChangedNameCategoryEventPublisher<CategoryDomainEntity>;
-    chgStateSellerEP: ChangedNameCategoryEventPublisher<SellerDomainEntity>;
-    chgStateEP: ChangedStateEventPublisher<ItemDomainEntity>;
-    convertedCurrencyEP: ConvertedCurrencyEventPublisher<ItemDomainEntity>;
-    createdItemEP: CreatedItemEventPublisher<ItemDomainEntity>;
-    decreasePriceEP: DecreasePriceEventPublisher<ItemDomainEntity>;
-    increasePriceEP: DecreasePriceEventPublisher<ItemDomainEntity>;
-    gotCategoryEP: GotCategoryEventPublisher<CategoryDomainEntity>;
-    gotItemEP: GotCategoryEventPublisher<ItemDomainEntity>;
-    gotSellerEP: GotCategoryEventPublisher<SellerDomainEntity>;
+    chgDescriptionCategoryEP?: ChangedDescriptionCategoryEventPublisher<CategoryDomainEntity>;
+    chgDescriptionEP?: ChangedDescriptionEventPublisher<ItemDomainEntity>;
+    chgEmailSellerEP?: ChangedEmailSellerEventPublisher<SellerDomainEntity>;
+    chgImageCategoryEP?: ChangedImageEventPublisher<CategoryDomainEntity>;
+    chgNameEP?: ChangedNameCategoryEventPublisher<ItemDomainEntity>;
+    chgNameCategoryEP?: ChangedNameCategoryEventPublisher<CategoryDomainEntity>;
+    chgNameSellerEP?: ChangedNameCategoryEventPublisher<SellerDomainEntity>;
+    chgStateCategoryEP?: ChangedNameCategoryEventPublisher<CategoryDomainEntity>;
+    chgStateSellerEP?: ChangedNameCategoryEventPublisher<SellerDomainEntity>;
+    chgStateEP?: ChangedStateEventPublisher<ItemDomainEntity>;
+    convertedCurrencyEP?: ConvertedCurrencyEventPublisher<ItemDomainEntity>;
+    createdItemEP?: CreatedItemEventPublisher<ItemDomainEntity>;
+    decreasePriceEP?: DecreasePriceEventPublisher<ItemDomainEntity>;
+    increasePriceEP?: DecreasePriceEventPublisher<ItemDomainEntity>;
+    gotCategoryEP?: GotCategoryEventPublisher<CategoryDomainEntity>;
+    gotItemEP?: GotItemEventPublisher<ItemDomainEntity>;
+    gotSellerEP?: GotSellerEventPublisher<SellerDomainEntity>;
   }) {
     this.categoryService = categoryService ?? this.categoryService;
     this.sellerService = sellerService ?? this.sellerService;

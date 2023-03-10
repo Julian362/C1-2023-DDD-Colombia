@@ -24,44 +24,44 @@ export class ItemDomainEntity implements IItemDomainEntity {
    * @type {(string | ItemIdValueObject)}
    * @memberof ItemDomainEntity
    */
-  itemId: string | ItemIdValueObject;
+  itemId?: string | ItemIdValueObject;
   /**
    *  Nombre del Item.
    *
    * @type {(string | NameValueObject)}
    * @memberof ItemDomainEntity
    */
-  name: string | NameValueObject;
+  name?: string | NameValueObject;
   /**
    *  Descripción del Item.
    *
    * @type {(string | DescriptionValueObject)}
    * @memberof ItemDomainEntity
    */
-  description: string | DescriptionValueObject;
+  description?: string | DescriptionValueObject;
   /**
    *  Url de la Imagen del Item.
    *
    * @type {(string | ImageValueObject)}
    * @memberof ItemDomainEntity
    */
-  image: string | ImageValueObject;
+  image?: string | ImageValueObject;
   /**
    *  Precio del Item.
    *
    * @type {(number | PriceValueObject)}
    * @memberof ItemDomainEntity
    */
-  price: number | PriceValueObject;
+  price?: number | PriceValueObject;
   /**
    *  Estado del Item.
    *
    * @type {(boolean | StateValueObject)}
    * @memberof ItemDomainEntity
    */
-  seller: SellerDomainEntity;
-  categorys: CategoryDomainEntity[];
-  state: boolean | StateValueObject;
+  seller?: SellerDomainEntity;
+  categories?: CategoryDomainEntity[];
+  state?: boolean | StateValueObject;
   /**
    *  Crea una instancia de ItemDomainEntity.
    * @param {IItemDomainEntity} [data] Datos para inicializar la entidad.
@@ -75,7 +75,7 @@ export class ItemDomainEntity implements IItemDomainEntity {
     if (data?.price) this.price = data.price;
     if (data?.state) this.state = data.state;
     if (data?.seller) this.seller = data.seller as SellerDomainEntity;
-    if (data?.categorys)
-      this.categorys = data.categorys as CategoryDomainEntity[];
+    if (data?.categories)
+      this.categories = data.categories as CategoryDomainEntity[];
   }
 }

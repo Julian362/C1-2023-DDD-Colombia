@@ -1,8 +1,8 @@
 import {
   CategoryIdValueObject,
-  DescriptionValueObject,
-  NameValueObject,
-  StateValueObject,
+  DescriptionCategoryValueObject,
+  NameCategoryValueObject,
+  StateCategoryValueObject,
 } from '../../value-objects/category';
 import { IItemDomainEntity } from './item.domain-entity.interface';
 
@@ -19,28 +19,28 @@ export interface ICategoryDomainEntity {
    * @type {(string | CategoryIdValueObject)}
    * @memberof ICategoryDomainEntity
    */
-  categoryId: string | CategoryIdValueObject;
+  categoryId?: string | CategoryIdValueObject;
   /**
    * Nombre de la Categoría.
    *
-   * @type {(string | NameValueObject)}
+   * @type {(string | NameCategoryValueObject)}
    * @memberof ICategoryDomainEntity
    */
-  name: string | NameValueObject;
+  name?: string | NameCategoryValueObject;
   /**
    * Descripción de la Categoría.
    *
-   * @type {(string | DescriptionValueObject)}
+   * @type {(string | DescriptionCategoryValueObject)}
    * @memberof ICategoryDomainEntity
    */
-  description: string | DescriptionValueObject;
+  description?: string | DescriptionCategoryValueObject;
   /**
    * Estado de la Categoría.
    *
-   * @type {(boolean | StateValueObject)}
+   * @type {(boolean | StateCategoryValueObject)}
    * @memberof ICategoryDomainEntity
    */
-  state: boolean | StateValueObject;
+  state?: boolean | StateCategoryValueObject;
 
   /**
    *  Items de la Categoría.
@@ -48,5 +48,5 @@ export interface ICategoryDomainEntity {
    * @type {(IItemDomainEntity[])}
    * @memberof ICategoryDomainEntity
    */
-  items: IItemDomainEntity[];
+  items?: IItemDomainEntity[];
 }

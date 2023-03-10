@@ -58,14 +58,13 @@ export interface IItemDomainEntity {
    * @memberof IItemDomainEntity
    */
   state?: boolean | StateValueObject;
-
   /**
    *  Categorías del Item.
    *
    * @type {(ICategoryDomainEntity[])}
    * @memberof IItemDomainEntity
    */
-  categorys?: ICategoryDomainEntity[];
+  categories?: ICategoryDomainEntity[];
   /**
    *  Vendedores del Item.
    *

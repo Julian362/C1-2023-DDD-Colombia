@@ -1,6 +1,6 @@
 import {
   SellerIdValueObject,
-  NameValueObject,
+  NameSellerValueObject,
   StateValueObject,
 } from '../value-objects/seller';
 import { EmailValueObject } from '../value-objects/seller/email';
@@ -25,10 +25,10 @@ export class SellerDomainEntity implements ISellerDomainEntity {
   /**
    *  Nombre del Vendedor.
    *
-   * @type {(string | NameValueObject)}
+   * @type {(string | NameSellerValueObject)}
    * @memberof SellerDomainEntity
    */
-  name: string | NameValueObject;
+  name: string | NameSellerValueObject;
   /**
    *  Email del Vendedor.
    *

@@ -1,8 +1,8 @@
 import {
   CategoryIdValueObject,
-  NameValueObject,
-  DescriptionValueObject,
-  StateValueObject,
+  NameCategoryValueObject,
+  DescriptionCategoryValueObject,
+  StateCategoryValueObject,
 } from '../value-objects/category';
 import { ICategoryDomainEntity } from './interfaces/category.domain-entity.interface';
 import { ItemDomainEntity } from './item.domain-entity';
@@ -21,30 +21,30 @@ export class CategoryDomainEntity implements ICategoryDomainEntity {
    * @type {(string | CategoryIdValueObject)}
    * @memberof CategoryDomainEntity
    */
-  categoryId: string | CategoryIdValueObject;
+  categoryId?: string | CategoryIdValueObject;
   /**
    *  Nombre de la Categoría.
    *
-   * @type {(string | NameValueObject)}
+   * @type {(string | NameCategoryValueObject)}
    * @memberof CategoryDomainEntity
    */
-  name: string | NameValueObject;
+  name?: string | NameCategoryValueObject;
   /**
    *  Descripción de la Categoría.
    *
-   * @type {(string | DescriptionValueObject)}
+   * @type {(string | DescriptionCategoryValueObject)}
    * @memberof CategoryDomainEntity
    */
-  description: string | DescriptionValueObject;
+  description?: string | DescriptionCategoryValueObject;
   /**
    *  Estado de la Categoría.
    *
-   * @type {(boolean | StateValueObject)}
+   * @type {(boolean | StateCategoryValueObject)}
    * @memberof CategoryDomainEntity
    */
-  state: boolean | StateValueObject;
+  state?: boolean | StateCategoryValueObject;
 
-  items: ItemDomainEntity[];
+  items?: ItemDomainEntity[];
   /**
    *  crea una instancia de CategoryDomainEntity.
    * @param {ICategoryDomainEntity} [data] Datos para la entidad.
