@@ -10,14 +10,14 @@ import {
  * @param {string} itemId - id de la categoría
  * @param {boolean} state - estado a cambiar
  * @param {ChangedStateCategoryEventPublisher<CategoryDomainEntity>} changedStateCategoryEventPublisher - evento publicador de cambio de estado de categoría
- * @param {(ICategoryDomainService | undefined)} categoryService - servicio de categoría
+ * @param {(ICategoryDomainService )} categoryService - servicio de categoría
  * @return {Promise<CategoryDomainEntity>} retorna una promesa con la categoría con el estado cambiado
  */
 export const ChangeStateCategoryHelper = async (
   itemId: string,
   state: boolean,
-  changedStateCategoryEventPublisher: ChangedStateCategoryEventPublisher<CategoryDomainEntity>,
-  categoryService: ICategoryDomainService | undefined,
+  changedStateCategoryEventPublisher?: ChangedStateCategoryEventPublisher<CategoryDomainEntity>,
+  categoryService?: ICategoryDomainService,
 ): Promise<CategoryDomainEntity> => {
   if (!categoryService)
     throw new Error('el servicio del vendedor no está definido');

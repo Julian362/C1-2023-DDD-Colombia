@@ -1,5 +1,6 @@
 import { EventPublisherBase } from '../../../../../../../shared/sofka/interface/event-publisher.base';
 import { SellerDomainEntity } from '../../entities/seller.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 /**
  * clase abstracta para publicar el evento de cambio de nombre del vendedor
  *
@@ -20,9 +21,6 @@ export abstract class ChangedNameSellerEventPublisher<
    * @memberof ChangedNameSellerEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.nombre-vendedor-modificado',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.ChangeNameSeller, JSON.stringify(this.response));
   }
 }

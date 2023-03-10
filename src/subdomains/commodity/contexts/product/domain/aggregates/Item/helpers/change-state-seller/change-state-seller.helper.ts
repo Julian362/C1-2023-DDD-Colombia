@@ -10,14 +10,14 @@ import {
  * @param {string} sellerId - id del vendedor
  * @param {boolean} state - estado a cambiar
  * @param {ChangedStateSellerEventPublisher<SellerDomainEntity>} changedStateSellerEventPublisher - evento publicador de cambio de estado de vendedor
- * @param {(ISellerDomainService | undefined)} sellerService - servicio de vendedor
+ * @param {(ISellerDomainService )} sellerService - servicio de vendedor
  * @return {Promise<SellerDomainEntity>} retorna una promesa con el vendedor con el estado cambiado
  */
 export const ChangeStateSellerHelper = async (
   sellerId: string,
   state: boolean,
-  changedStateSellerEventPublisher: ChangedStateSellerEventPublisher<SellerDomainEntity>,
-  sellerService: ISellerDomainService | undefined,
+  changedStateSellerEventPublisher?: ChangedStateSellerEventPublisher<SellerDomainEntity>,
+  sellerService?: ISellerDomainService,
 ): Promise<SellerDomainEntity> => {
   if (!changedStateSellerEventPublisher)
     throw new Error(

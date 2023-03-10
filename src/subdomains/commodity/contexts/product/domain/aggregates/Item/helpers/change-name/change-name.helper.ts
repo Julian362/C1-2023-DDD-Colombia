@@ -9,15 +9,15 @@ import {
  *
  * @param {string} itemId - id del producto
  * @param {string} name - nombre a cambiar
- * @param {(IItemDomainService | undefined)} itemService - servicio de producto
+ * @param {(IItemDomainService )} itemService - servicio de producto
  * @param {ChangedNameEventPublisher<ItemDomainEntity>} changedNameEP - evento publicador de cambio de nombre de producto
  * @return {Promise<ItemDomainEntity>} - retorna una promesa con el producto con el nombre cambiado
  */
 export const ChangeNameHelper = async (
   itemId: string,
   name: string,
-  itemService: IItemDomainService | undefined,
-  changedNameEP: ChangedNameEventPublisher<ItemDomainEntity>,
+  itemService?: IItemDomainService,
+  changedNameEP?: ChangedNameEventPublisher<ItemDomainEntity>,
 ): Promise<ItemDomainEntity> => {
   if (!itemService) throw new Error('El servicio de vendedor no existe');
   if (!changedNameEP)

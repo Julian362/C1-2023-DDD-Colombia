@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { SellerDomainEntity } from '../../entities/seller.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 
 /**
  * clase abstracta para publicar el evento de cambio de email del vendedor
@@ -21,9 +22,6 @@ export abstract class ChangedEmailSellerEventPublisher<
    * @memberof ChangedEmailSellerEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.email-vendedor-modificado',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.ChangedEmail, JSON.stringify(this.response));
   }
 }

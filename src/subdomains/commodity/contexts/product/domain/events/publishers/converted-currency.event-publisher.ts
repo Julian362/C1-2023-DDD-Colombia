@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { ItemDomainEntity } from '../../entities/item.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 /**
  * clase abstracta para publicar el evento de moneda de precio convertida
  *
@@ -20,9 +21,6 @@ export abstract class ConvertedCurrencyEventPublisher<
    * @memberof ConvertedCurrencyEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.moneda-precio-convertida',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.ConvertCurrency, JSON.stringify(this.response));
   }
 }

@@ -10,14 +10,14 @@ import {
  * @param {string} itemId id del producto
  * @param {number} price precio a disminuir
  * @param {DecreasePriceEventPublisher<ItemDomainEntity>} decreasePriceEP evento publicador de cambio de precio
- * @param {(IItemDomainService | undefined)} itemService servicio de producto
+ * @param {(IItemDomainService )} itemService servicio de producto
  * @return {Promise<ItemDomainEntity>} retorna una promesa con el producto con el precio disminuido
  */
 export const DecreasePriceHelper = async (
   itemId: string,
   price: number,
-  decreasePriceEP: DecreasePriceEventPublisher<ItemDomainEntity>,
-  itemService: IItemDomainService | undefined,
+  decreasePriceEP?: DecreasePriceEventPublisher<ItemDomainEntity>,
+  itemService?: IItemDomainService,
 ): Promise<ItemDomainEntity> => {
   if (!itemService) throw new Error('El servicio de vendedor no existe');
   if (!decreasePriceEP)

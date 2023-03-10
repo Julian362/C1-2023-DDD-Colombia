@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { SellerDomainEntity } from '../../entities/seller.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 /**
  * clase abstracta para publicar el evento de vendedor obtenido
  *
@@ -20,9 +21,6 @@ export abstract class GotSellerEventPublisher<
    * @memberof GotSellerEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.vendedor-obtenido',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.GotSeller, JSON.stringify(this.response));
   }
 }

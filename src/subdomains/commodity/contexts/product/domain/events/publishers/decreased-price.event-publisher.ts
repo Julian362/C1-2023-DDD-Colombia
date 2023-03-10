@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { ItemDomainEntity } from '../../entities/item.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 /**
  * clase abstracta para publicar el evento de disminucion de precio
  *
@@ -20,9 +21,6 @@ export abstract class DecreasePriceEventPublisher<
    * @memberof DecreasePriceEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.precio-disminuido',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.DecreasePrice, JSON.stringify(this.response));
   }
 }

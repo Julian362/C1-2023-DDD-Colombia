@@ -10,14 +10,14 @@ import {
  * @param {string} categoryId - id de la categoría
  * @param {string} name - nombre a cambiar
  * @param {ChangedNameCategoryEventPublisher<CategoryDomainEntity>} changedNameCategoryEventPublisher - evento publicador de cambio de nombre de categoría
- * @param {(ICategoryDomainService | undefined)} categoryService - servicio de categoría
+ * @param {(ICategoryDomainService )} categoryService - servicio de categoría
  * @return {Promise<CategoryDomainEntity>} retorna una promesa con la categoría con el nombre cambiado
  */
 export const ChangeNameCategoryHelper = async (
   categoryId: string,
   name: string,
-  changedNameCategoryEventPublisher: ChangedNameCategoryEventPublisher<CategoryDomainEntity>,
-  categoryService: ICategoryDomainService | undefined,
+  changedNameCategoryEventPublisher?: ChangedNameCategoryEventPublisher<CategoryDomainEntity>,
+  categoryService?: ICategoryDomainService,
 ): Promise<CategoryDomainEntity> => {
   if (!changedNameCategoryEventPublisher)
     throw new Error(

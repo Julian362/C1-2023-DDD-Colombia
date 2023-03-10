@@ -10,14 +10,14 @@ import {
  * @param {string} sellerId - id del vendedor
  * @param {string} name - nombre a cambiar
  * @param {ChangedNameSellerEventPublisher<SellerDomainEntity>} changedNameSellerEventPublisher - evento publicador de cambio de nombre de vendedor
- * @param {(ISellerDomainService | undefined)} sellerService - servicio de vendedor
+ * @param {(ISellerDomainService )} sellerService - servicio de vendedor
  * @return {Promise<SellerDomainEntity>} retorna una promesa con el vendedor con el nombre cambiado
  */
 export const ChangeNameSellerHelper = async (
   sellerId: string,
   name: string,
-  changedNameSellerEventPublisher: ChangedNameSellerEventPublisher<SellerDomainEntity>,
-  sellerService: ISellerDomainService | undefined,
+  changedNameSellerEventPublisher?: ChangedNameSellerEventPublisher<SellerDomainEntity>,
+  sellerService?: ISellerDomainService,
 ): Promise<SellerDomainEntity> => {
   if (!changedNameSellerEventPublisher)
     throw new Error(

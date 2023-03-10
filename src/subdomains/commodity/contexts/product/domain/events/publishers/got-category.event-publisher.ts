@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { CategoryDomainEntity } from '../../entities/category.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 /**
  * clase abstracta para publicar el evento de categoría obtenida
  *
@@ -20,9 +21,6 @@ export abstract class GotCategoryEventPublisher<
    * @memberof GotCategoryEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.categoría-obtenida',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.GotCategory, JSON.stringify(this.response));
   }
 }

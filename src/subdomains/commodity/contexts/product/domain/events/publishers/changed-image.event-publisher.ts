@@ -1,4 +1,5 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
+import { Publisher } from './enums/publisher.enum';
 
 /**
  * clase abstracta para publicar el evento de cambio de la url de la imagen
@@ -20,9 +21,6 @@ export abstract class ChangedImageEventPublisher<
    * @memberof ChangedImageEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.url-imagen-modificada',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.ChangedName, JSON.stringify(this.response));
   }
 }

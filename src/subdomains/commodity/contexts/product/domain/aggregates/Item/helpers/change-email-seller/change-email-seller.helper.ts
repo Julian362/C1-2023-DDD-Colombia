@@ -7,14 +7,14 @@ import { ChangedEmailSellerEventPublisher } from '../../../../events/publishers/
  * @param {string} sellerId - id del vendedor
  * @param {string} email - email a cambiar
  * @param {ChangedEmailSellerEventPublisher} changedEmailSellerEventPublisher - evento publicador de cambio de email de vendedor
- * @param {(ISellerDomainService | undefined)} sellerService - servicio de vendedor
+ * @param {(ISellerDomainService )} sellerService - servicio de vendedor
  * @return {Promise<SellerDomainEntity>} retorna una promesa con el vendedor con el email cambiado
  */
 export const ChangeEmailSellerHelper = async (
   sellerId: string,
   email: string,
-  changedEmailSellerEventPublisher: ChangedEmailSellerEventPublisher,
-  sellerService: ISellerDomainService | undefined,
+  changedEmailSellerEventPublisher?: ChangedEmailSellerEventPublisher,
+  sellerService?: ISellerDomainService,
 ): Promise<SellerDomainEntity> => {
   if (!changedEmailSellerEventPublisher)
     throw new Error(

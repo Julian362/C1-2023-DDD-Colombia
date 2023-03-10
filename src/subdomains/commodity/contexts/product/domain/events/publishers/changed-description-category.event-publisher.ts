@@ -1,5 +1,6 @@
 import { EventPublisherBase } from '../../../../../../../shared/sofka/interface/event-publisher.base';
 import { CategoryDomainEntity } from '../../entities/category.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 
 /**
  * clase abstracta para publicar el evento de cambio de la descripción del item
@@ -22,7 +23,7 @@ export abstract class ChangedDescriptionCategoryEventPublisher<
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'producto.descripción-categoría-modificado',
+      Publisher.ChangedDescriptionCategory,
       JSON.stringify(this.response),
     );
   }

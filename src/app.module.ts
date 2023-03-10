@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { NameValueObject } from './subdomains/commodity/contexts/product/domain/value-objects/category';
+import { NameCategoryValueObject } from './subdomains/commodity/contexts/product/domain/value-objects/category';
 
 @Module({
   imports: [],
   controllers: [],
-  providers: [NameValueObject],
+  providers: [NameCategoryValueObject],
 })
 export class AppModule {}

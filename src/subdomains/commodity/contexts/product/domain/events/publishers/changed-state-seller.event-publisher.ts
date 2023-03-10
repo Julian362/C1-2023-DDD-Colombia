@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { SellerDomainEntity } from '../../entities/seller.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 /**
  * clase abstracta para publicar el evento de cambio de estado de un vendedor
  *
@@ -21,7 +22,7 @@ export abstract class ChangedStateSellerEventPublisher<
    */
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'producto.estado-vendedor-modificado',
+      Publisher.ChangedStateSeller,
       JSON.stringify(this.response),
     );
   }

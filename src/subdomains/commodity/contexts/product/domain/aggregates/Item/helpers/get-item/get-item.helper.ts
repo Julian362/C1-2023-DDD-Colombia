@@ -8,14 +8,14 @@ import {
  * helper para obtener un producto
  *
  * @param {string} itemId - Id del producto
- * @param {(IItemDomainService | undefined)} itemService - Servicio de producto
+ * @param {(IItemDomainService )} itemService - Servicio de producto
  * @param {GotItemEventPublisher<ItemDomainEntity>} gotItemEP - Evento publicador de obtener producto
  * @return {Promise<ItemDomainEntity>} - retorna una promesa con el producto
  */
 export const GetItemHelper = async (
   itemId: string,
-  itemService: IItemDomainService | undefined,
-  gotItemEP: GotItemEventPublisher<ItemDomainEntity>,
+  itemService?: IItemDomainService,
+  gotItemEP?: GotItemEventPublisher<ItemDomainEntity>,
 ): Promise<ItemDomainEntity> => {
   if (!itemService) throw new Error('El servicio de vendedor no existe');
   if (!gotItemEP)

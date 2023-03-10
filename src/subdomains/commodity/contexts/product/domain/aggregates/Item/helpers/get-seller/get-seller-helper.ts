@@ -8,14 +8,14 @@ import {
  * helper para obtener un vendedor
  *
  * @param {string} sellerId id del vendedor
- * @param {(ISellerDomainService | undefined)} sellerService servicio de vendedor
+ * @param {(ISellerDomainService )} sellerService servicio de vendedor
  * @param {GotCategoryEventPublisher<SellerDomainEntity>} gotSellerEP evento publicador de obtener vendedor
  * @return {Promise<SellerDomainEntity>} retorna la promesa de un vendedor
  */
 export const GetSellerHelper = async (
   sellerId: string,
-  sellerService: ISellerDomainService | undefined,
-  gotSellerEP: GotCategoryEventPublisher<SellerDomainEntity>,
+  sellerService?: ISellerDomainService,
+  gotSellerEP?: GotCategoryEventPublisher<SellerDomainEntity>,
 ): Promise<SellerDomainEntity> => {
   if (!sellerService) throw new Error('El servicios de vendedor no existe');
   if (!gotSellerEP)

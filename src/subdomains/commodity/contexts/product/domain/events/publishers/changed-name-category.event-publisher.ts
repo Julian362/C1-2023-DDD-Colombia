@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { CategoryDomainEntity } from '../../entities/category.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 
 /**
  * clase abstracta para publicar el evento de cambio de nombre de categoría
@@ -21,9 +22,6 @@ export abstract class ChangedNameCategoryEventPublisher<
    * @memberof ChangedNameCategoryEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      'producto.nombre-categoría-modificado',
-      JSON.stringify(this.response),
-    );
+    return this.emit(Publisher.ChangedName, JSON.stringify(this.response));
   }
 }

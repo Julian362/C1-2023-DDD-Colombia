@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
 import { ItemDomainEntity } from '../../entities/item.domain-entity';
+import { Publisher } from './enums/publisher.enum';
 /**
  * clase abstracta para publicar el evento de item creado
  *
@@ -29,6 +30,6 @@ export abstract class CreatedItemEventPublisher<
    * @memberof CreatedItemEventPublisher
    */
   publish<Result = any>(): Promise<Result> {
-    return this.emit('producto.item-creado', JSON.stringify(this.response));
+    return this.emit(Publisher.CreatedItem, JSON.stringify(this.response));
   }
 }
