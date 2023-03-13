@@ -1,5 +1,5 @@
+import { IsUUID } from '@validations';
 import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
-import { IsUUID } from '../../../validations/is-uuid.validation';
 
 /**
  *  clase abstracta que representa un valor uuid

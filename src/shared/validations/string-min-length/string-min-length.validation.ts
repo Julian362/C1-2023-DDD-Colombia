@@ -6,5 +6,5 @@
  * @return {boolean}   Verdadero si el valor es menor al mínimo.
  */
 export const StringMinLength = (value: string, min: number): boolean => {
-  return value.length < min ? true : false;
+  return value.length < min;
 };
