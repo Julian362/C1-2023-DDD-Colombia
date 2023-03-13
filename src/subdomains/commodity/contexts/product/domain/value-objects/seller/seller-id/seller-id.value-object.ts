@@ -1,4 +1,5 @@
-import { UUIDValueObjectBase } from '../../../../../../../../shared/domain/value-object/uuid/uuid.value-object.spec';
+import { UUIDValueObjectBase } from '@ValueObjectBase';
+
 /**
  * clase que representa el id del vendedor
  *

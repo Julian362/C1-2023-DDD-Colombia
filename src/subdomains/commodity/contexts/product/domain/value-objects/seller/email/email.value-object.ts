@@ -1,8 +1,5 @@
-import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
-import { IsEmail } from '../../../../../../../../shared/validations/is-email.validation';
-import { IErrorValueObject } from 'src/shared/sofka';
-import { ContainForbiddenWords } from '../../../../../../../../shared/validations/forbidden-words.validation';
-import { StringMaxLength } from '../../../../../../../../shared/validations/string-max-length.validation';
+import { IErrorValueObject, ValueObjectBase } from '@sofka';
+import { ContainForbiddenWords, IsEmail, StringMaxLength } from '@validations';
 /**
  *  clase que representa el email del vendedor
  *

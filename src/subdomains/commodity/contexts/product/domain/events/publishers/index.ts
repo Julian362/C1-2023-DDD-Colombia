@@ -11,6 +11,7 @@ export * from './changed-state.event-publisher';
 export * from './converted-currency.event-publisher';
 export * from './created-item.event-publisher';
 export * from './decreased-price.event-publisher';
+export * from './enums';
 export * from './got-category.event-publisher';
 export * from './got-item.event-publisher';
 export * from './got-seller.event-publisher';

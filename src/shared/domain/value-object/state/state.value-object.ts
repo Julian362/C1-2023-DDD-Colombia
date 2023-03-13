@@ -1,5 +1,6 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
-import { IsBoolean } from '../../../validations/is-boolean.validation';
+import { IErrorValueObject } from '@sofka';
+import { IsBoolean } from '@validations';
+import { ValueObjectBase } from '@sofka';
 /**
  *  clase abstracta que representa un valor booleano estado en el dominio
  *

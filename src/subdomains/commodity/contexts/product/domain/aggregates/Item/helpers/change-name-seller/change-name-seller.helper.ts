@@ -1,8 +1,6 @@
-import {
-  ChangedNameSellerEventPublisher,
-  ISellerDomainService,
-  SellerDomainEntity,
-} from '@context/product/domain';
+import { SellerDomainEntity } from '@context/product/domain/entities';
+import { ChangedNameSellerEventPublisher } from '@context/product/domain/events';
+import { ISellerDomainService } from '@context/product/domain/services';
 
 /**
  * helper para cambiar el nombre de un vendedor

@@ -1,7 +1,9 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
-import { ContainForbiddenWords } from 'src/shared/validations/forbidden-words.validation';
-import { StringMaxLength } from 'src/shared/validations/string-max-length.validation';
-import { StringMinLength } from 'src/shared/validations/string-min-length.validation';
+import {
+  ContainForbiddenWords,
+  StringMaxLength,
+  StringMinLength,
+} from '@validations';
+import { IErrorValueObject, ValueObjectBase } from '@sofka';
 
 /**
  *  clase abstracta que representa un valor string en el dominio

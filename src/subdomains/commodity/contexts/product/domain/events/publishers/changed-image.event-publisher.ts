@@ -1,5 +1,6 @@
-import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
-import { Publisher } from './enums/publisher.enum';
+import { EventPublisherBase } from '@sofka';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import { Publisher } from '@context/product/domain/events/publishers';
 
 /**
  * clase abstracta para publicar el evento de cambio de la url de la imagen
@@ -11,7 +12,7 @@ import { Publisher } from './enums/publisher.enum';
  * @template Response
  */
 export abstract class ChangedImageEventPublisher<
-  Response,
+  Response = ItemDomainEntity,
 > extends EventPublisherBase<Response> {
   /**
    * publica el evento de cambio de la url de la imagen

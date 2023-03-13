@@ -1,8 +1,6 @@
-import {
-  DecreasePriceEventPublisher,
-  IItemDomainService,
-  ItemDomainEntity,
-} from '@context/product/domain';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import { DecreasePriceEventPublisher } from '@context/product/domain/events';
+import { IItemDomainService } from '@context/product/domain/services';
 
 /**
  * helper para disminuir el precio de un producto

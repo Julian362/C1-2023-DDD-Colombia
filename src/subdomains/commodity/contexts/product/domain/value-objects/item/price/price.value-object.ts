@@ -1,6 +1,5 @@
-import { ValueObjectBase } from 'src/shared/sofka';
-import { IErrorValueObject } from '../../../../../../../../shared/sofka/interface/error-object-value.interface';
-import { IsPositiveNumber } from '../../../../../../../../shared/validations/is-positive.validation';
+import { IErrorValueObject, ValueObjectBase } from '@sofka';
+import { IsPositiveNumber } from '@validations';
 
 /**
  *  clase que representa el precio de un producto

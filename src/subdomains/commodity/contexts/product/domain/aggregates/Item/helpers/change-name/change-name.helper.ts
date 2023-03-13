@@ -1,8 +1,6 @@
-import {
-  ChangedNameEventPublisher,
-  IItemDomainService,
-  ItemDomainEntity,
-} from '@context/product/domain';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import { ChangedNameEventPublisher } from '@context/product/domain/events';
+import { IItemDomainService } from '@context/product/domain/services';
 
 /**
  * helper para cambiar el nombre de un producto

@@ -1,11 +1,22 @@
-import { IUseCase, ValueObjectException } from 'src/shared/sofka';
-import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
-import { IGetItemUserCommand } from '../../../domain/interfaces/commands/get-item.command';
-import { IGotITemResponse } from '../../../domain/interfaces/responses/got-item.response';
-import { IItemDomainService } from '../../../domain/services/item.domain-service';
-import { ItemAggregateRoot } from '../../../domain/aggregates/Item/Item.aggregate';
-import { GotItemEventPublisher } from '../../../domain/events/publishers/got-item.event-publisher';
-import { ItemDomainEntity, ItemIdValueObject } from '@context/product/domain';
+import { ItemAggregateRoot } from '@context/product/domain/aggregates';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import {
+  GotItemEventPublisher,
+  Publisher,
+} from '@context/product/domain/events';
+import {
+  IGetItemUserCommand,
+  IGotITemResponse,
+} from '@context/product/domain/interfaces';
+import { IItemDomainService } from '@context/product/domain/services';
+import { ItemIdValueObject } from '@context/product/domain/value-objects';
+import {
+  EventPublisherBase,
+  IUseCase,
+  ValueObjectErrorHandler,
+  ValueObjectException,
+} from '@sofka';
+
 /**
  * caso de uso para obtener un item
  *
@@ -30,9 +41,11 @@ export class GetItemUseCase
     private readonly gotItemEventPublisher: GotItemEventPublisher,
   ) {
     super();
+    const events = new Map<Publisher, EventPublisherBase<any>>();
+    events.set(Publisher.GotItem, this.gotItemEventPublisher);
     this.itemAggregateRoot = new ItemAggregateRoot({
       itemService,
-      gotItemEP: gotItemEventPublisher,
+      events,
     });
   }
   /**

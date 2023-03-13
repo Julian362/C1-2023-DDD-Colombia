@@ -1,6 +1,6 @@
-import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
-import { SellerDomainEntity } from '../../entities/seller.domain-entity';
-import { Publisher } from './enums/publisher.enum';
+import { SellerDomainEntity } from '@context/product/domain/entities';
+import { EventPublisherBase } from '@sofka';
+import { Publisher } from '@context/product/domain/events/publishers';
 
 /**
  * clase abstracta para publicar el evento de cambio de email del vendedor

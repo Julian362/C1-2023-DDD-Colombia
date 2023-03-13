@@ -1,8 +1,6 @@
-import {
-  CategoryDomainEntity,
-  ChangedDescriptionCategoryEventPublisher,
-  ICategoryDomainService,
-} from '@context/product/domain';
+import { CategoryDomainEntity } from '@context/product/domain/entities';
+import { ChangedDescriptionCategoryEventPublisher } from '@context/product/domain/events';
+import { ICategoryDomainService } from '@context/product/domain/services';
 
 /**
  * helper para cambiar la descripción de una categoría

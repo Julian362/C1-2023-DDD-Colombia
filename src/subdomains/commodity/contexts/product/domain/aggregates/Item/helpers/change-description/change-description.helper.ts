@@ -1,8 +1,6 @@
-import {
-  ChangedDescriptionEventPublisher,
-  IItemDomainService,
-  ItemDomainEntity,
-} from '@context/product/domain';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import { ChangedDescriptionEventPublisher } from '@context/product/domain/events';
+import { IItemDomainService } from '@context/product/domain/services';
 
 /**
  * helper para cambiar la descripción de un producto

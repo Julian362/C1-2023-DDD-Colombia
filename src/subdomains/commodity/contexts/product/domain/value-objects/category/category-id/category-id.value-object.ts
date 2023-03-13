@@ -1,5 +1,5 @@
+import { UUIDValueObjectBase } from '@ValueObjectBase';
 import { v4 as uuid } from 'uuid';
-import { UUIDValueObjectBase } from '../../../../../../../../shared/domain/value-object/uuid/uuid.value-object.spec';
 
 /**
  *  Clase que representa el id de la Categoría

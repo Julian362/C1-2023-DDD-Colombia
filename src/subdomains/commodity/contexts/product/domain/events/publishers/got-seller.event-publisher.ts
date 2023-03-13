@@ -1,4 +1,4 @@
-import { EventPublisherBase } from 'src/shared/sofka/interface/event-publisher.base';
+import { EventPublisherBase } from '@sofka';
 import { SellerDomainEntity } from '../../entities/seller.domain-entity';
 import { Publisher } from './enums/publisher.enum';
 /**

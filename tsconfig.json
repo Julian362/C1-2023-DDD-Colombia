@@ -20,9 +20,10 @@
     "paths": {
       "@validations": ["./src/shared/validations"],
       "@ValueObjectBase": ["./src/shared/domain/value-object"],
-      "@context/product/domain": ["./src/subdomains/commodity/contexts/product/domain"],
+      "@context/product/domain/*": ["./src/subdomains/commodity/contexts/product/domain/*"],
       "@context/product/applications": ["./src/subdomains/commodity/contexts/product/application"],
       "@context/product/infrastructure": ["./src/subdomains/commodity/contexts/product/infrastructure"],
+      "@sofka": ["./src/shared/sofka"],
     },
   },
 }

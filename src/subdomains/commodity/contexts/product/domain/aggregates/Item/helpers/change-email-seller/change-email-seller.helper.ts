@@ -1,6 +1,7 @@
-import { ISellerDomainService } from '@context/product/domain';
-import { SellerDomainEntity } from '../../../../entities';
-import { ChangedEmailSellerEventPublisher } from '../../../../events/publishers/changed-email-seller.event-publisher';
+import { SellerDomainEntity } from '@context/product/domain/entities';
+import { ChangedEmailSellerEventPublisher } from '@context/product/domain/events';
+import { ISellerDomainService } from '@context/product/domain/services';
+
 /**
  * helper para cambiar el email de un vendedor
  *

@@ -1,8 +1,6 @@
-import { ICategoryDomainService } from '../../../../services/category.domain-service';
-import {
-  CategoryDomainEntity,
-  ChangedStateCategoryEventPublisher,
-} from '@context/product/domain';
+import { CategoryDomainEntity } from '@context/product/domain/entities';
+import { ChangedStateCategoryEventPublisher } from '@context/product/domain/events';
+import { ICategoryDomainService } from '@context/product/domain/services';
 
 /**
  * helper para cambiar el estado de una categoría

@@ -1,5 +1,6 @@
-import { IItemDomainService, ItemDomainEntity } from '@context/product/domain';
-import { ChangedImageEventPublisher } from '../../../../events/publishers/changed-image.event-publisher';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import { ChangedImageEventPublisher } from '@context/product/domain/events';
+import { IItemDomainService } from '@context/product/domain/services';
 
 /**
  * helper para cambiar la imagen de un producto

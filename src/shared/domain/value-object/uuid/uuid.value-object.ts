@@ -1,5 +1,5 @@
 import { IsUUID } from '@validations';
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
+import { IErrorValueObject, ValueObjectBase } from '@sofka';
 
 /**
  *  clase abstracta que representa un valor uuid
@@ -31,7 +31,7 @@ export abstract class UUIDValueObjectBase extends ValueObjectBase<string> {
     if (!IsUUID(this.value)) {
       this.setError({
         field: this.getFieldName(),
-        message: `El campo ${this.getFieldName()} no puede estar vacío`,
+        message: `El campo ${this.getFieldName()} debe ser un uuid válido`,
       } as IErrorValueObject);
     }
   }

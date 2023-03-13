@@ -1,8 +1,6 @@
-import {
-  IItemDomainService,
-  IncreasePriceEventPublisher,
-  ItemDomainEntity,
-} from '@context/product/domain';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import { IncreasePriceEventPublisher } from '@context/product/domain/events/publishers';
+import { IItemDomainService } from '@context/product/domain/services';
 
 /**
  *  Helper para aumentar el precio de un producto

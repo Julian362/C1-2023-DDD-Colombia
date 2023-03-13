@@ -1,7 +1,7 @@
 import {
   SellerIdValueObject,
   NameSellerValueObject,
-  StateValueObject,
+  StateSellerValueObject,
 } from '../value-objects/seller';
 import { EmailValueObject } from '../value-objects/seller/email';
 import { ISellerDomainEntity } from './interfaces/seller.domain-entity.interface';
@@ -42,7 +42,7 @@ export class SellerDomainEntity implements ISellerDomainEntity {
    * @type {(boolean | StateValueObject)}
    * @memberof SellerDomainEntity
    */
-  state: boolean | StateValueObject;
+  state: boolean | StateSellerValueObject;
   items: ItemDomainEntity[];
   /**
    *  Crea una instancia de SellerDomainEntity.

@@ -6,6 +6,7 @@ export * from './change-name';
 export * from './change-name-category';
 export * from './change-name-seller';
 export * from './change-state';
+export * from './change-state-category';
 export * from './change-state-seller';
 export * from './convert-currency';
 export * from './create-item';

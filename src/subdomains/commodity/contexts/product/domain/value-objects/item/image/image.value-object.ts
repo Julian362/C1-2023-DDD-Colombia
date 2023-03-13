@@ -1,6 +1,5 @@
-import { ValueObjectBase, IErrorValueObject } from 'src/shared/sofka';
-import { StringMaxLength } from 'src/shared/validations/string-max-length.validation';
-import { IsUrl } from '../../../../../../../../shared/validations/is-url.validation';
+import { ValueObjectBase, IErrorValueObject } from '@sofka';
+import { IsUrl, StringMaxLength } from '@validations';
 
 /**
  *  clase que representa la imagen de un producto

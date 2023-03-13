@@ -1,8 +1,6 @@
-import {
-  GotCategoryEventPublisher,
-  ISellerDomainService,
-  SellerDomainEntity,
-} from '@context/product/domain';
+import { SellerDomainEntity } from '@context/product/domain/entities';
+import { GotCategoryEventPublisher } from '@context/product/domain/events';
+import { ISellerDomainService } from '@context/product/domain/services';
 
 /**
  * helper para obtener un vendedor

@@ -1,8 +1,6 @@
-import {
-  CreatedItemEventPublisher,
-  IItemDomainService,
-  ItemDomainEntity,
-} from '@context/product/domain';
+import { ItemDomainEntity } from '@context/product/domain/entities';
+import { CreatedItemEventPublisher } from '@context/product/domain/events';
+import { IItemDomainService } from '@context/product/domain/services';
 
 /**
  * helper para crear un producto

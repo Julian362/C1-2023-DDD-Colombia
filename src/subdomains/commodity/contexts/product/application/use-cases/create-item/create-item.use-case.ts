@@ -1,31 +1,32 @@
+import { ItemAggregateRoot } from '@context/product/domain/aggregates';
+import { CreatedItemEventPublisher } from '@context/product/domain/events/publishers';
+import { ICreateItemUserCommand } from '@context/product/domain/interfaces';
+import { ICreatedITemResponse } from '@context/product/domain/interfaces/responses';
+import { IItemDomainService } from '@context/product/domain/services';
 import {
-  CreatedItemEventPublisher,
+  CategoryIdValueObject,
   DescriptionCategoryValueObject,
   DescriptionValueObject,
   EmailValueObject,
-  IItemDomainService,
   ImageValueObject,
-  ItemAggregateRoot,
-  ItemDomainEntity,
   ItemIdValueObject,
   NameCategoryValueObject,
   NameSellerValueObject,
   NameValueObject,
   PriceValueObject,
-  SellerDomainEntity,
   SellerIdValueObject,
   StateCategoryValueObject,
   StateSellerValueObject,
   StateValueObject,
-} from '@context/product/domain';
+} from '@context/product/domain/value-objects';
 import {
   ValueObjectErrorHandler,
   IUseCase,
   ValueObjectException,
-} from 'src/shared/sofka';
-import { ICreateItemUserCommand } from '../../../domain/interfaces/commands/create-item.command';
-import { ICreatedITemResponse } from '../../../domain/interfaces/responses/created-item.response';
-import { CategoryIdValueObject } from '../../../domain/value-objects/category/category-id/category-id.value-object';
+  EventPublisherBase,
+} from '@sofka';
+import { ItemDomainEntity, SellerDomainEntity } from '../../..';
+import { Publisher } from '../../../domain/events/publishers/enums/publisher.enum';
 /**
  * caso de uso para crear un item
  *
@@ -42,17 +43,19 @@ export class CreateItemUseCase
   /**
    * crea una instancia de CreateItemUseCase
    * @param {IItemDomainService} itemService servicio de dominio de item
-   * @param {CreatedItemEventPublisher} createdItemEvenPublisher publicador de eventos de item creado
+   * @param {CreatedItemEventPublisher} createdItemEventPublisher publicador de eventos de item creado
    * @memberof CreateItemUseCase
    */
   constructor(
     private readonly itemService: IItemDomainService,
-    private readonly createdItemEvenPublisher: CreatedItemEventPublisher,
+    private readonly createdItemEventPublisher: CreatedItemEventPublisher,
   ) {
     super();
+    const events = new Map<Publisher, EventPublisherBase<any>>();
+    events.set(Publisher.CreatedItem, this.createdItemEventPublisher);
     this.itemAggregateRoot = new ItemAggregateRoot({
       itemService,
-      createdItemEP: createdItemEvenPublisher,
+      events,
     });
   }
   /**

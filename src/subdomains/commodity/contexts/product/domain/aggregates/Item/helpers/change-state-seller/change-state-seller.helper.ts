@@ -1,8 +1,6 @@
-import {
-  ChangedStateSellerEventPublisher,
-  ISellerDomainService,
-  SellerDomainEntity,
-} from '@context/product/domain';
+import { SellerDomainEntity } from '@context/product/domain/entities';
+import { ChangedStateSellerEventPublisher } from '@context/product/domain/events';
+import { ISellerDomainService } from '@context/product/domain/services';
 
 /**
  * helper para cambiar el estado de un vendedor
