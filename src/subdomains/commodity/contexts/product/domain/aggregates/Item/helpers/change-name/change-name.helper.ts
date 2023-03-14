@@ -1,6 +1,7 @@
 import { ItemDomainEntity } from '@context/product/domain/entities';
 import { ChangedNameEventPublisher } from '@context/product/domain/events';
 import { IItemDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '@sofka';
 
 /**
  * helper para cambiar el nombre de un producto
@@ -17,9 +18,10 @@ export const ChangeNameHelper = async (
   itemService?: IItemDomainService,
   changedNameEP?: ChangedNameEventPublisher<ItemDomainEntity>,
 ): Promise<ItemDomainEntity> => {
-  if (!itemService) throw new Error('El servicio de vendedor no existe');
+  if (!itemService)
+    throw new AggregateRootException('El servicio de Item no existe');
   if (!changedNameEP)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de nombre de producto no existe',
     );
   changedNameEP.response = await itemService.changeName(itemId, name);

@@ -1,6 +1,7 @@
 import { SellerDomainEntity } from '@context/product/domain/entities';
 import { ChangedNameSellerEventPublisher } from '@context/product/domain/events';
 import { ISellerDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '@sofka';
 
 /**
  * helper para cambiar el nombre de un vendedor
@@ -18,10 +19,11 @@ export const ChangeNameSellerHelper = async (
   sellerService?: ISellerDomainService,
 ): Promise<SellerDomainEntity> => {
   if (!changedNameSellerEventPublisher)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de nombre de vendedor no existe',
     );
-  if (!sellerService) throw new Error('El servicio de vendedor no existe');
+  if (!sellerService)
+    throw new AggregateRootException('El servicio de vendedor no existe');
   changedNameSellerEventPublisher.response =
     await sellerService.changeNameSeller(sellerId, name);
   changedNameSellerEventPublisher.publish();

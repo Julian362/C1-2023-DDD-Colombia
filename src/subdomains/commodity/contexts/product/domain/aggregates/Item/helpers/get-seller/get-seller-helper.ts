@@ -1,6 +1,7 @@
 import { SellerDomainEntity } from '@context/product/domain/entities';
 import { GotCategoryEventPublisher } from '@context/product/domain/events';
 import { ISellerDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '@sofka';
 
 /**
  * helper para obtener un vendedor
@@ -15,9 +16,12 @@ export const GetSellerHelper = async (
   sellerService?: ISellerDomainService,
   gotSellerEP?: GotCategoryEventPublisher<SellerDomainEntity>,
 ): Promise<SellerDomainEntity> => {
-  if (!sellerService) throw new Error('El servicios de vendedor no existe');
+  if (!sellerService)
+    throw new AggregateRootException('El servicios de vendedor no existe');
   if (!gotSellerEP)
-    throw new Error('El evento publicador obtener vendedor  no existe');
+    throw new AggregateRootException(
+      'El evento publicador obtener vendedor  no existe',
+    );
   gotSellerEP.response = await sellerService.getSeller(sellerId);
   gotSellerEP.publish();
   return gotSellerEP.response;

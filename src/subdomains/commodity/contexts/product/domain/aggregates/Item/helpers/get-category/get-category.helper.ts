@@ -1,6 +1,7 @@
 import { CategoryDomainEntity } from '@context/product/domain/entities';
 import { GotCategoryEventPublisher } from '@context/product/domain/events';
 import { ICategoryDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '@sofka';
 
 /**
  * helper para obtener una categoría
@@ -15,9 +16,12 @@ export const GetCategoryHelper = async (
   categoryService?: ICategoryDomainService,
   gotCategoryEventPublisher?: GotCategoryEventPublisher<CategoryDomainEntity>,
 ): Promise<CategoryDomainEntity> => {
-  if (!categoryService) throw new Error('El servicio de categoría no existe');
+  if (!categoryService)
+    throw new AggregateRootException('El servicio de item no existe');
   if (!gotCategoryEventPublisher)
-    throw new Error('El evento publicador de obtener categoría no existe');
+    throw new AggregateRootException(
+      'El evento publicador de obtener categoría no existe',
+    );
   gotCategoryEventPublisher.response = await categoryService.getCategory(
     categoryId,
   );

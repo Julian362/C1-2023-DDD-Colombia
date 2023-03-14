@@ -1,6 +1,7 @@
 import { ItemDomainEntity } from '@context/product/domain/entities';
 import { ChangedImageEventPublisher } from '@context/product/domain/events';
 import { IItemDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '../../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  * helper para cambiar la imagen de un producto
@@ -17,9 +18,10 @@ export const ChangeImageHelper = async (
   changedImageEP?: ChangedImageEventPublisher<ItemDomainEntity>,
   itemService?: IItemDomainService,
 ): Promise<ItemDomainEntity> => {
-  if (!itemService) throw new Error('El servicio de vendedor no existe');
+  if (!itemService)
+    throw new AggregateRootException('El servicio de item no existe');
   if (!changedImageEP)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de imagen de producto no existe',
     );
   changedImageEP.response = await itemService.changeImage(itemId, image);

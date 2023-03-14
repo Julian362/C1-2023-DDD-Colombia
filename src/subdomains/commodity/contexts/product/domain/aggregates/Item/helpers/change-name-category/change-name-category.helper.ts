@@ -1,6 +1,7 @@
 import { CategoryDomainEntity } from '@context/product/domain/entities';
 import { ChangedNameCategoryEventPublisher } from '@context/product/domain/events';
 import { ICategoryDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '../../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  * helper para cambiar el nombre de una categoría
@@ -18,10 +19,11 @@ export const ChangeNameCategoryHelper = async (
   categoryService?: ICategoryDomainService,
 ): Promise<CategoryDomainEntity> => {
   if (!changedNameCategoryEventPublisher)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de nombre de categoría no existe',
     );
-  if (!categoryService) throw new Error('El servicio de categoría no existe');
+  if (!categoryService)
+    throw new AggregateRootException('El servicio de categoría no existe');
   changedNameCategoryEventPublisher.response =
     await categoryService.changeNameCategory(categoryId, name);
   changedNameCategoryEventPublisher.publish();

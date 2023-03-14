@@ -21,5 +21,9 @@
     "peacock.color": "#540099",
     "[typescript]": {
         "editor.tabSize": 2
-    }
+    },
+    "jest.autoRun": "off",
+    "cSpell.words": [
+        "uuidv"
+    ]
 }

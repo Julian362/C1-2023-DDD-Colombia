@@ -1,6 +1,7 @@
 import { CategoryDomainEntity } from '@context/product/domain/entities';
 import { ChangedStateCategoryEventPublisher } from '@context/product/domain/events';
 import { ICategoryDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '@sofka';
 
 /**
  * helper para cambiar el estado de una categoría
@@ -18,9 +19,11 @@ export const ChangeStateCategoryHelper = async (
   categoryService?: ICategoryDomainService,
 ): Promise<CategoryDomainEntity> => {
   if (!categoryService)
-    throw new Error('el servicio del vendedor no está definido');
+    throw new AggregateRootException(
+      'el servicio del vendedor no está definido',
+    );
   if (!changedStateCategoryEventPublisher)
-    throw new Error(
+    throw new AggregateRootException(
       'el evento publicador de cambio de estado de la categoría no está definido',
     );
   changedStateCategoryEventPublisher.response =

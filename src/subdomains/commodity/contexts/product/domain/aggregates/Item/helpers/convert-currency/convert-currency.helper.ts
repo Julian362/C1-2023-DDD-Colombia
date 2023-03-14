@@ -1,6 +1,7 @@
 import { ItemDomainEntity } from '@context/product/domain/entities';
 import { ConvertedCurrencyEventPublisher } from '@context/product/domain/events';
 import { IItemDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '@sofka';
 
 /**
  * helper para convertir la moneda de un producto
@@ -19,9 +20,10 @@ export const ConvertCurrencyHelper = async (
   convertCurrencyEP?: ConvertedCurrencyEventPublisher<ItemDomainEntity>,
   itemService?: IItemDomainService,
 ): Promise<ItemDomainEntity> => {
-  if (!itemService) throw new Error('El servicio de vendedor no existe');
+  if (!itemService)
+    throw new AggregateRootException('El servicio de item no existe');
   if (!convertCurrencyEP)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de moneda de producto no existe',
     );
   convertCurrencyEP.response = await itemService.convertCurrency(

@@ -1,6 +1,7 @@
 import { ItemDomainEntity } from '@context/product/domain/entities';
 import { ChangedDescriptionEventPublisher } from '@context/product/domain/events';
 import { IItemDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '../../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  * helper para cambiar la descripción de un producto
@@ -17,9 +18,12 @@ export const ChangeDescriptionHelper = async (
   changedDescriptionEP?: ChangedDescriptionEventPublisher<ItemDomainEntity>,
   itemService?: IItemDomainService,
 ): Promise<ItemDomainEntity> => {
-  if (!itemService) throw new Error('El servicio de item no existe');
+  if (!itemService)
+    throw new AggregateRootException('El servicio de item no existe');
   if (!changedDescriptionEP)
-    throw new Error('El evento publicador de cambio de descripción no existe');
+    throw new AggregateRootException(
+      'El evento publicador de cambio de descripción no existe',
+    );
   changedDescriptionEP.response = await itemService.changeDescription(
     itemId,
     description,

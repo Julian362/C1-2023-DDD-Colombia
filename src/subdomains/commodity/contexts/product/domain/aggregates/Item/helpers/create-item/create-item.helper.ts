@@ -1,6 +1,7 @@
 import { ItemDomainEntity } from '@context/product/domain/entities';
 import { CreatedItemEventPublisher } from '@context/product/domain/events';
 import { IItemDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '@sofka';
 
 /**
  * helper para crear un producto
@@ -15,9 +16,12 @@ export const CreateItemHelper = async (
   itemService?: IItemDomainService,
   createItemEP?: CreatedItemEventPublisher<ItemDomainEntity>,
 ): Promise<ItemDomainEntity> => {
-  if (!itemService) throw new Error('El servicio de vendedor no existe');
+  if (!itemService)
+    throw new AggregateRootException('El servicio de item no existe');
   if (!createItemEP)
-    throw new Error('El evento publicador de creación de producto no existe');
+    throw new AggregateRootException(
+      'El evento publicador de creación de producto no existe',
+    );
   createItemEP.response = await itemService.createItem(item);
   createItemEP.publish();
   return createItemEP.response;

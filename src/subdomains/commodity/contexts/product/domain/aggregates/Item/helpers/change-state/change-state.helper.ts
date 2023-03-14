@@ -1,6 +1,7 @@
 import { ItemDomainEntity } from '@context/product/domain/entities';
 import { ChangedStateEventPublisher } from '@context/product/domain/events';
 import { IItemDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '../../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  * helper para cambiar el estado de un producto
@@ -17,9 +18,10 @@ export const ChangeStateHelper = async (
   changedStateEP?: ChangedStateEventPublisher<ItemDomainEntity>,
   itemService?: IItemDomainService,
 ): Promise<ItemDomainEntity> => {
-  if (!itemService) throw new Error('El servicio de vendedor no existe');
+  if (!itemService)
+    throw new AggregateRootException('El servicio de Item no existe');
   if (!changedStateEP)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de estado de producto no existe',
     );
   changedStateEP.response = await itemService.changeState(itemId, state);

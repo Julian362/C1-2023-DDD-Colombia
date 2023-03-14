@@ -1,6 +1,7 @@
 import { SellerDomainEntity } from '@context/product/domain/entities';
 import { ChangedEmailSellerEventPublisher } from '@context/product/domain/events';
 import { ISellerDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '../../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  * helper para cambiar el email de un vendedor
@@ -18,10 +19,11 @@ export const ChangeEmailSellerHelper = async (
   sellerService?: ISellerDomainService,
 ): Promise<SellerDomainEntity> => {
   if (!changedEmailSellerEventPublisher)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de email de vendedor no existe',
     );
-  if (!sellerService) throw new Error('El servicio de vendedor no existe');
+  if (!sellerService)
+    throw new AggregateRootException('El servicio de vendedor no existe');
   changedEmailSellerEventPublisher.response =
     await sellerService.changeEmailSeller(sellerId, email);
   changedEmailSellerEventPublisher.publish();

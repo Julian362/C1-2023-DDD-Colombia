@@ -1,6 +1,7 @@
 import { CategoryDomainEntity } from '@context/product/domain/entities';
 import { ChangedDescriptionCategoryEventPublisher } from '@context/product/domain/events';
 import { ICategoryDomainService } from '@context/product/domain/services';
+import { AggregateRootException } from '../../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  * helper para cambiar la descripción de una categoría
@@ -17,9 +18,10 @@ export const ChangeDescriptionCategoryHelper = async (
   changedDescriptionCategoryEP?: ChangedDescriptionCategoryEventPublisher<CategoryDomainEntity>,
   categoryService?: ICategoryDomainService,
 ): Promise<CategoryDomainEntity> => {
-  if (!categoryService) throw new Error('El servicio de vendedor no existe');
+  if (!categoryService)
+    throw new AggregateRootException('El servicio de vendedor no existe');
   if (!changedDescriptionCategoryEP)
-    throw new Error(
+    throw new AggregateRootException(
       'El evento publicador de cambio de descripción de categoría no existe',
     );
   changedDescriptionCategoryEP.response =
