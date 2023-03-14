@@ -1,5 +1,5 @@
 import { UUIDValueObjectBase } from '../../../../../../../../shared/domain/value-object/uuid/uuid.value-object';
-
+import { v4 as uuid } from 'uuid';
 /**
  *  clase que representa el id del item
  *
@@ -11,11 +11,11 @@ export class ItemIdValueObject extends UUIDValueObjectBase {
   /**
    *  retorna el nombre del campo
    *
-   * @protected
+   *
    * @return {string} retorna el nombre del campo
    * @memberof ItemIdValueObject
    */
-  protected getFieldName(): string {
+  getFieldName(): string {
     return 'itemId';
   }
 
@@ -24,7 +24,7 @@ export class ItemIdValueObject extends UUIDValueObjectBase {
    * @param {string} value  valor del id del item
    * @memberof ItemIdValueObject
    */
-  constructor(value: string) {
-    super(value);
+  constructor(value?: string) {
+    super(value ? value : uuid());
   }
 }

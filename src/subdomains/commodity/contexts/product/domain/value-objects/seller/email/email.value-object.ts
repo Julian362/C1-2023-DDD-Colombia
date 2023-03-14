@@ -1,5 +1,10 @@
 import { IErrorValueObject, ValueObjectBase } from '@sofka';
-import { ContainForbiddenWords, IsEmail, StringMaxLength } from '@validations';
+import {
+  ContainForbiddenWords,
+  IsEmail,
+  IsEmpty,
+  StringMaxLength,
+} from '@validations';
 /**
  *  clase que representa el email del vendedor
  *
@@ -24,6 +29,7 @@ export class EmailValueObject extends ValueObjectBase<string> {
    */
   validateData(): void {
     if (this.value) {
+      this.isEmpty();
       this.ValidateStructure();
       this.forbiddenWords();
       this.maxLength();
@@ -37,12 +43,30 @@ export class EmailValueObject extends ValueObjectBase<string> {
    * @memberof EmailValueObject
    */
   private ValidateStructure() {
-    if (IsEmail(this.value)) {
+    if (!IsEmail(this.value)) {
       this.setError({
         field: 'email',
         message: `El email no tiene un formato válido`,
       } as IErrorValueObject);
     }
+  }
+
+  /**
+   * valida si el valor tiene un máximo de 100 caracteres
+   *
+   * @private
+   * @return {boolean} retorna true si el valor es vacío
+   * @memberof EmailValueObject
+   */
+  private isEmpty(): boolean {
+    if (IsEmpty(this.value)) {
+      this.setError({
+        field: 'email',
+        message: `El campo email no puede estar vacío`,
+      } as IErrorValueObject);
+      return true;
+    }
+    return false;
   }
 
   /**

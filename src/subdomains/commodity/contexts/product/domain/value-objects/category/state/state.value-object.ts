@@ -1,4 +1,4 @@
-import { StateValueObjectBase } from 'src/shared/domain/value-object/state/state.value-object';
+import { StateValueObjectBase } from '@ValueObjectBase';
 
 /**
  *  clase que representa el estado de la categoría
@@ -20,11 +20,11 @@ export class StateCategoryValueObject extends StateValueObjectBase {
   /**
    *  retorna el nombre del campo
    *
-   * @protected
+   *
    * @return {string} retorna el nombre del campo
    * @memberof StateCategoryValueObject
    */
-  protected getFieldName(): string {
+  getFieldName(): string {
     return 'state';
   }
 }

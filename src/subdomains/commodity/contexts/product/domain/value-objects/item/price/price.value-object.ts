@@ -1,5 +1,5 @@
 import { IErrorValueObject, ValueObjectBase } from '@sofka';
-import { IsPositiveNumber } from '@validations';
+import { IsEmpty, IsPositiveNumber } from '@validations';
 
 /**
  *  clase que representa el precio de un producto

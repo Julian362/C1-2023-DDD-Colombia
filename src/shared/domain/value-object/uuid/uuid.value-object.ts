@@ -1,5 +1,6 @@
 import { IsUUID } from '@validations';
 import { IErrorValueObject, ValueObjectBase } from '@sofka';
+import { IsEmpty } from '@validations';
 
 /**
  *  clase abstracta que representa un valor uuid
@@ -17,8 +18,27 @@ export abstract class UUIDValueObjectBase extends ValueObjectBase<string> {
    */
   validateData(): void {
     if (this.value) {
+      this.isEmpty();
       this.validateUUID();
     }
+  }
+
+  /**
+   * valida si el valor es vacío
+   *
+   * @private
+   * @return {boolean} retorna true si el valor es vacío
+   * @memberof UUIDValueObjectBase
+   */
+  private isEmpty(): boolean {
+    if (IsEmpty(this.value)) {
+      this.setError({
+        field: this.getFieldName(),
+        message: `El campo ${this.getFieldName()} no puede estar vacío`,
+      } as IErrorValueObject);
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -38,10 +58,10 @@ export abstract class UUIDValueObjectBase extends ValueObjectBase<string> {
   /**
    *  método abstracto que retorna el nombre del campo
    *
-   * @protected
+   * @private
    * @abstract
    * @return {string} retorna el nombre del campo
    * @memberof UUIDValueObjectBase
    */
-  protected abstract getFieldName(): string;
+  abstract getFieldName(): string;
 }

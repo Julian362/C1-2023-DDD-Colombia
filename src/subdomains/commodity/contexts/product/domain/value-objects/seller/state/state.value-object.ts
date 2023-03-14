@@ -10,11 +10,11 @@ export class StateSellerValueObject extends StateValueObjectBase {
   /**
    * retorna el nombre del campo
    *
-   * @protected
+   *
    * @return {string} nombre del campo
    * @memberof StateSellerValueObject
    */
-  protected getFieldName(): string {
+  getFieldName(): string {
     return 'state';
   }
 

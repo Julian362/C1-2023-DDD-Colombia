@@ -1,6 +1,7 @@
 export * from './forbidden-words';
 export * from './is-boolean';
 export * from './is-email';
+export * from './is-empty';
 export * from './is-positive';
 export * from './is-url';
 export * from './is-uuid';

@@ -8,13 +8,33 @@ import { StringValueObjectBase } from '../../../../../../../../shared/domain/val
  */
 export class NameSellerValueObject extends StringValueObjectBase {
   /**
+   * retorna el número mínimo de caracteres
+   *
+   *
+   * @return {number} retorna el número mínimo de caracteres
+   * @memberof NameSellerValueObject
+   */
+  getMinLength(): number {
+    return 3;
+  }
+  /**
+   * retorna el número máximo de caracteres
+   *
+   *
+   * @return {number} retorna el número máximo de caracteres
+   * @memberof NameSellerValueObject
+   */
+  getMaxLength(): number {
+    return 30;
+  }
+  /**
    *  retorna el nombre del campo
    *
-   * @protected
+   *
    * @return {string} nombre del campo
    * @memberof NameSellerValueObject
    */
-  protected getFieldName(): string {
+  getFieldName(): string {
     return 'name';
   }
 

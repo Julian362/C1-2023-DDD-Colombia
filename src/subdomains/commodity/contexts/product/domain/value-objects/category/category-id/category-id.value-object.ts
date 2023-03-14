@@ -12,11 +12,11 @@ export class CategoryIdValueObject extends UUIDValueObjectBase {
   /**
    *  retorna el nombre del campo
    *
-   * @protected
+   *
    * @return {string} retorna el nombre del campo
    * @memberof CategoryIdValueObject
    */
-  protected getFieldName(): string {
+  getFieldName(): string {
     return 'categoryId';
   }
   /**

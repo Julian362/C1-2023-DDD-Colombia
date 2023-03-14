@@ -1,5 +1,5 @@
 import { IErrorValueObject } from '@sofka';
-import { IsBoolean } from '@validations';
+import { IsBoolean, IsEmpty } from '@validations';
 import { ValueObjectBase } from '@sofka';
 /**
  *  clase abstracta que representa un valor booleano estado en el dominio
@@ -18,6 +18,7 @@ export abstract class StateValueObjectBase extends ValueObjectBase<boolean> {
   validateData(): void {
     if (this.value) {
       this.validateContent();
+      this.isEmpty();
     }
   }
 
@@ -28,7 +29,7 @@ export abstract class StateValueObjectBase extends ValueObjectBase<boolean> {
    * @memberof StateValueObjectBase
    */
   private validateContent(): void {
-    if (IsBoolean(this.value)) {
+    if (!IsBoolean(this.value)) {
       this.setError({
         field: this.getFieldName(),
         message: `El campo ${this.getFieldName()} debe ser un booleano`,
@@ -37,12 +38,30 @@ export abstract class StateValueObjectBase extends ValueObjectBase<boolean> {
   }
 
   /**
+   * valida si el valor es vacío
+   *
+   * @private
+   * @return {boolean} retorna true si el valor es vacío
+   * @memberof StateValueObjectBase
+   */
+  private isEmpty(): boolean {
+    if (IsEmpty(this.value)) {
+      this.setError({
+        field: this.getFieldName(),
+        message: `El campo ${this.getFieldName()} no puede estar vacío`,
+      } as IErrorValueObject);
+      return true;
+    }
+    return false;
+  }
+
+  /**
    *  método abstracto que retorna el nombre del campo
    *
-   * @protected
+   * @private
    * @abstract
    * @return {string} retorna el nombre del campo
    * @memberof StateValueObjectBase
    */
-  protected abstract getFieldName(): string;
+  abstract getFieldName(): string;
 }

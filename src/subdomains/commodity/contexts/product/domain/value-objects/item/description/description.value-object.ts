@@ -1,4 +1,4 @@
-import { StringValueObjectBase } from 'src/shared/domain/value-object/string/string.value-object';
+import { StringValueObjectBase } from '@ValueObjectBase';
 
 /**
  *  clase que representa un valor string en el dominio
@@ -9,22 +9,42 @@ import { StringValueObjectBase } from 'src/shared/domain/value-object/string/str
  */
 export class DescriptionValueObject extends StringValueObjectBase {
   /**
+   * retorna el número mínimo de caracteres
+   *
+   *
+   * @return {number} retorna el número mínimo de caracteres
+   * @memberof DescriptionValueObject
+   */
+  getMinLength(): number {
+    return 3;
+  }
+  /**
+   * retorna el número máximo de caracteres
+   *
+   *
+   * @return {number} retorna el número máximo de caracteres
+   * @memberof DescriptionValueObject
+   */
+  getMaxLength(): number {
+    return 300;
+  }
+  /**
    *  crea una instancia de DescriptionValueObject
    * @param {string} value valor de la descripción
    * @memberof DescriptionValueObject
    */
   constructor(value: string) {
-    super(value, { minLength: 5, maxLength: 300 });
+    super(value);
   }
 
   /**
    *  retorna el nombre del campo
    *
-   * @protected
+   *
    * @return {string} retorna el nombre del campo
    * @memberof DescriptionValueObject
    */
-  protected getFieldName(): string {
+  getFieldName(): string {
     return 'description';
   }
 }

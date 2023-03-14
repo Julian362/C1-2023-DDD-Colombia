@@ -1,5 +1,6 @@
 import {
   ContainForbiddenWords,
+  IsEmpty,
   StringMaxLength,
   StringMinLength,
 } from '@validations';
@@ -14,21 +15,14 @@ import { IErrorValueObject, ValueObjectBase } from '@sofka';
  * @extends {ValueObjectBase<string>}
  */
 export abstract class StringValueObjectBase extends ValueObjectBase<string> {
-  private maxLength?: number;
-  private minLength?: number;
   /**
    *  crea una instancia de StringValueObjectBase
    * @param {string} value valor del objeto
    * @param {{ maxLength?: number; minLength?: number }} { maxLength, minLength } opcionales para validar el tamaño del string
    * @memberof StringValueObjectBase
    */
-  constructor(
-    value: string,
-    { maxLength, minLength }: { maxLength?: number; minLength?: number } = {},
-  ) {
+  constructor(value: string) {
     super(value);
-    this.maxLength = maxLength;
-    this.minLength = minLength;
   }
 
   /**
@@ -38,6 +32,7 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
    */
   validateData(): void {
     if (this.value) {
+      this.isEmpty();
       this.MaxLength();
       this.MinLength();
       this.forbiddenWords();
@@ -51,12 +46,30 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
    * @memberof StringValueObjectBase
    */
   private MaxLength(): void {
-    if (this.value && StringMaxLength(this.value, this.maxLength ?? 30)) {
+    if (StringMaxLength(this.value, this.getMaxLength())) {
       this.setError({
         field: this.getFieldName(),
-        message: `El campo ${this.getFieldName()} no puede superar los 30 caracteres`,
+        message: `El campo ${this.getFieldName()} no puede superar ${this.getMaxLength()} de caracteres`,
       } as IErrorValueObject);
     }
+  }
+
+  /**
+   * valida si el valor es vacío
+   *
+   * @private
+   * @return {boolean} retorna true si el valor es vacío
+   * @memberof StringValueObjectBase
+   */
+  private isEmpty(): boolean {
+    if (IsEmpty(this.value)) {
+      this.setError({
+        field: this.getFieldName(),
+        message: `El campo ${this.getFieldName()} no puede estar vacío`,
+      } as IErrorValueObject);
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -66,10 +79,10 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
    * @memberof StringValueObjectBase
    */
   private MinLength(): void {
-    if (this.value && StringMinLength(this.value, this.minLength ?? 3)) {
+    if (StringMinLength(this.value, this.getMinLength())) {
       this.setError({
         field: this.getFieldName(),
-        message: `El campo ${this.getFieldName()} debe tener al menos 3 caracteres`,
+        message: `El campo ${this.getFieldName()} debe tener al menos ${this.getMinLength()} caracteres`,
       } as IErrorValueObject);
     }
   }
@@ -92,10 +105,12 @@ export abstract class StringValueObjectBase extends ValueObjectBase<string> {
   /**
    *  método abstracto que retorna el nombre del campo
    *
-   * @protected
+   * @private
    * @abstract
    * @return {string} retorna el nombre del campo
    * @memberof StringValueObjectBase
    */
-  protected abstract getFieldName(): string;
+  abstract getFieldName(): string;
+  abstract getMinLength(): number;
+  abstract getMaxLength(): number;
 }

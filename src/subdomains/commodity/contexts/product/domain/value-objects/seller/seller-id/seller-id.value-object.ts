@@ -1,5 +1,5 @@
 import { UUIDValueObjectBase } from '@ValueObjectBase';
-
+import { v4 as uuid } from 'uuid';
 /**
  * clase que representa el id del vendedor
  *
@@ -11,11 +11,11 @@ export class SellerIdValueObject extends UUIDValueObjectBase {
   /**
    * retorna el nombre del campo
    *
-   * @protected
+   *
    * @return {string} nombre del campo
    * @memberof SellerIdValueObject
    */
-  protected getFieldName(): string {
+  getFieldName(): string {
     return 'sellerId';
   }
   /**
@@ -23,7 +23,7 @@ export class SellerIdValueObject extends UUIDValueObjectBase {
    * @param {string} value valor del id del vendedor
    * @memberof SellerIdValueObject
    */
-  constructor(value: string) {
-    super(value);
+  constructor(value?: string) {
+    super(value ? value : uuid());
   }
 }

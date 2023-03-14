@@ -68,7 +68,8 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
-      "/index\\.ts$"
+      "/index\\.ts$",
+      ".+\\.event-publisher\\.ts$"
     ],
     "moduleNameMapper": {
       "^@validations(.*)$": "<rootDir>/shared/validations$1",
