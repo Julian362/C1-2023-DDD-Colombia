@@ -5,9 +5,22 @@ import { ItemEntity } from '../entities/item.entity';
 import { SellerEntity } from '../entities/seller.entity';
 import { CategoryEntity } from '../entities/category.entity';
 
+/**
+ * clase TypesOrmPostgresConfigService que implementa la interfaz TypeOrmOptionsFactory
+ *
+ * @export
+ * @class TypesOrmPostgresConfigService
+ * @implements {TypeOrmOptionsFactory}
+ */
 @Injectable()
 export class TypesOrmPostgresConfigService implements TypeOrmOptionsFactory {
   constructor(private readonly configService: ConfigService) {}
+  /**
+   * método createTypeOrmOptions que retorna un objeto de tipo TypeOrmModuleOptions
+   *
+   * @return {TypeOrmModuleOptions} objeto de tipo TypeOrmModuleOptions
+   * @memberof TypesOrmPostgresConfigService
+   */
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'postgres',
