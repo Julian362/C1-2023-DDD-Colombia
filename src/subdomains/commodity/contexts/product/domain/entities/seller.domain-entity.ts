@@ -21,14 +21,14 @@ export class SellerDomainEntity implements ISellerDomainEntity {
    * @type {(string | SellerIdValueObject)}
    * @memberof SellerDomainEntity
    */
-  sellerId: string | SellerIdValueObject;
+  sellerId?: string | SellerIdValueObject;
   /**
    *  Nombre del Vendedor.
    *
    * @type {(string | NameSellerValueObject)}
    * @memberof SellerDomainEntity
    */
-  name: string | NameSellerValueObject;
+  name?: string | NameSellerValueObject;
   /**
    *  Email del Vendedor.
    *
@@ -42,8 +42,8 @@ export class SellerDomainEntity implements ISellerDomainEntity {
    * @type {(boolean | StateValueObject)}
    * @memberof SellerDomainEntity
    */
-  state: boolean | StateSellerValueObject;
-  items: ItemDomainEntity[];
+  state?: boolean | StateSellerValueObject;
+  items?: ItemDomainEntity[];
   /**
    *  Crea una instancia de SellerDomainEntity.
    * @param {ISellerDomainEntity} [data] Datos para inicializar la entidad.

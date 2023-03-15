@@ -163,38 +163,6 @@ describe('Item', () => {
         );
       });
     });
-    describe('convertCurrency', () => {
-      it('ejecuta ConvertCurrencyHelper con los parámetros', () => {
-        //Arrange
-        const entity = new ItemDomainEntity();
-        const expected = new ItemDomainEntity();
-        const price = 100;
-        const currency = 'USD';
-        const id = uuidv4();
-        events.set(
-          Publisher.ConvertCurrency,
-          {} as EventPublisherBase<ItemDomainEntity>,
-        );
-        jest.spyOn(helpers, 'ConvertCurrencyHelper').mockResolvedValue(entity);
-
-        //Act
-        item = new ItemAggregateRoot({
-          itemService,
-          events,
-        });
-        const result = item.convertCurrency(id, currency, price);
-
-        //Assert
-        expect(result).resolves.toEqual(expected);
-        expect(helpers.ConvertCurrencyHelper).toHaveBeenCalledWith(
-          id,
-          currency,
-          price,
-          events.get(Publisher.ConvertCurrency),
-          itemService,
-        );
-      });
-    });
     describe('createItem', () => {
       it('ejecuta CreateItemHelper con los parámetros', () => {
         //Arrange

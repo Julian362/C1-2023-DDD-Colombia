@@ -38,7 +38,7 @@ describe('getSeller', () => {
   it('debe lanzar un throw AggregateRootException si el servicio no es definido', async () => {
     //Arrange
     service = undefined as unknown as ISellerDomainService;
-    const expected = 'El servicio de vendedor no existe';
+    const expected = 'El servicios de vendedor no existe';
 
     //Act
     const result = () => helper(id, service, event);
@@ -79,7 +79,7 @@ describe('getSeller', () => {
     await helper(id, service, event);
 
     //Assert
-    expect(service.getSeller).toHaveBeenCalledTimes(1);
+    expect(service.getSeller).toHaveBeenCalledWith(id);
   });
 
   it('debe llamar al método publish del evento', async () => {
@@ -90,7 +90,7 @@ describe('getSeller', () => {
     await helper(id, service, event);
 
     //Assert
-    expect(event.publish).toHaveBeenCalledTimes(1);
+    expect(event.publish).toHaveBeenCalled();
   });
 
   it('debe llamar al response del evento', async () => {

@@ -69,21 +69,6 @@ export interface IItemDomainService<
   createItem(item: Entity): Promise<Entity>;
 
   /**
-   *  elimina un item
-   *
-   * @param {string} itemId id del item
-   * @param {string} currency moneda a convertir
-   * @param {number} price precio a convertir
-   * @return {Promise<Entity>} retorna una promesa con el item
-   * @memberof IItemDomainService
-   */
-  convertCurrency(
-    itemId: string,
-    currency: string,
-    price: number,
-  ): Promise<Entity>;
-
-  /**
    *
    *
    * @param {string} itemId id del item

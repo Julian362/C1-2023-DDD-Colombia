@@ -8,7 +8,6 @@ export * from './change-name-seller';
 export * from './change-state';
 export * from './change-state-category';
 export * from './change-state-seller';
-export * from './convert-currency';
 export * from './create-item';
 export * from './decrease-price';
 export * from './get-category';

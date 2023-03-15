@@ -8,7 +8,6 @@ export * from './changed-name.event-publisher';
 export * from './changed-state-category.event-publisher';
 export * from './changed-state-seller.event-publisher';
 export * from './changed-state.event-publisher';
-export * from './converted-currency.event-publisher';
 export * from './created-item.event-publisher';
 export * from './decreased-price.event-publisher';
 export * from './enums';

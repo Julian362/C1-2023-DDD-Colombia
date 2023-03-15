@@ -21,7 +21,6 @@ import {
   ChangeStateCategoryHelper,
   ChangeStateHelper,
   ChangeStateSellerHelper,
-  ConvertCurrencyHelper,
   CreateItemHelper,
   DecreasePriceHelper,
   GetCategoryHelper,
@@ -120,28 +119,6 @@ export class ItemAggregateRoot
       item,
       this.itemService,
       this.events.get(Publisher.CreatedItem),
-    );
-  }
-  /**
-   * cambia la moneda del vendedor
-   *
-   * @param {string} itemId id del item
-   * @param {string} currency moneda del item
-   * @param {number} price precio del item
-   * @return {Promise<ItemDomainEntity>}
-   * @memberof ItemAggregateRoot
-   */
-  convertCurrency(
-    itemId: string,
-    currency: string,
-    price: number,
-  ): Promise<ItemDomainEntity> {
-    return ConvertCurrencyHelper(
-      itemId,
-      currency,
-      price,
-      this.events.get(Publisher.ConvertCurrency),
-      this.itemService,
     );
   }
   /**
