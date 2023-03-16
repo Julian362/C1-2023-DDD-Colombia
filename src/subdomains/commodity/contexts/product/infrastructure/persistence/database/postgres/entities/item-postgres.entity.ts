@@ -1,3 +1,4 @@
+import { ItemDomainEntity } from '@context/product/domain/entities';
 import {
   Column,
   Entity,
@@ -5,26 +6,25 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
-import { CategoryEntity } from './category.entity';
-import { SellerEntity } from './seller.entity';
+import { CategoryPostgresEntity } from './category-postgres.entity';
+import { SellerPostgresEntity } from './seller-postgres.entity';
 
 /**
- * clase ItemEntity que representa la entidad item
+ * clase ItemPostgresEntity que representa la entidad item
  *
  * @export
- * @class ItemEntity
+ * @class ItemPostgresEntity
  */
 @Index('item_pkey', ['itemId'], { unique: true })
 @Index('item_name_key', ['name'])
 @Entity('item', { schema: 'public' })
-export class ItemEntity {
+export class ItemPostgresEntity extends ItemDomainEntity {
   /**
    *  campo itemId de tipo string
    *
    * @type {string}
-   * @memberof ItemEntity
+   * @memberof ItemPostgresEntity
    */
   @Column('uuid', {
     primary: true,
@@ -37,7 +37,7 @@ export class ItemEntity {
    *  campo sellerId de tipo string
    *
    * @type {string}
-   * @memberof ItemEntity
+   * @memberof ItemPostgresEntity
    */
   @Column('character varying', {
     name: 'name',
@@ -49,7 +49,7 @@ export class ItemEntity {
    *  campo description de tipo string
    *
    * @type {string}
-   * @memberof ItemEntity
+   * @memberof ItemPostgresEntity
    */
   @Column('character varying', {
     name: 'description',
@@ -61,7 +61,7 @@ export class ItemEntity {
    *  campo price de tipo number
    *
    * @type {number}
-   * @memberof ItemEntity
+   * @memberof ItemPostgresEntity
    */
   @Column('integer', {
     name: 'price',
@@ -72,7 +72,7 @@ export class ItemEntity {
    *  campo image de tipo string
    *
    * @type {string}
-   * @memberof ItemEntity
+   * @memberof ItemPostgresEntity
    */
   @Column('character varying', {
     name: 'image',
@@ -84,7 +84,7 @@ export class ItemEntity {
    *  campo state de tipo boolean
    *
    * @type {boolean}
-   * @memberof ItemEntity
+   * @memberof ItemPostgresEntity
    */
   @Column('boolean', {
     name: 'state',
@@ -92,25 +92,25 @@ export class ItemEntity {
   state: boolean;
 
   /**
-   *  campo categories de tipo CategoryEntity[]
+   *  campo categories de tipo CategoryPostgresEntity[]
    *
-   * @type {CategoryEntity[]}
-   * @memberof ItemEntity
+   * @type {CategoryPostgresEntity[]}
+   * @memberof ItemPostgresEntity
    */
-  @ManyToMany(() => CategoryEntity, (category) => category.categoryId, {
+  @ManyToMany(() => CategoryPostgresEntity, (category) => category.categoryId, {
     cascade: ['insert'],
   })
   @JoinTable()
-  categories: CategoryEntity[];
+  categories: CategoryPostgresEntity[];
 
   /**
-   *  campo seller de tipo SellerEntity
+   *  campo seller de tipo SellerPostgresEntity
    *
-   * @type {SellerEntity}
-   * @memberof ItemEntity
+   * @type {SellerPostgresEntity}
+   * @memberof ItemPostgresEntity
    */
-  @ManyToOne(() => SellerEntity, (seller) => seller.sellerId, {
+  @ManyToOne(() => SellerPostgresEntity, (seller) => seller.sellerId, {
     cascade: ['insert'],
   })
-  seller: SellerEntity;
+  seller: SellerPostgresEntity;
 }

@@ -1,21 +1,22 @@
+import { CategoryDomainEntity } from '@context/product/domain/entities';
 import { Column, Entity, Index, ManyToMany } from 'typeorm';
-import { ItemEntity } from './item.entity';
+import { ItemPostgresEntity } from './item-postgres.entity';
 
 /**
- * clase CategoryEntity que representa la entidad category
+ * clase CategoryPostgresEntity que representa la entidad category
  *
  * @export
- * @class CategoryEntity
+ * @class CategoryPostgresEntity
  */
 @Index('category_pkey', ['categoryId'], { unique: true })
 @Index('category_name_key', ['name'])
 @Entity('category', { schema: 'public' })
-export class CategoryEntity {
+export class CategoryPostgresEntity extends CategoryDomainEntity {
   /**
    * campo categoryId de tipo string
    *
    * @type {string}
-   * @memberof CategoryEntity
+   * @memberof CategoryPostgresEntity
    */
   @Column('uuid', {
     primary: true,
@@ -28,7 +29,7 @@ export class CategoryEntity {
    * campo name de tipo string
    *
    * @type {string}
-   * @memberof CategoryEntity
+   * @memberof CategoryPostgresEntity
    */
   @Column('character varying', {
     name: 'name',
@@ -40,7 +41,7 @@ export class CategoryEntity {
    * campo description de tipo string
    *
    * @type {string}
-   * @memberof CategoryEntity
+   * @memberof CategoryPostgresEntity
    */
   @Column('character varying', {
     name: 'description',
@@ -52,7 +53,7 @@ export class CategoryEntity {
    * campo state de tipo boolean
    *
    * @type {boolean}
-   * @memberof CategoryEntity
+   * @memberof CategoryPostgresEntity
    */
   @Column('boolean', {
     name: 'state',
@@ -60,11 +61,11 @@ export class CategoryEntity {
   state: boolean;
 
   /**
-   * campo items de tipo ItemEntity[]
+   * campo items de tipo ItemPostgresEntity[]
    *
-   * @type {ItemEntity[]}
-   * @memberof CategoryEntity
+   * @type {ItemPostgresEntity[]}
+   * @memberof CategoryPostgresEntity
    */
-  @ManyToMany(() => ItemEntity, (item) => item.itemId)
-  categories: ItemEntity[];
+  @ManyToMany(() => ItemPostgresEntity, (item) => item.itemId)
+  categories: ItemPostgresEntity[];
 }

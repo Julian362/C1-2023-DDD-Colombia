@@ -45,4 +45,13 @@ export interface ISellerDomainService<
    * @memberof ISellerDomainService
    */
   changeEmailSeller(sellerId: string, email: string): Promise<Entity>;
+
+  /**
+   * cambia el email de un vendedor
+   *
+   * @param {Entity} seller vendedor a crear
+   * @return {Promise<Entity>} retorna una promesa con el vendedor
+   * @memberof ISellerDomainService
+   */
+  createSeller(seller: Entity): Promise<Entity>;
 }

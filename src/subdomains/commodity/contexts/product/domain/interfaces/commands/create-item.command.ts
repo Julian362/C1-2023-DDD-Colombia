@@ -1,4 +1,10 @@
-export interface ICreateItemUserCommand {
+/**
+ * interfaz para crear un item
+ *
+ * @export
+ * @interface ICreateItemCommand
+ */
+export interface ICreateItemCommand {
   id: string;
   name: string;
   description: string;

@@ -16,6 +16,8 @@ export enum Publisher {
   ChangedStateCategory = 'product.changed-state-category',
   ChangedStateSeller = 'product.changed-state-seller',
   CreatedItem = 'product.created-item',
+  CreatedSeller = 'product.created-seller',
+  CreatedCategory = 'product.created-category',
   DecreasePrice = 'product.decrease-price',
   IncreasePrice = 'product.increase-price',
   GotCategory = 'product.got-category',

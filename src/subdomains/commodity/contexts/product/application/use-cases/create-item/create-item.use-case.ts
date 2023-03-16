@@ -1,6 +1,6 @@
 import { ItemAggregateRoot } from '@context/product/domain/aggregates';
 import { CreatedItemEventPublisher } from '@context/product/domain/events/publishers';
-import { ICreateItemUserCommand } from '@context/product/domain/interfaces';
+import { ICreateItemCommand } from '@context/product/domain/interfaces';
 import { ICreatedITemResponse } from '@context/product/domain/interfaces/responses';
 import { IItemDomainService } from '@context/product/domain/services';
 import {
@@ -25,7 +25,11 @@ import {
   ValueObjectException,
   EventPublisherBase,
 } from '@sofka';
-import { ItemDomainEntity, SellerDomainEntity } from '../../..';
+import {
+  CategoryDomainEntity,
+  ItemDomainEntity,
+  SellerDomainEntity,
+} from '../../..';
 import { Publisher } from '../../../domain/events/publishers/enums/publisher.enum';
 /**
  * caso de uso para crear un item
@@ -33,11 +37,11 @@ import { Publisher } from '../../../domain/events/publishers/enums/publisher.enu
  * @export
  * @class CreateItemUseCase
  * @extends {ValueObjectErrorHandler}
- * @implements {IUseCase<ICreateItemUserCommand, ICreatedITemResponse>}
+ * @implements {IUseCase<ICreateItemCommand, ICreatedITemResponse>}
  */
 export class CreateItemUseCase
   extends ValueObjectErrorHandler
-  implements IUseCase<ICreateItemUserCommand, ICreatedITemResponse>
+  implements IUseCase<ICreateItemCommand, ICreatedITemResponse>
 {
   private readonly itemAggregateRoot: ItemAggregateRoot;
   /**
@@ -61,13 +65,11 @@ export class CreateItemUseCase
   /**
    * ejecuta el caso de uso
    *
-   * @param {ICreateItemUserCommand} command comando para crear un item
+   * @param {ICreateItemCommand} command comando para crear un item
    * @return {Promise<ICreatedITemResponse>} respuesta de item creado
    * @memberof CreateItemUseCase
    */
-  async execute(
-    command: ICreateItemUserCommand,
-  ): Promise<ICreatedITemResponse> {
+  async execute(command: ICreateItemCommand): Promise<ICreatedITemResponse> {
     const item = await this.executeCommand(command);
     return {
       success: item ? true : false,
@@ -79,12 +81,12 @@ export class CreateItemUseCase
    * ejecuta el agregado de item
    *
    * @private
-   * @param {ICreateItemUserCommand} command comando para crear un item
+   * @param {ICreateItemCommand} command comando para crear un item
    * @return {(Promise<ItemDomainEntity | null>)} entidad de dominio de item
    * @memberof CreateItemUseCase
    */
   private async executeCommand(
-    command: ICreateItemUserCommand,
+    command: ICreateItemCommand,
   ): Promise<ItemDomainEntity | null> {
     const valueObjects = this.createValueObjects(command);
     this.ValidateValueObjects(valueObjects);
@@ -96,7 +98,7 @@ export class CreateItemUseCase
    * ejecuta el agregado de item
    *
    * @private
-   * @param {ICreateItemUserCommand} command comando para crear un item
+   * @param {ICreateItemCommand} command comando para crear un item
    * @return {{
    *     itemId: ItemIdValueObject;
    *     name: NameValueObject;
@@ -119,7 +121,7 @@ export class CreateItemUseCase
    *   }} retorna los value objects
    * @memberof CreateItemUseCase
    */
-  private createValueObjects(command: ICreateItemUserCommand): {
+  private createValueObjects(command: ICreateItemCommand): {
     itemId: ItemIdValueObject;
     name: NameValueObject;
     description: DescriptionValueObject;
@@ -315,6 +317,14 @@ export class CreateItemUseCase
       description: DescriptionCategoryValueObject;
     }[];
   }) {
+    const categoriesMapped = valueObject.categories.map((category) => {
+      return new CategoryDomainEntity({
+        categoryId: category.categoryId.valueOf(),
+        name: category.name.valueOf(),
+        state: category.state.valueOf(),
+        description: category.description.valueOf(),
+      });
+    });
     return new ItemDomainEntity({
       itemId: valueObject.itemId.valueOf(),
       name: valueObject.name.valueOf(),
@@ -328,7 +338,7 @@ export class CreateItemUseCase
         email: valueObject.seller.emailSeller.valueOf(),
         state: valueObject.seller.stateSeller.valueOf(),
       }),
-      categories: valueObject.categories,
+      categories: categoriesMapped,
     });
   }
 

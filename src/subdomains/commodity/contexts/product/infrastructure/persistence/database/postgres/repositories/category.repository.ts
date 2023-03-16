@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CategoryEntity } from '../entities/category.entity';
+import { CategoryPostgresEntity } from '../entities/category-postgres.entity';
 import { IBase } from './interfaces/base.interface';
 
 /**
@@ -9,27 +9,29 @@ import { IBase } from './interfaces/base.interface';
  *
  * @export
  * @class CategoryRepository
- * @implements {IBase<CategoryEntity>}
+ * @implements {IBase<CategoryPostgresEntity>}
  */
-export class CategoryRepository implements IBase<CategoryEntity> {
+export class CategoryRepository implements IBase<CategoryPostgresEntity> {
   /**
    * crea una instancia de CategoryRepository
-   * @param {Repository<CategoryEntity>} repository objeto de tipo Repository<CategoryEntity>
+   * @param {Repository<CategoryPostgresEntity>} repository objeto de tipo Repository<CategoryPostgresEntity>
    * @memberof CategoryRepository
    */
   constructor(
-    @InjectRepository(CategoryEntity)
-    private readonly repository: Repository<CategoryEntity>,
+    @InjectRepository(CategoryPostgresEntity)
+    private readonly repository: Repository<CategoryPostgresEntity>,
   ) {}
 
   /**
-   * método findAll que retorna un arreglo de objetos de tipo CategoryEntity
+   * método findAll que retorna un arreglo de objetos de tipo CategoryPostgresEntity
    *
-   * @param {CategoryEntity} entity objeto de tipo CategoryEntity
-   * @return {Promise<CategoryEntity>} retorna un arreglo de objetos de tipo CategoryEntity
+   * @param {CategoryPostgresEntity} entity objeto de tipo CategoryPostgresEntity
+   * @return {Promise<CategoryPostgresEntity>} retorna un arreglo de objetos de tipo CategoryPostgresEntity
    * @memberof CategoryRepository
    */
-  async create(entity: CategoryEntity): Promise<CategoryEntity> {
+  async create(
+    entity: CategoryPostgresEntity,
+  ): Promise<CategoryPostgresEntity> {
     const result = await this.repository.save(entity);
     return result;
   }
@@ -38,11 +40,14 @@ export class CategoryRepository implements IBase<CategoryEntity> {
    * método update que actualiza un registro
    *
    * @param {string} id identificador del registro
-   * @param {CategoryEntity} entity objeto de tipo CategoryEntity
-   * @return {Promise<CategoryEntity>} retorna el registro actualizado
+   * @param {CategoryPostgresEntity} entity objeto de tipo CategoryPostgresEntity
+   * @return {Promise<CategoryPostgresEntity>} retorna el registro actualizado
    * @memberof CategoryRepository
    */
-  async update(id: string, entity: CategoryEntity): Promise<CategoryEntity> {
+  async update(
+    id: string,
+    entity: CategoryPostgresEntity,
+  ): Promise<CategoryPostgresEntity> {
     const data = await this.repository.findOneBy({ categoryId: id });
     if (data) {
       const newEntity = {
@@ -74,10 +79,10 @@ export class CategoryRepository implements IBase<CategoryEntity> {
    * método findById que busca un registro por su id
    *
    * @param {string} id identificador del registro
-   * @return {Promise<CategoryEntity>} retorna el registro encontrado
+   * @return {Promise<CategoryPostgresEntity>} retorna el registro encontrado
    * @memberof CategoryRepository
    */
-  async findById(id: string): Promise<CategoryEntity> {
+  async findById(id: string): Promise<CategoryPostgresEntity> {
     const result = await this.repository.findOneBy({ categoryId: id });
     if (result) {
       return result;

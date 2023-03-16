@@ -432,6 +432,34 @@ describe('Item', () => {
         );
       });
     });
+    describe('createCategory', () => {
+      it('ejecuta CreateCategoryHelper con los parámetros', () => {
+        //Arrange
+        const entity = new CategoryDomainEntity();
+        const expected = new CategoryDomainEntity();
+        const category = new CategoryDomainEntity();
+        events.set(
+          Publisher.CreatedCategory,
+          {} as EventPublisherBase<CategoryDomainEntity>,
+        );
+        jest.spyOn(helpers, 'CreateCategoryHelper').mockResolvedValue(entity);
+
+        //Act
+        item = new ItemAggregateRoot({
+          categoryService,
+          events,
+        });
+        const result = item.createCategory(category);
+
+        //Assert
+        expect(result).resolves.toEqual(expected);
+        expect(helpers.CreateCategoryHelper).toHaveBeenCalledWith(
+          category,
+          events.get(Publisher.CreatedCategory),
+          categoryService,
+        );
+      });
+    });
   });
   describe('Seller', () => {
     describe('changeEmailSeller', () => {
@@ -553,6 +581,34 @@ describe('Item', () => {
           id,
           sellerService,
           events.get(Publisher.GotSeller),
+        );
+      });
+    });
+    describe('createSeller', () => {
+      it('ejecuta CreateSellerHelper con los parámetros', () => {
+        //Arrange
+        const entity = new SellerDomainEntity();
+        const expected = new SellerDomainEntity();
+        const seller = new SellerDomainEntity();
+        events.set(
+          Publisher.CreatedSeller,
+          {} as EventPublisherBase<SellerDomainEntity>,
+        );
+        jest.spyOn(helpers, 'CreateSellerHelper').mockResolvedValue(entity);
+
+        //Act
+        item = new ItemAggregateRoot({
+          sellerService,
+          events,
+        });
+        const result = item.createSeller(seller);
+
+        //Assert
+        expect(result).resolves.toEqual(expected);
+        expect(helpers.CreateSellerHelper).toHaveBeenCalledWith(
+          seller,
+          events.get(Publisher.CreatedSeller),
+          sellerService,
         );
       });
     });

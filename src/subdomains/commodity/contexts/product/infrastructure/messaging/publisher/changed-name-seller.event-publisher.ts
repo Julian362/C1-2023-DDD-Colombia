@@ -1,6 +1,6 @@
-import { EventPublisherBase } from '../../../../../../../shared/sofka/interface/event-publisher.base';
-import { SellerDomainEntity } from '../../entities/seller.domain-entity';
-import { Publisher } from './enums/publisher.enum';
+import { SellerDomainEntity } from '@context/product/domain/entities';
+import { Publisher } from '@context/product/domain/events';
+import { EventPublisherBase } from '@sofka';
 /**
  * clase abstracta para publicar el evento de cambio de nombre del vendedor
  *

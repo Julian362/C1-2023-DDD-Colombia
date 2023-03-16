@@ -5,6 +5,8 @@ import {
   SellerDomainEntity,
 } from '../../entities';
 import { Publisher } from '../../events';
+import { CreateSellerHelper } from './helpers/create-seller/create-seller.helper';
+import { CreateCategoryHelper } from './helpers/create-category/create-category.helper';
 import {
   ISellerDomainService,
   IItemDomainService,
@@ -76,6 +78,36 @@ export class ItemAggregateRoot
     this.sellerService = sellerService;
     this.categoryService = categoryService;
     this.events = events ?? new Map<Publisher, EventPublisherBase<any>>();
+  }
+  /**
+   * crea un vendedor
+   *
+   * @param {SellerDomainEntity} seller vendedor a crear
+   * @return {Promise<SellerDomainEntity>} retorna un vendedor
+   * @memberof ItemAggregateRoot
+   */
+  createSeller(seller: SellerDomainEntity): Promise<SellerDomainEntity> {
+    return CreateSellerHelper(
+      seller,
+      this.sellerService,
+      this.events.get(Publisher.CreatedSeller),
+    );
+  }
+  /**
+   * crea un item
+   *
+   * @param {CategoryDomainEntity} category categoría del item
+   * @return {Promise<CategoryDomainEntity>}
+   * @memberof ItemAggregateRoot
+   */
+  createCategory(
+    category: CategoryDomainEntity,
+  ): Promise<CategoryDomainEntity> {
+    return CreateCategoryHelper(
+      category,
+      this.categoryService,
+      this.events.get(Publisher.CreatedCategory),
+    );
   }
   /**
    * obtiene un vendedor

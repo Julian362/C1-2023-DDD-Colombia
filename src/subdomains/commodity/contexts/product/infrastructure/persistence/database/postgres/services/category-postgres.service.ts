@@ -1,32 +1,45 @@
-import { CategoryDomainEntity } from '@context/product/domain/entities';
 import { ICategoryDomainService } from '@context/product/domain/services';
 import { Injectable } from '@nestjs/common';
-import { CategoryEntity } from '../entities/category.entity';
+import { CategoryPostgresEntity } from '../entities/category-postgres.entity';
 import { CategoryRepository } from '../repositories/category.repository';
 
 /**
  * clase que representa el servicio de dominio de categoría
  *
  * @export
- * @class CategoryService
+ * @class CategoryPostgresService
  * @implements {ICategoryDomainService}
  */
 @Injectable()
-export class CategoryService implements ICategoryDomainService {
+export class CategoryPostgresService
+  implements ICategoryDomainService<CategoryPostgresEntity>
+{
   /**
-   * Crea una instancia de CategoryService.
+   * Crea una instancia de CategoryPostgresService.
    * @param {CategoryRepository} categoryRepository
-   * @memberof CategoryService
+   * @memberof CategoryPostgresService
    */
   constructor(private readonly categoryRepository: CategoryRepository) {}
+  /**
+   * crea una categoría
+   *
+   * @param {CategoryPostgresEntity} category categoría a crear
+   * @return {Promise<CategoryPostgresEntity>} retorna una promesa con la categoría
+   * @memberof CategoryPostgresService
+   */
+  createCategory(
+    category: CategoryPostgresEntity,
+  ): Promise<CategoryPostgresEntity> {
+    return this.categoryRepository.create(category);
+  }
   /**
    * obtiene una categoría
    *
    * @param {string} categoryId id de la categoría
-   * @return {Promise<CategoryDomainEntity>} retorna una promesa con la categoría
-   * @memberof CategoryService
+   * @return {Promise<CategoryPostgresEntity>} retorna una promesa con la categoría
+   * @memberof CategoryPostgresService
    */
-  getCategory(categoryId: string): Promise<CategoryDomainEntity> {
+  getCategory(categoryId: string): Promise<CategoryPostgresEntity> {
     return this.categoryRepository.findById(categoryId);
   }
   /**
@@ -34,14 +47,14 @@ export class CategoryService implements ICategoryDomainService {
    *
    * @param {string} categoryId id de la categoría
    * @param {string} name nombre de la categoría
-   * @return {Promise<CategoryDomainEntity>} retorna una promesa con la categoría
-   * @memberof CategoryService
+   * @return {Promise<CategoryPostgresEntity>} retorna una promesa con la categoría
+   * @memberof CategoryPostgresService
    */
   changeNameCategory(
     categoryId: string,
     name: string,
-  ): Promise<CategoryDomainEntity> {
-    const data = new CategoryEntity();
+  ): Promise<CategoryPostgresEntity> {
+    const data = new CategoryPostgresEntity();
     data.name = name;
     return this.categoryRepository.update(categoryId, data);
   }
@@ -50,14 +63,14 @@ export class CategoryService implements ICategoryDomainService {
    *
    * @param {string} categoryId id de la categoría
    * @param {string} description descripción de la categoría
-   * @return {Promise<CategoryDomainEntity>} retorna una promesa con la categoría
-   * @memberof CategoryService
+   * @return {Promise<CategoryPostgresEntity>} retorna una promesa con la categoría
+   * @memberof CategoryPostgresService
    */
   changeDescriptionCategory(
     categoryId: string,
     description: string,
-  ): Promise<CategoryDomainEntity> {
-    const data = new CategoryEntity();
+  ): Promise<CategoryPostgresEntity> {
+    const data = new CategoryPostgresEntity();
     data.description = description;
     return this.categoryRepository.update(categoryId, data);
   }
@@ -66,14 +79,14 @@ export class CategoryService implements ICategoryDomainService {
    *
    * @param {string} categoryId id de la categoría
    * @param {boolean} state estado de la categoría
-   * @return {Promise<CategoryDomainEntity>} retorna una promesa con la categoría
-   * @memberof CategoryService
+   * @return {Promise<CategoryPostgresEntity>} retorna una promesa con la categoría
+   * @memberof CategoryPostgresService
    */
   changeStateCategory(
     categoryId: string,
     state: boolean,
-  ): Promise<CategoryDomainEntity> {
-    const data = new CategoryEntity();
+  ): Promise<CategoryPostgresEntity> {
+    const data = new CategoryPostgresEntity();
     data.state = state;
     return this.categoryRepository.update(categoryId, data);
   }

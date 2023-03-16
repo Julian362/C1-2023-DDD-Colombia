@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SellerEntity } from '../entities/seller.entity';
+import { SellerPostgresEntity } from '../entities/seller-postgres.entity';
 import { IBase } from './interfaces/base.interface';
 
 /**
@@ -9,27 +9,27 @@ import { IBase } from './interfaces/base.interface';
  *
  * @export
  * @class SellerRepository
- * @implements {IBase<SellerEntity>}
+ * @implements {IBase<SellerPostgresEntity>}
  */
-export class SellerRepository implements IBase<SellerEntity> {
+export class SellerRepository implements IBase<SellerPostgresEntity> {
   /**
    * crea una instancia de SellerRepository
-   * @param {Repository<SellerEntity>} repository
+   * @param {Repository<SellerPostgresEntity>} repository
    * @memberof SellerRepository
    */
   constructor(
-    @InjectRepository(SellerEntity)
-    private readonly repository: Repository<SellerEntity>,
+    @InjectRepository(SellerPostgresEntity)
+    private readonly repository: Repository<SellerPostgresEntity>,
   ) {}
 
   /**
-   * método findAll que retorna un arreglo de objetos de tipo SellerEntity
+   * método findAll que retorna un arreglo de objetos de tipo SellerPostgresEntity
    *
-   * @param {SellerEntity} entity
-   * @return {Promise<SellerEntity>} retorna un arreglo de objetos de tipo SellerEntity
+   * @param {SellerPostgresEntity} entity
+   * @return {Promise<SellerPostgresEntity>} retorna un arreglo de objetos de tipo SellerPostgresEntity
    * @memberof SellerRepository
    */
-  async create(entity: SellerEntity): Promise<SellerEntity> {
+  async create(entity: SellerPostgresEntity): Promise<SellerPostgresEntity> {
     const result = await this.repository.save(entity);
     return result;
   }
@@ -38,11 +38,14 @@ export class SellerRepository implements IBase<SellerEntity> {
    * método update que actualiza un registro
    *
    * @param {string} id
-   * @param {SellerEntity} entity
-   * @return NotFoundException{Promise<SellerEntity>}
+   * @param {SellerPostgresEntity} entity
+   * @return NotFoundException{Promise<SellerPostgresEntity>}
    * @memberof SellerRepository
    */
-  async update(id: string, entity: SellerEntity): Promise<SellerEntity> {
+  async update(
+    id: string,
+    entity: SellerPostgresEntity,
+  ): Promise<SellerPostgresEntity> {
     const data = await this.repository.findOneBy({ sellerId: id });
     if (data) {
       const newEntity = {
@@ -74,10 +77,10 @@ export class SellerRepository implements IBase<SellerEntity> {
    *
    *
    * @param {string} id
-   * @return NotFoundException{Promise<SellerEntity>}
+   * @return NotFoundException{Promise<SellerPostgresEntity>}
    * @memberof SellerRepository
    */
-  async findById(id: string): Promise<SellerEntity> {
+  async findById(id: string): Promise<SellerPostgresEntity> {
     const result = await this.repository.findOneBy({ sellerId: id });
     if (result) {
       return result;

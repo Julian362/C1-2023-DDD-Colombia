@@ -49,4 +49,13 @@ export interface ICategoryDomainService<
    * @memberof ICategoryDomainService
    */
   changeStateCategory(categoryId: string, state: boolean): Promise<Entity>;
+
+  /**
+   * crea una categoría
+   *
+   * @param {Entity} category categoría a crear
+   * @return {Promise<Entity>} retorna una promesa con la categoría
+   * @memberof ICategoryDomainService
+   */
+  createCategory(category: Entity): Promise<Entity>;
 }

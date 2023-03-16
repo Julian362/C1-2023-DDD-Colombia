@@ -5,7 +5,7 @@ import {
   Publisher,
 } from '@context/product/domain/events';
 import {
-  IGetItemUserCommand,
+  IGetItemCommand,
   IGotITemResponse,
 } from '@context/product/domain/interfaces';
 import { IItemDomainService } from '@context/product/domain/services';
@@ -23,11 +23,11 @@ import {
  * @export
  * @class GetItemUseCase
  * @extends {ValueObjectErrorHandler}
- * @implements {IUseCase<IGetItemUserCommand, IGotITemResponse>}
+ * @implements {IUseCase<IGetItemCommand, IGotITemResponse>}
  */
 export class GetItemUseCase
   extends ValueObjectErrorHandler
-  implements IUseCase<IGetItemUserCommand, IGotITemResponse>
+  implements IUseCase<IGetItemCommand, IGotITemResponse>
 {
   private readonly itemAggregateRoot: ItemAggregateRoot;
   /**
@@ -51,11 +51,11 @@ export class GetItemUseCase
   /**
    * ejecuta el caso de uso para obtener un item
    *
-   * @param {IGetItemUserCommand} command comando para obtener un item
+   * @param {IGetItemCommand} command comando para obtener un item
    * @return {Promise<IGotITemResponse>} retorna el item o null
    * @memberof GetItemUseCase
    */
-  async execute(command: IGetItemUserCommand): Promise<IGotITemResponse> {
+  async execute(command: IGetItemCommand): Promise<IGotITemResponse> {
     const item = await this.executeCommand(command);
     return {
       item,
@@ -66,12 +66,12 @@ export class GetItemUseCase
    * ejecuta el comando para obtener un item
    *
    * @private
-   * @param {IGetItemUserCommand} command comando para obtener un item
+   * @param {IGetItemCommand} command comando para obtener un item
    * @return {(Promise<ItemDomainEntity | null>)} retorna el item o null
    * @memberof GetItemUseCase
    */
   private async executeCommand(
-    command: IGetItemUserCommand,
+    command: IGetItemCommand,
   ): Promise<ItemDomainEntity | null> {
     const valueObjects = this.createValueObjects(command);
     this.ValidateValueObjects(valueObjects);
@@ -82,13 +82,13 @@ export class GetItemUseCase
    * crea los value objects para el caso de uso
    *
    * @private
-   * @param {IGetItemUserCommand} command comando para obtener un item
+   * @param {IGetItemCommand} command comando para obtener un item
    * @return {{
    *     itemId: ItemIdValueObject;
    *   }} retorna los value objects
    * @memberof GetItemUseCase
    */
-  private createValueObjects(command: IGetItemUserCommand): {
+  private createValueObjects(command: IGetItemCommand): {
     itemId: ItemIdValueObject;
   } {
     const itemId = new ItemIdValueObject(command.id);

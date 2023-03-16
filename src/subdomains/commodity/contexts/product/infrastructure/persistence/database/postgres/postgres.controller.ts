@@ -1,26 +1,27 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { CategoryService } from './services/category.service';
-import { ItemService } from './services/item.service';
-import { SellerService } from './services/seller.service';
+import { ItemPostgresService } from './services/item-postgres.service';
+import { SellerPostgresService } from './services/seller-postgres.service';
+import { CategoryPostgresService } from './services/category-postgres.service';
+import { ItemPostgresEntity } from './entities/item-postgres.entity';
 
 @Controller('postgres')
 export class PostgresController {
   constructor(
     private readonly configService: ConfigService,
-    private readonly itemService: ItemService,
-    private readonly categoryService: CategoryService,
-    private readonly sellerService: SellerService,
+    private readonly itemPostgresService: ItemPostgresService,
+    private readonly categoryPostgresService: CategoryPostgresService,
+    private readonly sellerPostgresService: SellerPostgresService,
   ) {}
 
   @Post('create')
   createItem() {
-    const item = {
+    const item = new ItemPostgresEntity({
+      itemId: '487db80c-5b7d-458c-8f81-c0a365cf41f1',
       name: 'item',
-      description: 'item description',
-      price: 1000,
-      image: 'image',
-    };
-    return this.itemService.createItem(item);
+      description: 'description',
+      price: 100,
+    });
+    return this.itemPostgresService.createItem(item);
   }
 }

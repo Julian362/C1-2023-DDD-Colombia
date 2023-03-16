@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ItemEntity } from '../entities/item.entity';
+import { ItemPostgresEntity } from '../entities/item-postgres.entity';
 import { IBase } from './interfaces/base.interface';
 
 /**
@@ -9,27 +9,27 @@ import { IBase } from './interfaces/base.interface';
  *
  * @export
  * @class ItemRepository
- * @implements {IBase<ItemEntity>}
+ * @implements {IBase<ItemPostgresEntity>}
  */
-export class ItemRepository implements IBase<ItemEntity> {
+export class ItemRepository implements IBase<ItemPostgresEntity> {
   /**
    * crea una instancia de ItemRepository
-   * @param {Repository<ItemEntity>} repository
+   * @param {Repository<ItemPostgresEntity>} repository
    * @memberof ItemRepository
    */
   constructor(
-    @InjectRepository(ItemEntity)
-    private readonly repository: Repository<ItemEntity>,
+    @InjectRepository(ItemPostgresEntity)
+    private readonly repository: Repository<ItemPostgresEntity>,
   ) {}
 
   /**
-   * método findAll que retorna un arreglo de objetos de tipo ItemEntity
+   * método findAll que retorna un arreglo de objetos de tipo ItemPostgresEntity
    *
-   * @param {ItemEntity} entity objeto de tipo ItemEntity
-   * @return {Promise<ItemEntity>} retorna un arreglo de objetos de tipo ItemEntity
+   * @param {ItemPostgresEntity} entity objeto de tipo ItemPostgresEntity
+   * @return {Promise<ItemPostgresEntity>} retorna un arreglo de objetos de tipo ItemPostgresEntity
    * @memberof ItemRepository
    */
-  async create(entity: ItemEntity): Promise<ItemEntity> {
+  async create(entity: ItemPostgresEntity): Promise<ItemPostgresEntity> {
     const result = await this.repository.save(entity);
     return result;
   }
@@ -38,11 +38,14 @@ export class ItemRepository implements IBase<ItemEntity> {
    * método update que actualiza un registro
    *
    * @param {string} id identificador del registro
-   * @param {ItemEntity} entity objeto de tipo ItemEntity
-   * @return {Promise<ItemEntity>} retorna el registro actualizado
+   * @param {ItemPostgresEntity} entity objeto de tipo ItemPostgresEntity
+   * @return {Promise<ItemPostgresEntity>} retorna el registro actualizado
    * @memberof ItemRepository
    */
-  async update(id: string, entity: ItemEntity): Promise<ItemEntity> {
+  async update(
+    id: string,
+    entity: ItemPostgresEntity,
+  ): Promise<ItemPostgresEntity> {
     const data = await this.repository.findOneBy({ itemId: id });
     if (data) {
       const newEntity = {
@@ -74,10 +77,10 @@ export class ItemRepository implements IBase<ItemEntity> {
    * método findById que busca un registro por su identificador
    *
    * @param {string} id
-   * @return {Promise<ItemEntity>} retorna el registro encontrado
+   * @return {Promise<ItemPostgresEntity>} retorna el registro encontrado
    * @memberof ItemRepository
    */
-  async findById(id: string): Promise<ItemEntity> {
+  async findById(id: string): Promise<ItemPostgresEntity> {
     const result = await this.repository.findOneBy({ itemId: id });
     if (result) {
       return result;

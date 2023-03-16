@@ -2,37 +2,41 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm/';
 import { TypesOrmPostgresConfigService } from './configs/types-orm-postgres-config.service';
 import { ItemRepository } from './repositories/item.repository';
-import { ItemService } from './services/item.service';
-import { ItemEntity } from './entities/item.entity';
-import { SellerEntity } from './entities/seller.entity';
-import { CategoryEntity } from './entities/category.entity';
+import { ItemPostgresEntity } from './entities/item-postgres.entity';
+import { SellerPostgresEntity } from './entities/seller-postgres.entity';
+import { CategoryPostgresEntity } from './entities/category-postgres.entity';
 import { PostgresController } from './postgres.controller';
-import { SellerService } from './services/seller.service';
-import { CategoryService } from './services/category.service';
 import { SellerRepository } from './repositories/seller.repository';
 import { CategoryRepository } from './repositories/category.repository';
+import { ItemPostgresService } from './services/item-postgres.service';
+import { SellerPostgresService } from './services/seller-postgres.service';
+import { CategoryPostgresService } from './services/category-postgres.service';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       useClass: TypesOrmPostgresConfigService,
     }),
-    TypeOrmModule.forFeature([ItemEntity, SellerEntity, CategoryEntity]),
+    TypeOrmModule.forFeature([
+      ItemPostgresEntity,
+      SellerPostgresEntity,
+      CategoryPostgresEntity,
+    ]),
   ],
-  controllers: [PostgresController],
+  controllers: [],
   providers: [
     TypesOrmPostgresConfigService,
     ItemRepository,
-    ItemService,
-    SellerService,
-    CategoryService,
+    ItemPostgresService,
+    SellerPostgresService,
+    CategoryPostgresService,
     SellerRepository,
     CategoryRepository,
     ItemRepository,
   ],
   exports: [
-    ItemService,
-    SellerService,
-    CategoryService,
+    ItemPostgresService,
+    SellerPostgresService,
+    CategoryPostgresService,
     SellerRepository,
     CategoryRepository,
     ItemRepository,

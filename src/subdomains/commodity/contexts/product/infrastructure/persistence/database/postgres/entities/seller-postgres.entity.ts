@@ -1,21 +1,22 @@
-import { Column, Entity, Index, ManyToOne, OneToMany } from 'typeorm';
-import { ItemEntity } from './item.entity';
+import { SellerDomainEntity } from '@context/product/domain/entities';
+import { Column, Entity, Index, OneToMany } from 'typeorm';
+import { ItemPostgresEntity } from './item-postgres.entity';
 
 /**
- * clase SellerEntity que representa la entidad seller
+ * clase SellerPostgresEntity que representa la entidad seller
  *
  * @export
- * @class SellerEntity
+ * @class SellerPostgresEntity
  */
 @Index('seller_name_key', ['name'])
 @Index('seller_pkey', ['sellerId'], { unique: true })
 @Entity('seller', { schema: 'public' })
-export class SellerEntity {
+export class SellerPostgresEntity extends SellerDomainEntity {
   /**
    *  campo sellerId de tipo string
    *
    * @type {string}
-   * @memberof SellerEntity
+   * @memberof SellerPostgresEntity
    */
   @Column('uuid', {
     primary: true,
@@ -28,7 +29,7 @@ export class SellerEntity {
    *  campo name de tipo string
    *
    * @type {string}
-   * @memberof SellerEntity
+   * @memberof SellerPostgresEntity
    */
   @Column('character varying', {
     name: 'name',
@@ -37,22 +38,10 @@ export class SellerEntity {
   name: string;
 
   /**
-   *  campo description de tipo string
-   *
-   * @type {string}
-   * @memberof SellerEntity
-   */
-  @Column('character varying', {
-    name: 'description',
-    length: 300,
-  })
-  description: string;
-
-  /**
    *  campo email de tipo string
    *
    * @type {string}
-   * @memberof SellerEntity
+   * @memberof SellerPostgresEntity
    */
   @Column('character varying', {
     name: 'email',
@@ -65,7 +54,7 @@ export class SellerEntity {
    *  campo state de tipo boolean
    *
    * @type {boolean}
-   * @memberof SellerEntity
+   * @memberof SellerPostgresEntity
    */
   @Column('boolean', {
     name: 'state',
@@ -73,11 +62,11 @@ export class SellerEntity {
   state: boolean;
 
   /**
-   *  campo items de tipo ItemEntity[]
+   *  campo items de tipo ItemPostgresEntity[]
    *
-   * @type {ItemEntity[]}
-   * @memberof SellerEntity
+   * @type {ItemPostgresEntity[]}
+   * @memberof SellerPostgresEntity
    */
-  @OneToMany(() => ItemEntity, (item) => item.itemId)
-  items: ItemEntity[];
+  @OneToMany(() => ItemPostgresEntity, (item) => item.itemId)
+  items: ItemPostgresEntity[];
 }
