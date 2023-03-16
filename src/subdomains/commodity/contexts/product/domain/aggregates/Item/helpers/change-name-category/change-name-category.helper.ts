@@ -2,6 +2,7 @@ import { CategoryDomainEntity } from '@context/product/domain/entities';
 import { ChangedNameCategoryEventPublisher } from '@context/product/domain/events';
 import { ICategoryDomainService } from '@context/product/domain/services';
 import { AggregateRootException } from '../../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
+import { GetDataOutContextService } from '../../../../../infrastructure/services/get-data-out-context.service';
 
 /**
  * helper para cambiar el nombre de una categoría

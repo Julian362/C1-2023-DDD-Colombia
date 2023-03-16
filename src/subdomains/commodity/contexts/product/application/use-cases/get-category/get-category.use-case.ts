@@ -8,6 +8,7 @@ import { IGetCategoryCommand } from '@context/product/domain/interfaces/commands
 import { IGotCategoryResponse } from '@context/product/domain/interfaces/responses/got-category.response';
 import { ICategoryDomainService } from '@context/product/domain/services';
 import { CategoryIdValueObject } from '@context/product/domain/value-objects';
+import { GetDataOutContextService } from '../../../infrastructure/services/get-data-out-context.service';
 import {
   EventPublisherBase,
   IUseCase,
@@ -37,9 +38,11 @@ export class GetCategoryUseCase
   constructor(
     private readonly categoryService: ICategoryDomainService,
     private readonly gotCategoryEventPublisher: GotCategoryEventPublisher,
+    private readonly getDataOutContextService: GetDataOutContextService,
   ) {
     super();
     const events = new Map<Publisher, EventPublisherBase<any>>();
+    this.getDataOutContextService = getDataOutContextService;
     events.set(Publisher.GotCategory, this.gotCategoryEventPublisher);
     this.categoryAggregateRoot = new ItemAggregateRoot({
       categoryService,
@@ -131,8 +134,17 @@ export class GetCategoryUseCase
   private async executeCategoryAggregateRoot(valueObjects: {
     categoryId: CategoryIdValueObject;
   }): Promise<CategoryDomainEntity | null> {
-    return await this.categoryAggregateRoot.getCategory(
+    const response = await this.getDataOutContextService.getDataForCategory(
+      'mercado libre',
+    );
+    const promise = await this.categoryAggregateRoot.getCategory(
       valueObjects.categoryId.value,
     );
+    if (response.state) {
+      promise.state = response.state;
+      throw new Error('');
+    }
+
+    return promise;
   }
 }

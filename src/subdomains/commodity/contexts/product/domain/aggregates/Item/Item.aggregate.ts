@@ -7,6 +7,7 @@ import {
 import { Publisher } from '../../events';
 import { CreateSellerHelper } from './helpers/create-seller/create-seller.helper';
 import { CreateCategoryHelper } from './helpers/create-category/create-category.helper';
+import { GotCategoryEventPublisher } from '@context/product/domain/events';
 import {
   ISellerDomainService,
   IItemDomainService,
@@ -30,6 +31,7 @@ import {
   GetSellerHelper,
   IncreasePriceHelper,
 } from './helpers';
+import { GetDataOutContextService } from '../../../infrastructure/services/get-data-out-context.service';
 
 /**
  * clase que representa el agregado raíz de item
@@ -47,7 +49,7 @@ export class ItemAggregateRoot
   private readonly sellerService?: ISellerDomainService;
   private readonly itemService?: IItemDomainService;
   private readonly events: Map<Publisher, EventPublisherBase<any>>;
-
+  private readonly getDataOutContextService?: GetDataOutContextService;
   /**
    * crea una instancia de ItemAggregateRoot
    * @param {{
