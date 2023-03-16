@@ -5,7 +5,7 @@
  * @interface ICreateItemCommand
  */
 export interface ICreateItemCommand {
-  id: string;
+  itemId: string;
   name: string;
   description: string;
   price: number;

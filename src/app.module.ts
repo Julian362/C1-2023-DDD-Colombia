@@ -1,8 +1,8 @@
-import { ItemAggregateRoot } from '@context/product/domain/aggregates';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'node:path';
 import { ProductModule } from './subdomains/commodity/contexts/product/infrastructure/product.module';
+import { PublicationModule } from './subdomains/commodity/contexts/publication/infrastructure/publication.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -14,6 +14,7 @@ import { ProductModule } from './subdomains/commodity/contexts/product/infrastru
       ),
     }),
     ProductModule,
+    PublicationModule,
   ],
   controllers: [],
   providers: [],

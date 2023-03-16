@@ -91,7 +91,7 @@ export class GetItemUseCase
   private createValueObjects(command: IGetItemCommand): {
     itemId: ItemIdValueObject;
   } {
-    const itemId = new ItemIdValueObject(command.id);
+    const itemId = new ItemIdValueObject(command.itemId);
     return {
       itemId,
     };

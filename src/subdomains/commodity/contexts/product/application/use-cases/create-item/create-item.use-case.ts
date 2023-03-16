@@ -141,7 +141,7 @@ export class CreateItemUseCase
       description: DescriptionCategoryValueObject;
     }[];
   } {
-    const itemId = new ItemIdValueObject(command.id);
+    const itemId = new ItemIdValueObject(command.itemId);
     const name = new NameValueObject(command.name);
     const description = new DescriptionValueObject(command.description);
     const image = new ImageValueObject(command.image);

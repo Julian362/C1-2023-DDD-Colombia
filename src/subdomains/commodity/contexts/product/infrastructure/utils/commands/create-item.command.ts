@@ -47,7 +47,7 @@ class Categories {
  */
 export class CreateItemCommand implements ICreateItemCommand {
   @IsString({ message: 'el id del item debe ser un string' })
-  id: string;
+  itemId: string;
 
   @IsString({ message: 'el nombre del item debe ser un string' })
   name: string;

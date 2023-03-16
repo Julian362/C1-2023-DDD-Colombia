@@ -5,5 +5,5 @@
  * @interface IGetItemCommand
  */
 export interface IGetItemCommand {
-  id: string;
+  itemId: string;
 }
