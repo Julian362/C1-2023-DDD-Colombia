@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule } from '@nestjs/microservices';
 import { Transport } from '@nestjs/microservices/enums';
-import { ChangedDescriptionCategoryPublisher } from './publisher/changed-description-category.event-publisher';
 import { CreatedItemPublisher } from './publisher/created-item.event-publisher';
 
 @Module({

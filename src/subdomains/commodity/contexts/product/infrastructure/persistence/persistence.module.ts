@@ -4,10 +4,9 @@ import { ItemService } from './services/item.service';
 import { CategoryService } from './services/category.service';
 import { SellerService } from './services/seller.service';
 import { ItemController } from '../controllers/item.controller';
-import { MessagingModule } from '../messaging/messaging.module';
 
 @Module({
-  imports: [PostgresSQLModule, MessagingModule],
+  imports: [PostgresSQLModule],
   controllers: [ItemController],
   providers: [ItemService, CategoryService, SellerService],
   exports: [ItemService, CategoryService, SellerService],
