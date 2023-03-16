@@ -1,30 +1,21 @@
-import { CategoryDomainEntity } from '@context/product/domain/entities';
-import { EventPublisherBase } from '@sofka';
-import { Publisher } from '@context/product/domain/events/publishers';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { IEventPublisher } from '@sofka';
+import { lastValueFrom } from 'rxjs';
+import { ItemEntity } from '../../persistence/entities/item.entity';
+import { ChangedDescriptionCategoryEventPublisher } from '../../../domain/events/publishers/changed-description-category.event-publisher';
+import { CategoryEntity } from '../../persistence/entities/category.entity';
+import { ChangedStateEventPublisher } from './changed-state.event-publisher';
+@Injectable()
+export class ChangedStatePublisher extends ChangedStateEventPublisher {
+  constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {
+    super(proxy as unknown as IEventPublisher);
+  }
 
-/**
- * clase abstracta para publicar el evento de estado de categoría modificado
- *
- * @export
- * @abstract
- * @class ChangedStateCategoryEventPublisher
- * @extends {EventPublisherBase<Response>}
- * @template Response
- */
-export abstract class ChangedStateCategoryEventPublisher<
-  Response = CategoryDomainEntity,
-> extends EventPublisherBase<Response> {
-  /**
-   * publica el evento de estado de categoría modificado
-   *
-   * @template Result
-   * @return {Promise<Result>} retorna una promesa con el resultado
-   * @memberof ChangedStateCategoryEventPublisher
-   */
-  publish<Result = any>(): Promise<Result> {
-    return this.emit(
-      Publisher.ChangedStateCategory,
-      JSON.stringify(this.response),
-    );
+  emit<Result = any, Input = CategoryEntity>(
+    pattern: any,
+    data: Input,
+  ): Promise<Result> {
+    return lastValueFrom(this.proxy.emit(pattern, data));
   }
 }

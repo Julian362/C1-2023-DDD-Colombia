@@ -1,27 +1,20 @@
-import { EventPublisherBase } from '@sofka';
-import { ItemDomainEntity } from '@context/product/domain/entities';
-import { Publisher } from '@context/product/domain/events/publishers';
+import { IncreasePriceEventPublisher } from '@context/product/domain/events';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { IEventPublisher } from '@sofka';
+import { lastValueFrom } from 'rxjs';
+import { ItemEntity } from '../../persistence/entities/item.entity';
+import { SellerEntity } from '../../persistence/entities/seller.entity';
+@Injectable()
+export class IncreasedItemPublisher extends IncreasePriceEventPublisher {
+  constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {
+    super(proxy as unknown as IEventPublisher);
+  }
 
-/**
- *  clase abstracta para publicar el evento de aumento de precio
- *
- * @export
- * @abstract
- * @class IncreasePriceEventPublisher
- * @extends {EventPublisherBase<Response>}
- * @template Response
- */
-export abstract class IncreasePriceEventPublisher<
-  Response = ItemDomainEntity,
-> extends EventPublisherBase<Response> {
-  /**
-   * publica el evento de aumento de precio
-   *
-   * @template Result
-   * @return {Promise<Result>} retorna una promesa con el resultado
-   * @memberof IncreasePriceEventPublisher
-   */
-  publish<Result = any>(): Promise<Result> {
-    return this.emit(Publisher.IncreasePrice, JSON.stringify(this.response));
+  emit<Result = any, Input = SellerEntity>(
+    pattern: any,
+    data: Input,
+  ): Promise<Result> {
+    return lastValueFrom(this.proxy.emit(pattern, data));
   }
 }

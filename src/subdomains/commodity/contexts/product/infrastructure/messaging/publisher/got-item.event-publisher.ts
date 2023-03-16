@@ -3,7 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { IEventPublisher } from '@sofka';
 import { lastValueFrom } from 'rxjs';
 import { ItemEntity } from '../../persistence/entities/item.entity';
-import { GotItemEventPublisher } from '@context/product/domain/events/publishers';
+import { GotItemEventPublisher } from '../../../domain/events/publishers/got-item.event-publisher';
 @Injectable()
 export class GotItemPublisher extends GotItemEventPublisher {
   constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {

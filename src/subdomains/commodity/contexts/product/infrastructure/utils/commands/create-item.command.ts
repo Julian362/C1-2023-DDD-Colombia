@@ -1,4 +1,4 @@
-import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { ICreateItemCommand } from '../../../domain/interfaces/commands/create-item.command';
 /**
  * clase Seller que representa el vendedor
@@ -64,7 +64,9 @@ export class CreateItemCommand implements ICreateItemCommand {
   @IsBoolean({ message: 'el estado del item debe ser un boolean' })
   state: boolean;
 
+  @ValidateNested()
   seller: Seller;
 
+  @ValidateNested()
   categories: Categories[];
 }

@@ -1,26 +1,20 @@
-import { SellerDomainEntity } from '@context/product/domain/entities';
-import { Publisher } from '@context/product/domain/events';
-import { EventPublisherBase } from '@sofka';
-/**
- * clase abstracta para publicar el evento de cambio de nombre del vendedor
- *
- * @export
- * @abstract
- * @class ChangedNameSellerEventPublisher
- * @extends {EventPublisherBase<Response>}
- * @template Response
- */
-export abstract class ChangedNameSellerEventPublisher<
-  Response = SellerDomainEntity,
-> extends EventPublisherBase<Response> {
-  /**
-   * publica el evento de cambio de nombre del vendedor
-   *
-   * @template Result
-   * @return {Promise<Result>} retorna una promesa con el resultado
-   * @memberof ChangedNameSellerEventPublisher
-   */
-  publish<Result = any>(): Promise<Result> {
-    return this.emit(Publisher.ChangeNameSeller, JSON.stringify(this.response));
+import { ChangedNameSellerEventPublisher } from '@context/product/domain/events';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { IEventPublisher } from '@sofka';
+import { lastValueFrom } from 'rxjs';
+import { ItemEntity } from '../../persistence/entities/item.entity';
+import { SellerEntity } from '../../persistence/entities/seller.entity';
+@Injectable()
+export class ChangedNameSellerPublisher extends ChangedNameSellerEventPublisher {
+  constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {
+    super(proxy as unknown as IEventPublisher);
+  }
+
+  emit<Result = any, Input = SellerEntity>(
+    pattern: any,
+    data: Input,
+  ): Promise<Result> {
+    return lastValueFrom(this.proxy.emit(pattern, data));
   }
 }

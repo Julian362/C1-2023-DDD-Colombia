@@ -1,35 +1,19 @@
-import { SellerDomainEntity } from '@context/product/domain/entities';
-import { Publisher } from '@context/product/domain/events';
-import { EventPublisherBase } from '@sofka';
-/**
- * clase abstracta para publicar el evento de seller creado
- *
- * @export
- * @abstract
- * @class CreatedSellerEventPublisher
- * @extends {EventPublisherBase<Response>}
- * @template Response
- */
-/**
- *
- *
- * @export
- * @abstract
- * @class CreatedSellerEventPublisher
- * @extends {EventPublisherBase<Response>}
- * @template Response
- */
-export abstract class CreatedSellerEventPublisher<
-  Response = SellerDomainEntity,
-> extends EventPublisherBase<Response> {
-  /**
-   * Publica el evento de seller creado
-   *
-   * @template Result
-   * @return {Promise<Result>} retorna una promesa con el resultado
-   * @memberof CreatedSellerEventPublisher
-   */
-  publish<Result = any>(): Promise<Result> {
-    return this.emit(Publisher.CreatedSeller, JSON.stringify(this.response));
+import { CreatedSellerEventPublisher } from '@context/product/domain/events/publishers/created-seller.event-publisher';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { IEventPublisher } from '@sofka';
+import { lastValueFrom } from 'rxjs';
+import { ItemEntity } from '../../persistence/entities/item.entity';
+@Injectable()
+export class CreatedSellerPublisher extends CreatedSellerEventPublisher {
+  constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {
+    super(proxy as unknown as IEventPublisher);
+  }
+
+  emit<Result = any, Input = ItemEntity>(
+    pattern: any,
+    data: Input,
+  ): Promise<Result> {
+    return lastValueFrom(this.proxy.emit(pattern, data));
   }
 }

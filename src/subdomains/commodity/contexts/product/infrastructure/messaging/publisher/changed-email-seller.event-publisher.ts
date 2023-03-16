@@ -1,27 +1,20 @@
-import { SellerDomainEntity } from '@context/product/domain/entities';
-import { EventPublisherBase } from '@sofka';
-import { Publisher } from '@context/product/domain/events/publishers';
+import { ChangedEmailSellerEventPublisher } from '@context/product/domain/events';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { IEventPublisher } from '@sofka';
+import { lastValueFrom } from 'rxjs';
+import { ItemEntity } from '../../persistence/entities/item.entity';
+import { SellerEntity } from '../../persistence/entities/seller.entity';
+@Injectable()
+export class ChangedEmailSellerPublisher extends ChangedEmailSellerEventPublisher {
+  constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {
+    super(proxy as unknown as IEventPublisher);
+  }
 
-/**
- * clase abstracta para publicar el evento de cambio de email del vendedor
- *
- * @export
- * @abstract
- * @class ChangedEmailSellerEventPublisher
- * @extends {EventPublisherBase<Response>}
- * @template Response
- */
-export abstract class ChangedEmailSellerEventPublisher<
-  Response = SellerDomainEntity,
-> extends EventPublisherBase<Response> {
-  /**
-   *  publica el evento de cambio de email del vendedor
-   *
-   * @template Result
-   * @return {Promise<Result>} retorna una promesa con el resultado
-   * @memberof ChangedEmailSellerEventPublisher
-   */
-  publish<Result = any>(): Promise<Result> {
-    return this.emit(Publisher.ChangedEmail, JSON.stringify(this.response));
+  emit<Result = any, Input = SellerEntity>(
+    pattern: any,
+    data: Input,
+  ): Promise<Result> {
+    return lastValueFrom(this.proxy.emit(pattern, data));
   }
 }
