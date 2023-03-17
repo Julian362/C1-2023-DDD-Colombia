@@ -55,6 +55,7 @@ export class ItemController {
    * @memberof ItemController
    */
   @Get()
+  @UseGuards(AuthGuard)
   async getItem(@Body() command: GetItemCommand): Promise<IGotITemResponse> {
     const useCase = new GetItemUseCase(this.itemService, this.getItemPublisher);
 
