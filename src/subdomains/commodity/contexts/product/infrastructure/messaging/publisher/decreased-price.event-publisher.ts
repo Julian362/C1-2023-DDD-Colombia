@@ -4,12 +4,29 @@ import { ClientProxy } from '@nestjs/microservices';
 import { IEventPublisher } from '@sofka';
 import { lastValueFrom } from 'rxjs';
 import { ItemEntity } from '../../persistence/entities/item.entity';
+/**
+ * evento de cambio de estado de item que se comunica con kafka
+ *
+ * @export
+ * @class DecreasePricePublisher
+ * @extends {DecreasePriceEventPublisher}
+ */
 @Injectable()
 export class DecreasePricePublisher extends DecreasePriceEventPublisher {
   constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {
     super(proxy as unknown as IEventPublisher);
   }
 
+  /**
+   * emite el evento de cambio de estado de item
+   *
+   * @template Result
+   * @template Input
+   * @param {*} pattern
+   * @param {Input} data
+   * @return {*}  {Promise<Result>}
+   * @memberof DecreasePricePublisher
+   */
   emit<Result = any, Input = ItemEntity>(
     pattern: any,
     data: Input,

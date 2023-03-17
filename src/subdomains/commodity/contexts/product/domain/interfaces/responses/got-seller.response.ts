@@ -7,5 +7,11 @@ import { SellerDomainEntity } from '../../entities/seller.domain-entity';
  * @interface IGotSellerResponse
  */
 export interface IGotSellerResponse {
+  /**
+   * vendedor obtenido
+   *
+   * @type {(SellerDomainEntity | null)}
+   * @memberof IGotSellerResponse
+   */
   seller: SellerDomainEntity | null;
 }

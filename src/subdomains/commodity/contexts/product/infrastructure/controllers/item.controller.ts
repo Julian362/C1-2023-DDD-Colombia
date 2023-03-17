@@ -12,6 +12,12 @@ import { GetItemUseCase } from '../../application/use-cases/get-item/get-item.us
 import { GotItemPublisher } from '../messaging/publisher/got-item.event-publisher';
 import { AuthGuard } from '../utils/guards/auth/auth.guard';
 
+/**
+ *  controlador para manejar los items
+ *
+ * @export
+ * @class ItemController
+ */
 @Controller('item')
 export class ItemController {
   constructor(
@@ -20,6 +26,13 @@ export class ItemController {
     private readonly getItemPublisher: GotItemPublisher,
   ) {}
 
+  /**
+   *  crea un item
+   *
+   * @param {CreateItemCommand} command comando para crear un item
+   * @return {Promise<ICreatedITemResponse>} respuesta de la creacion del item
+   * @memberof ItemController
+   */
   @Post()
   @UseGuards(AuthGuard)
   async createItem(
@@ -32,6 +45,13 @@ export class ItemController {
 
     return await useCase.execute(command);
   }
+  /**
+   * obtiene un item por su id
+   *
+   * @param {GetItemCommand} command comando para obtener un item
+   * @return {Promise<IGotITemResponse>} respuesta de la obtencion del item
+   * @memberof ItemController
+   */
   @Get()
   async getItem(@Body() command: GetItemCommand): Promise<IGotITemResponse> {
     const useCase = new GetItemUseCase(this.itemService, this.getItemPublisher);

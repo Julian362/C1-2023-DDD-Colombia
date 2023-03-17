@@ -7,5 +7,11 @@ import { CategoryDomainEntity } from '../../entities/category.domain-entity';
  * @interface IGotCategoryResponse
  */
 export interface IGotCategoryResponse {
+  /**
+   * categoria obtenida
+   *
+   * @type {(CategoryDomainEntity | null)}
+   * @memberof IGotCategoryResponse
+   */
   category: CategoryDomainEntity | null;
 }

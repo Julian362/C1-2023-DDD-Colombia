@@ -5,6 +5,12 @@ import { IGotSellerResponse } from '@context/product/domain/interfaces/responses
 import { SellerService } from '../persistence/services/seller.service';
 import { GotSellerPublisher } from '../messaging/publisher/got-seller.event-publisher';
 import { AuthGuard } from '../utils/guards/auth/auth.guard';
+/**
+ * controlador para manejar los vendedores
+ *
+ * @export
+ * @class SellerController
+ */
 @Controller('seller')
 export class SellerController {
   constructor(
@@ -12,6 +18,13 @@ export class SellerController {
     private readonly gotSellerPublisher: GotSellerPublisher,
   ) {}
 
+  /**
+   * obtiene un vendedor por su id
+   *
+   * @param {GetSellerCommand} command comando para obtener un vendedor
+   * @return {Promise<IGotSellerResponse>} respuesta de la obtencion del vendedor
+   * @memberof SellerController
+   */
   @Get()
   @UseGuards(AuthGuard)
   async getSeller(

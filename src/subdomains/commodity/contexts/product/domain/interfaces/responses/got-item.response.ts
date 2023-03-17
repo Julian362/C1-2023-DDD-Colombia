@@ -7,5 +7,11 @@ import { ItemDomainEntity } from '../../entities';
  * @interface IGotITemResponse
  */
 export interface IGotITemResponse {
+  /**
+   * item obtenido
+   *
+   * @type {(ItemDomainEntity | null)}
+   * @memberof IGotITemResponse
+   */
   item: ItemDomainEntity | null;
 }
