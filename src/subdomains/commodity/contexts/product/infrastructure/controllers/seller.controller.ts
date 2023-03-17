@@ -5,6 +5,7 @@ import { IGotSellerResponse } from '@context/product/domain/interfaces/responses
 import { SellerService } from '../persistence/services/seller.service';
 import { GotSellerPublisher } from '../messaging/publisher/got-seller.event-publisher';
 import { AuthGuard } from '../utils/guards/auth/auth.guard';
+import { ApiTags } from '@nestjs/swagger/dist';
 /**
  * controlador para manejar los vendedores
  *
@@ -12,6 +13,7 @@ import { AuthGuard } from '../utils/guards/auth/auth.guard';
  * @class SellerController
  */
 @Controller('seller')
+@ApiTags('seller')
 export class SellerController {
   constructor(
     private readonly sellerService: SellerService,

@@ -1,41 +1,19 @@
-import {
-  ArgumentsHost,
-  Catch,
-  ExceptionFilter,
-  HttpStatus,
-  NotFoundException,
-} from '@nestjs/common';
-import { Response } from 'express';
+import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
+import { QueryFailedError } from 'typeorm';
 
-/**
- * filtro de excepcion de NotFoundException
- *
- * @export
- * @class NotFoundExceptionFilter
- * @implements {ExceptionFilter<NotFoundException>}
- */
-@Catch(NotFoundException)
-export class NotFoundExceptionFilter
-  implements ExceptionFilter<NotFoundException>
-{
-  /**
-   * captura la excepcion de NotFoundException
-   *
-   * @param {NotFoundException} exception excepcion de NotFoundException
-   * @param {ArgumentsHost} host host de la excepcion
-   * @memberof NotFoundExceptionFilter
-   */
-  catch(exception: NotFoundException, host: ArgumentsHost) {
-    const context = host.switchToHttp();
-    const response = context.getResponse<Response>();
-    const message = exception.message;
-    const statusCode = HttpStatus.NOT_FOUND;
-    const errors = exception.name;
+@Catch(QueryFailedError)
+export class TypeOrmExceptionFilter implements ExceptionFilter {
+  catch(exception: QueryFailedError, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    const request = ctx.getRequest();
 
-    response.status(statusCode).json({
-      statusCode,
-      message,
-      errors,
+    response.status(500).json({
+      statusCode: 500,
+      message: 'Error en la base de datos',
+      error: exception.message,
+      timestamp: new Date().toISOString(),
+      path: request.url,
     });
   }
 }

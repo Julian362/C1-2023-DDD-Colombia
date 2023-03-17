@@ -1,5 +1,6 @@
 import { IGotCategoryResponse } from '@context/product/domain/interfaces/responses/got-category.response';
 import { Controller, Get, Body, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger/dist';
 import { GetCategoryUseCase } from '../../application/use-cases/get-category';
 import { GotCategoryPublisher } from '../messaging/publisher/got-category.event-publisher';
 import { CategoryService } from '../persistence/services/category.service';
@@ -14,6 +15,7 @@ import { AuthGuard } from '../utils/guards/auth/auth.guard';
  * @class CategoryController
  */
 @Controller('category')
+@ApiTags('category')
 export class CategoryController {
   /**
    * crea una instancia de CategoryController

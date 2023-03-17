@@ -16,9 +16,8 @@ import { IErrorValueObject, ValueObjectBase } from '@sofka';
  */
 export abstract class StringValueObjectBase extends ValueObjectBase<string> {
   /**
-   *  crea una instancia de StringValueObjectBase
+   * crea una instancia de StringValueObjectBase
    * @param {string} value valor del objeto
-   * @param {{ maxLength?: number; minLength?: number }} { maxLength, minLength } opcionales para validar el tamaño del string
    * @memberof StringValueObjectBase
    */
   constructor(value: string) {

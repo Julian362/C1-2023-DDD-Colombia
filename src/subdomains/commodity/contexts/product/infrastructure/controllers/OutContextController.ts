@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { IDataNameForCategory } from '@context/product/domain/interfaces';
+import { ApiTags } from '@nestjs/swagger/dist';
 /**
  * controlador para manejar el contexto entrada de datos externos
  *
@@ -7,6 +8,7 @@ import { IDataNameForCategory } from '@context/product/domain/interfaces';
  * @class OutContextController
  */
 @Controller('MercadoLibre')
+@ApiTags('MercadoLibre')
 export class OutContextController {
   /**
    * obtiene el estado de la categoria

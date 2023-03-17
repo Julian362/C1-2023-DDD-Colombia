@@ -7,9 +7,10 @@ import { ItemController } from './controllers/item.controller';
 import { SellerController } from './controllers/seller.controller';
 import { CategoryController } from './controllers/category.controller';
 import { HttpModule } from '@nestjs/axios';
-import { NotFoundExceptionFilter } from './utils/exception-filters/bd.exception-filter';
+import { NotFoundExceptionFilter } from './utils/exception-filters/not-found.exception-filter';
 import { GetDataOutContextService } from './services/get-data-out-context.service';
 import { OutContextController } from './controllers/OutContextController';
+import { TypeOrmExceptionFilter } from './utils/exception-filters/bd.exception-filter';
 @Module({
   imports: [PersistenceModule, MessagingModule, HttpModule],
   controllers: [
@@ -30,7 +31,7 @@ import { OutContextController } from './controllers/OutContextController';
     },
     {
       provide: APP_FILTER,
-      useClass: NotFoundExceptionFilter,
+      useClass: TypeOrmExceptionFilter,
     },
   ],
 })

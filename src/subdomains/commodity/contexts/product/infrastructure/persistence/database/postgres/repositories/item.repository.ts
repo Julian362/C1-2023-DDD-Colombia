@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository } from 'typeorm';
 import { ItemPostgresEntity } from '../entities/item-postgres.entity';
 import { IBase } from './interfaces/base.interface';
 
@@ -30,6 +30,10 @@ export class ItemRepository implements IBase<ItemPostgresEntity> {
    * @memberof ItemRepository
    */
   async create(entity: ItemPostgresEntity): Promise<ItemPostgresEntity> {
+    const data = await this.repository.findBy({ itemId: entity.itemId });
+    if (data.length > 0) {
+      throw new QueryFailedError('', [], 'El id ya esta registrado');
+    }
     const result = await this.repository.save(entity);
     return result;
   }

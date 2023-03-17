@@ -52,7 +52,7 @@ export class ItemAggregateRoot
   private readonly getDataOutContextService?: GetDataOutContextService;
   /**
    * crea una instancia de ItemAggregateRoot
-   * @param {{
+   * @param {
    *     itemService?: IItemDomainService;
    *     sellerService?: ISellerDomainService;
    *     categoryService?: ICategoryDomainService;

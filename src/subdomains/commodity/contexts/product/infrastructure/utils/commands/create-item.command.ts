@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { ICreateItemCommand } from '../../../domain/interfaces/commands/create-item.command';
 /**
@@ -26,15 +27,19 @@ class Seller {
  */
 class Categories {
   @IsString({ message: 'el id de la categoría debe ser un string' })
+  @ApiProperty()
   categoryId: string;
 
   @IsString({ message: 'el nombre de la categoría debe ser un string' })
+  @ApiProperty()
   name: string;
 
   @IsBoolean({ message: 'el estado de la categoría debe ser un boolean' })
+  @ApiProperty()
   state: boolean;
 
   @IsString({ message: 'la descripción de la categoría debe ser un string' })
+  @ApiProperty()
   description: string;
 }
 
@@ -47,26 +52,34 @@ class Categories {
  */
 export class CreateItemCommand implements ICreateItemCommand {
   @IsString({ message: 'el id del item debe ser un string' })
+  @ApiProperty()
   itemId: string;
 
   @IsString({ message: 'el nombre del item debe ser un string' })
+  @ApiProperty()
   name: string;
 
   @IsString({ message: 'la descripción del item debe ser un string' })
+  @ApiProperty()
   description: string;
 
   @IsNumber({}, { message: 'el precio del item debe ser un numero' })
+  @ApiProperty()
   price: number;
 
   @IsString({ message: 'la imagen del item debe ser un string' })
+  @ApiProperty()
   image: string;
 
   @IsBoolean({ message: 'el estado del item debe ser un boolean' })
+  @ApiProperty()
   state: boolean;
 
   @ValidateNested()
+  @ApiProperty()
   seller: Seller;
 
   @ValidateNested()
+  @ApiProperty()
   categories: Categories[];
 }

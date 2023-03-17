@@ -11,6 +11,7 @@ import { GetItemCommand } from '../utils/commands/get-item.command copy';
 import { GetItemUseCase } from '../../application/use-cases/get-item/get-item.use-case';
 import { GotItemPublisher } from '../messaging/publisher/got-item.event-publisher';
 import { AuthGuard } from '../utils/guards/auth/auth.guard';
+import { ApiTags } from '@nestjs/swagger/dist';
 
 /**
  *  controlador para manejar los items
@@ -19,6 +20,7 @@ import { AuthGuard } from '../utils/guards/auth/auth.guard';
  * @class ItemController
  */
 @Controller('item')
+@ApiTags('item')
 export class ItemController {
   constructor(
     private readonly itemService: ItemService,

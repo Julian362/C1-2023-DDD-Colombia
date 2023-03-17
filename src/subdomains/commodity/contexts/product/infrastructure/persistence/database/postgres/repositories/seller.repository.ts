@@ -37,9 +37,9 @@ export class SellerRepository implements IBase<SellerPostgresEntity> {
   /**
    * método update que actualiza un registro
    *
-   * @param {string} id
-   * @param {SellerPostgresEntity} entity
-   * @return NotFoundException{Promise<SellerPostgresEntity>}
+   * @param {string} id identificador del registro
+   * @param {SellerPostgresEntity} entity objeto de tipo SellerPostgresEntity
+   * @return {Promise<SellerPostgresEntity>} retorna el registro actualizado
    * @memberof SellerRepository
    */
   async update(
@@ -58,10 +58,10 @@ export class SellerRepository implements IBase<SellerPostgresEntity> {
   }
 
   /**
+   * método delete que elimina un registro
    *
-   *
-   * @param {string} id
-   * @return NotFoundException{Promise<boolean>}
+   * @param {string} id identificador del registro
+   * @return {Promise<boolean>} retorna true si el registro fue eliminado
    * @memberof SellerRepository
    */
   async delete(id: string): Promise<boolean> {
@@ -74,10 +74,10 @@ export class SellerRepository implements IBase<SellerPostgresEntity> {
   }
 
   /**
+   * método findById que retorna un objeto de tipo SellerPostgresEntity
    *
-   *
-   * @param {string} id
-   * @return NotFoundException{Promise<SellerPostgresEntity>}
+   * @param {string} id identificador del registro
+   * @return {Promise<SellerPostgresEntity>} retorna un objeto de tipo SellerPostgresEntity
    * @memberof SellerRepository
    */
   async findById(id: string): Promise<SellerPostgresEntity> {
