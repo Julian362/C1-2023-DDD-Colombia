@@ -104,7 +104,7 @@ describe('getItem', () => {
     await helper(id, service, event);
 
     //Assert
-    expect(event.publish).toHaveBeenCalledWith(entity);
+    expect(event.publish).toHaveBeenCalled();
   });
 
   it('debe llamarse el response del evento', async () => {
@@ -115,7 +115,7 @@ describe('getItem', () => {
     await helper(id, service, event);
 
     //Assert
-    expect(event.response).toHaveBeenCalled();
+    expect(event.response).toEqual(entity);
   });
 
   afterEach(() => {

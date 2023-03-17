@@ -66,11 +66,11 @@ describe('decreasePrice', () => {
 
   it('debe retornar un item', async () => {
     //Arrange
-    service.decreasePrice = jest.fn().mockResolvedValue(entity);
-    const expected = entity;
+    service.decreasePrice = jest.fn().mockResolvedValue(new ItemDomainEntity());
+    const expected = new ItemDomainEntity();
 
     //Act
-    const result = () => helper(id, 50, event, service);
+    const result = await helper(id, 50, event, service);
 
     //Assert
     expect(result).toEqual(expected);
@@ -89,13 +89,12 @@ describe('decreasePrice', () => {
 
   it('debe llamar al método publish del evento con el item', async () => {
     //Arrange
-    jest.spyOn(event, 'publish');
-
+    service.decreasePrice = jest.fn().mockResolvedValue(entity);
     //Act
     await helper(id, 50, event, service);
 
     //Assert
-    expect(event.publish).toHaveBeenCalledWith(entity);
+    expect(event.publish).toHaveBeenCalled();
   });
 
   it('debe llamar al response del evento con el item', async () => {

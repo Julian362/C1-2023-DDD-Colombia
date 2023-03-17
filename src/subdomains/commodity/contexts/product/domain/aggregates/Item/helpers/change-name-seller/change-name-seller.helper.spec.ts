@@ -16,7 +16,7 @@ describe('changeNameSeller', () => {
   beforeEach(() => {
     // Arrange
     service = {
-      changeName: jest.fn(),
+      changeNameSeller: jest.fn(),
     } as unknown as ISellerDomainService;
     event = {
       publish: jest.fn(),
@@ -65,12 +65,10 @@ describe('changeNameSeller', () => {
 
   it('debe retornar un objeto de tipo SellerDomainEntity', async () => {
     //Arrange
-    const expected = new SellerDomainEntity({
-      sellerId: id,
-      name,
-      email: entity.email,
-      state: entity.state,
-    });
+    service.changeNameSeller = jest
+      .fn()
+      .mockReturnValue(new SellerDomainEntity());
+    const expected = new SellerDomainEntity();
 
     //Act
     const result = await helper(id, name, event, service);
@@ -97,11 +95,13 @@ describe('changeNameSeller', () => {
   });
 
   it('debe llamar al response del evento', async () => {
+    //Arrange
+    service.changeNameSeller = jest.fn().mockReturnValue(entity);
     //Act
     await helper(id, name, event, service);
 
     //Assert
-    expect(event.response).toHaveBeenCalled();
+    expect(event.response).toEqual(entity);
   });
   afterEach(() => {
     jest.clearAllMocks();

@@ -51,7 +51,7 @@ describe('createSeller', () => {
   it('debe lanzar un throw AggregateRootException si el evento no es definido', async () => {
     //Arrange
     event = undefined as unknown as CreatedSellerEventPublisher;
-    const expected = 'El evento publicador de creación de producto no existe';
+    const expected = 'El evento publicador de creación de vendedor no existe';
 
     //Act
     const result = () => helper(entity, service, event);

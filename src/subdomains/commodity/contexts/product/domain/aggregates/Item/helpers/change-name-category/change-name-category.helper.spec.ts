@@ -16,7 +16,7 @@ describe('changeNameCategory', () => {
   beforeEach(() => {
     // Arrange
     service = {
-      changeName: jest.fn(),
+      ChangeNameCategoryHelper: jest.fn(),
     } as unknown as ICategoryDomainService;
     event = {
       publish: jest.fn(),
@@ -67,6 +67,9 @@ describe('changeNameCategory', () => {
 
   it('debe retornar un objeto de tipo CategoryDomainEntity', async () => {
     //Arrange
+    service.changeNameCategory = jest
+      .fn()
+      .mockReturnValue(new CategoryDomainEntity());
     const expected = new CategoryDomainEntity();
 
     //Act
@@ -77,6 +80,9 @@ describe('changeNameCategory', () => {
   });
 
   it('debe llamar al método changeNameCategory del servicio', async () => {
+    //Arrange
+    service.changeNameCategory = jest.fn().mockReturnValue(entity);
+
     //Act
     await helper(id, name, event, service);
 
@@ -86,7 +92,7 @@ describe('changeNameCategory', () => {
 
   it('debe llamar al método publish del evento', async () => {
     //Arrange
-    jest.spyOn(event, 'publish');
+    service.changeNameCategory = jest.fn().mockReturnValue(entity);
 
     //Act
     await helper(id, name, event, service);
@@ -97,13 +103,13 @@ describe('changeNameCategory', () => {
 
   it('debe retornar el objeto response del evento', async () => {
     //Arrange
-    const expected = new CategoryDomainEntity();
+    service.changeNameCategory = jest.fn().mockReturnValue(entity);
 
     //Act
     const result = await helper(id, name, event, service);
 
     //Assert
-    expect(result).toEqual(expected);
+    expect(result).toEqual(event.response);
   });
 
   afterEach(() => {

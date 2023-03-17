@@ -66,6 +66,7 @@ describe('changeImage', () => {
 
   it('debe retornar un ItemDomainEntity si el servicio es definido', async () => {
     //Arrange
+    service.changeImage = jest.fn().mockReturnValue(entity);
     const expected = entity;
 
     //Act
@@ -84,6 +85,8 @@ describe('changeImage', () => {
   });
 
   it('debe llamar event.publish', async () => {
+    //Arrange
+    service.changeImage = jest.fn().mockReturnValue(entity);
     //Act
     await helper(id, image, event, service);
 
@@ -92,11 +95,13 @@ describe('changeImage', () => {
   });
 
   it('debe llamar event.response', async () => {
+    //Arrange
+    service.changeImage = jest.fn().mockReturnValue(entity);
     //Act
     await helper(id, image, event, service);
 
     //Assert
-    expect(event.response).toHaveBeenCalled();
+    expect(event.response).toEqual(entity);
   });
 
   afterEach(() => {

@@ -52,7 +52,8 @@ describe('increasePrice', () => {
   it('debe lanzar un throw AggregateRootException si el evento no es definido', async () => {
     //Arrange
     event = undefined as unknown as IncreasePriceEventPublisher;
-    const expected = 'El evento de item no existe';
+    const expected =
+      'El evento publicador de cambio de precio de producto no existe';
 
     //Act
     const result = () => helper(id, price, event, service);
@@ -64,13 +65,8 @@ describe('increasePrice', () => {
 
   it('retorna un objeto de tipo ItemDomainEntity', async () => {
     //Arrange
-    const expected = new ItemDomainEntity({
-      itemId: uuidv4(),
-      name: 'Item',
-      description: 'Description',
-      price: 100,
-      state: true,
-    });
+    service.increasePrice = jest.fn().mockReturnValue(new ItemDomainEntity());
+    const expected = new ItemDomainEntity();
 
     //Act
     const result = await helper(id, price, event, service);
@@ -98,11 +94,13 @@ describe('increasePrice', () => {
   });
 
   it('debe llamar al response del evento', async () => {
+    //Arrange
+    service.increasePrice = jest.fn().mockReturnValue(new ItemDomainEntity());
     //Act
     await helper(id, price, event, service);
 
     //Assert
-    expect(event.response).toHaveBeenCalled();
+    expect(event.response).toEqual(new ItemDomainEntity());
   });
 
   afterEach(() => {

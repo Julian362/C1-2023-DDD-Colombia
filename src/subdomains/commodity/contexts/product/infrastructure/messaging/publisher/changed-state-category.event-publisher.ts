@@ -2,10 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { IEventPublisher } from '@sofka';
 import { lastValueFrom } from 'rxjs';
-import { ItemEntity } from '../../persistence/entities/item.entity';
-import { ChangedDescriptionCategoryEventPublisher } from '../../../domain/events/publishers/changed-description-category.event-publisher';
 import { CategoryEntity } from '../../persistence/entities/category.entity';
-import { ChangedStateEventPublisher } from './changed-state.event-publisher';
+import { ChangedStateEventPublisher } from '@context/product/domain/events';
 @Injectable()
 export class ChangedStatePublisher extends ChangedStateEventPublisher {
   constructor(@Inject('PRODUCT_CONTEXT') private readonly proxy: ClientProxy) {

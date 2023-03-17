@@ -79,7 +79,7 @@ describe('changeStateSeller', () => {
 
   it('debe llamar al método changeState del servicio', async () => {
     //Arrange
-    jest.spyOn(service, 'changeStateSeller');
+    service.changeStateSeller = jest.fn().mockResolvedValue(entity);
 
     //Act
     await helper(id, state, event, service);
@@ -90,7 +90,7 @@ describe('changeStateSeller', () => {
 
   it('debe llamar al método publish del evento', async () => {
     //Arrange
-    jest.spyOn(event, 'publish');
+    service.changeStateSeller = jest.fn().mockResolvedValue(entity);
 
     //Act
     await helper(id, state, event, service);
@@ -106,7 +106,7 @@ describe('changeStateSeller', () => {
     await helper(id, state, event, service);
 
     //Assert
-    expect(event.response).toHaveBeenCalled();
+    expect(event.response).toEqual(entity);
   });
 
   afterEach(() => {

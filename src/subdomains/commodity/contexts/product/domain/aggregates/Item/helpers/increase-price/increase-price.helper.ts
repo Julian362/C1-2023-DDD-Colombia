@@ -19,7 +19,7 @@ export const IncreasePriceHelper = async (
   itemService?: IItemDomainService,
 ): Promise<ItemDomainEntity> => {
   if (!itemService)
-    throw new AggregateRootException('El servicio de vendedor no existe');
+    throw new AggregateRootException('El servicio de item no existe');
   if (!increasePriceEP)
     throw new AggregateRootException(
       'El evento publicador de cambio de precio de producto no existe',

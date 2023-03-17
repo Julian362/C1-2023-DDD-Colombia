@@ -17,7 +17,7 @@ export const CreateSellerHelper = async (
   createSellerEP?: CreatedSellerEventPublisher<SellerDomainEntity>,
 ): Promise<SellerDomainEntity> => {
   if (!sellerService)
-    throw new AggregateRootException('El servicio de seller no existe');
+    throw new AggregateRootException('El servicio de vendedor no existe"');
   if (!createSellerEP)
     throw new AggregateRootException(
       'El evento publicador de creación de vendedor no existe',

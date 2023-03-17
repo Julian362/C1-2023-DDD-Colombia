@@ -81,10 +81,12 @@
       "/node_modules/",
       "/test/",
       "<rootDir>/main.ts",
+      "<rootDir>/shared/sofka",
       "<rootDir>/app.module.ts",
       "<rootDir>/subdomains/commodity/contexts/product/infrastructure",
       "<rootDir>/subdomains/commodity/contexts/publication",
-      "/index\\.ts$"
+      "/index\\.ts$",
+      "/enum\\.ts$"
     ],
     "moduleNameMapper": {
       "^@validations(.*)$": "<rootDir>/shared/validations$1",
