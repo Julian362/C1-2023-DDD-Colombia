@@ -23,9 +23,9 @@ export class IncreasedItemPublisher extends IncreasePriceEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof IncreasedItemPublisher
    */
   emit<Result = any, Input = SellerEntity>(

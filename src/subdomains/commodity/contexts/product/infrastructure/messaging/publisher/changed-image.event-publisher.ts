@@ -22,9 +22,9 @@ export class ChangedImagePublisher extends ChangedImageEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof ChangedImagePublisher
    */
   emit<Result = any, Input = ItemEntity>(

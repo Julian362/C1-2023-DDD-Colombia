@@ -22,9 +22,9 @@ export class ChangedDescriptionPublisher extends ChangedDescriptionCategoryEvent
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof ChangedDescriptionPublisher
    */
   emit<Result = any, Input = ItemEntity>(

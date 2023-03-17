@@ -23,9 +23,9 @@ export class ChangedEmailSellerPublisher extends ChangedEmailSellerEventPublishe
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof ChangedEmailSellerPublisher
    */
   emit<Result = any, Input = SellerEntity>(

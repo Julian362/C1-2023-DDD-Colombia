@@ -22,9 +22,9 @@ export class GotItemPublisher extends GotItemEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof GotItemPublisher
    */
   emit<Result = any, Input = ItemEntity>(

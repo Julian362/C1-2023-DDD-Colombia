@@ -22,9 +22,9 @@ export class ChangedStatePublisher extends ChangedStateEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof ChangedStatePublisher
    */
   emit<Result = any, Input = CategoryEntity>(

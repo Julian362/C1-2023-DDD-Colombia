@@ -22,9 +22,9 @@ export class DecreasePricePublisher extends DecreasePriceEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof DecreasePricePublisher
    */
   emit<Result = any, Input = ItemEntity>(

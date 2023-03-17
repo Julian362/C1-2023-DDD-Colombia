@@ -22,9 +22,9 @@ export class CreatedSellerPublisher extends CreatedSellerEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof CreatedSellerPublisher
    */
   emit<Result = any, Input = ItemEntity>(

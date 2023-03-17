@@ -20,7 +20,7 @@ export class GetDataOutContextService
    *  obtiene los datos de la api externa
    *
    * @param {string} name nombre de la categoria
-   * @return {*}  {Promise<IDataNameForCategory>} retorna una promesa con los datos
+   * @return  {Promise<IDataNameForCategory>} retorna una promesa con los datos
    * @memberof GetDataOutContextService
    */
   async getDataForCategory(name: string): Promise<IDataNameForCategory> {

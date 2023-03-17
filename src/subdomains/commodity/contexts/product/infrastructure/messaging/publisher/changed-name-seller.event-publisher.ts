@@ -23,9 +23,9 @@ export class ChangedNameSellerPublisher extends ChangedNameSellerEventPublisher 
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof ChangedNameSellerPublisher
    */
   emit<Result = any, Input = SellerEntity>(

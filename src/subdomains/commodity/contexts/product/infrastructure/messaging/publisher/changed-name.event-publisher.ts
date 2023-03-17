@@ -22,9 +22,9 @@ export class ChangedNamePublisher extends ChangedNameEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof ChangedNamePublisher
    */
   emit<Result = any, Input = ItemEntity>(

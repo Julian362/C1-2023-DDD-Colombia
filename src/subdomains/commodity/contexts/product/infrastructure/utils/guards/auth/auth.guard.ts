@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
    * método que verifica si el usuario está autenticado
    *
    * @param {ExecutionContext} context
-   * @return {*}  {Promise<boolean>}
+   * @return  {Promise<boolean>}
    * @memberof AuthGuard
    */
   async canActivate(context: ExecutionContext): Promise<boolean> {

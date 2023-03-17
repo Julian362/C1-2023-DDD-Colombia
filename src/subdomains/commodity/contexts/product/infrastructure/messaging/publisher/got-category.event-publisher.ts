@@ -22,9 +22,9 @@ export class GotCategoryPublisher extends GotCategoryEventPublisher {
    *
    * @template Result
    * @template Input
-   * @param {*} pattern
+   * @param pattern
    * @param {Input} data
-   * @return {*}  {Promise<Result>}
+   * @return  {Promise<Result>}
    * @memberof GotCategoryPublisher
    */
   emit<Result = any, Input = ItemEntity>(
