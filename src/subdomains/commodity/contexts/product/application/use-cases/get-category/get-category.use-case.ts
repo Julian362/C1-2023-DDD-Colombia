@@ -9,12 +9,14 @@ import { IGotCategoryResponse } from '@context/product/domain/interfaces/respons
 import { ICategoryDomainService } from '@context/product/domain/services';
 import { CategoryIdValueObject } from '@context/product/domain/value-objects';
 import { GetDataOutContextService } from '../../../infrastructure/services/get-data-out-context.service';
+import { AggregateRootException } from '../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 import {
   EventPublisherBase,
   IUseCase,
   ValueObjectErrorHandler,
   ValueObjectException,
 } from '@sofka';
+import { HttpException } from '@nestjs/common';
 
 /**
  * caso de uso para obtener un category
@@ -139,11 +141,17 @@ export class GetCategoryUseCase
     );
     if (this.getDataOutContextService) {
       const response = await this.getDataOutContextService.getDataForCategory(
-        'mercado libre',
+        promise.name?.valueOf() ?? '',
       );
-      if (response.state) {
+      if (!response.state) {
         promise.state = response.state;
-        throw new Error('');
+        throw new HttpException(
+          {
+            status: 'error',
+            message: 'Categoría bloqueada',
+          },
+          403,
+        );
       }
     }
     return promise;

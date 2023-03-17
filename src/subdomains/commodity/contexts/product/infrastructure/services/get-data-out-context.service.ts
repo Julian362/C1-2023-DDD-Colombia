@@ -12,7 +12,7 @@ export class GetDataOutContextService
   async getDataForCategory(name: string): Promise<IDataNameForCategory> {
     const data = await firstValueFrom(
       this.httpService.get<IDataNameForCategory>(
-        'http://localhost:3000/category/desactive/' + name,
+        'http://localhost:3000/MercadoLibre/desactive/' + name.toLowerCase(),
       ),
     );
     return data.data;

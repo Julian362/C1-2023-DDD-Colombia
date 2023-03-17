@@ -9,9 +9,15 @@ import { CategoryController } from './controllers/category.controller';
 import { HttpModule } from '@nestjs/axios';
 import { NotFoundExceptionFilter } from './utils/exception-filters/bd.exception-filter';
 import { GetDataOutContextService } from './services/get-data-out-context.service';
+import { OutContextController } from './controllers/OutContextController';
 @Module({
   imports: [PersistenceModule, MessagingModule, HttpModule],
-  controllers: [ItemController, CategoryController, SellerController],
+  controllers: [
+    ItemController,
+    CategoryController,
+    SellerController,
+    OutContextController,
+  ],
   providers: [
     GetDataOutContextService,
     {
