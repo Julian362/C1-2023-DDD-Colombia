@@ -38,7 +38,7 @@ describe('createSeller', () => {
   it('debe lanzar un throw AggregateRootException si el servicio no es definido', async () => {
     //Arrange
     service = undefined as unknown as ISellerDomainService;
-    const expected = 'El servicio de seller no existe';
+    const expected = 'El servicio de vendedor no existe';
 
     //Act
     const result = () => helper(entity, service, event);

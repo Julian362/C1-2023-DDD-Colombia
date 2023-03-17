@@ -147,7 +147,6 @@ export class CreateItemUseCase
     const image = new ImageValueObject(command.image);
     const price = new PriceValueObject(command.price);
     const state = new StateValueObject(command.state);
-
     const sellerId = new SellerIdValueObject(command.seller.sellerId);
     const nameSeller = new NameSellerValueObject(command.seller.name);
     const emailSeller = new EmailValueObject(command.seller.email);
@@ -159,15 +158,16 @@ export class CreateItemUseCase
       state: StateCategoryValueObject;
       description: DescriptionCategoryValueObject;
     }[] = [];
-
-    command.categories.forEach((category) => {
-      categories.push({
-        categoryId: new CategoryIdValueObject(category.categoryId),
-        name: new NameCategoryValueObject(category.name),
-        state: new StateCategoryValueObject(category.state),
-        description: new DescriptionCategoryValueObject(category.description),
+    if (command.categories.length > 0) {
+      command.categories.forEach((category) => {
+        categories.push({
+          categoryId: new CategoryIdValueObject(category.categoryId),
+          name: new NameCategoryValueObject(category.name),
+          state: new StateCategoryValueObject(category.state),
+          description: new DescriptionCategoryValueObject(category.description),
+        });
       });
-    });
+    }
 
     return {
       itemId,

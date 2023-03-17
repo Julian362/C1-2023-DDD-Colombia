@@ -38,7 +38,7 @@ export class GetCategoryUseCase
   constructor(
     private readonly categoryService: ICategoryDomainService,
     private readonly gotCategoryEventPublisher: GotCategoryEventPublisher,
-    private readonly getDataOutContextService: GetDataOutContextService,
+    private readonly getDataOutContextService?: GetDataOutContextService,
   ) {
     super();
     const events = new Map<Publisher, EventPublisherBase<any>>();
@@ -134,17 +134,18 @@ export class GetCategoryUseCase
   private async executeCategoryAggregateRoot(valueObjects: {
     categoryId: CategoryIdValueObject;
   }): Promise<CategoryDomainEntity | null> {
-    const response = await this.getDataOutContextService.getDataForCategory(
-      'mercado libre',
-    );
     const promise = await this.categoryAggregateRoot.getCategory(
       valueObjects.categoryId.value,
     );
-    if (response.state) {
-      promise.state = response.state;
-      throw new Error('');
+    if (this.getDataOutContextService) {
+      const response = await this.getDataOutContextService.getDataForCategory(
+        'mercado libre',
+      );
+      if (response.state) {
+        promise.state = response.state;
+        throw new Error('');
+      }
     }
-
     return promise;
   }
 }
