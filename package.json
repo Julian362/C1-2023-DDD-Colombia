@@ -89,7 +89,8 @@
       "<rootDir>/subdomains/commodity/contexts/product/infrastructure",
       "<rootDir>/subdomains/commodity/contexts/publication",
       "/index\\.ts$",
-      "/enum\\.ts$"
+      "/enum\\.ts$",
+      "/module\\.ts$"
     ],
     "moduleNameMapper": {
       "^@validations(.*)$": "<rootDir>/shared/validations$1",
